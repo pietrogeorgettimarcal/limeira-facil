@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dúvidas - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <link rel="stylesheet" href="../estilos/duvidas.css">
+    
+    <style>
+        /* Bloqueio absoluto do scroll na página principal (Padrão 80% Zoom) */
+        html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-300 w-full h-full flex justify-center items-center font-sans antialiased no-select overflow-hidden">
+
+    <div class="w-full h-full lg:max-w-[1500px] xl:max-w-[1600px] lg:h-[94%] bg-gray-100 flex flex-col overflow-hidden relative lg:shadow-2xl lg:rounded-2xl border border-gray-300">
+        
+        <header class="h-[45px] md:h-[50px] shrink-0 bg-blue-800 text-white px-4 py-2 flex items-center gap-3 shadow-md z-20">
+            <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                <img src="../imagens/brasao-menor.png" alt="brasao" class="w-6 md:w-7" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>L</text></svg>'">
+            </div>
+            <div>
+                <h1 class="text-sm md:text-lg font-bold tracking-tight leading-none">Limeira Fácil</h1>
+                <p class="text-blue-200 text-[9px] md:text-[10px] font-medium leading-none">Central de Tutoriais</p>
+            </div>
+            <a href="../index.html" class="ml-auto bg-white/20 hover:bg-white/30 px-3 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-house"></i> <span class="hidden md:inline">Início</span>
+            </a>
+        </header>
+
+        <main class="h-full w-full flex flex-col p-3 md:p-6 overflow-y-auto hide-scrollbar fade-in justify-center">
+            
+            <div class="w-full max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full">
+                    
+                    <a href="iptu2026.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-orange-400 hover:shadow-md active:bg-orange-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-file-invoice text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">IPTU 2026</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-orange-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                    <a href="itbi.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-blue-400 hover:shadow-md active:bg-blue-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-house-chimney text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">Informações de ITBI</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-blue-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                    <a href="parcelamento.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-red-400 hover:shadow-md active:bg-red-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-handshake-angle text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">Parcelamento de Dívida</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-red-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                    <a href="quitacao.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-green-400 hover:shadow-md active:bg-green-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-green-100 rounded-full text-green-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-file-invoice-dollar text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">Gerar Guia de Quitação</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-green-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                    <a href="atualizacao-guias.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-yellow-400 hover:shadow-md active:bg-yellow-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-yellow-100 rounded-full text-yellow-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-rotate text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">Atualizar Parcela Vencida</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-yellow-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                    <a href="certidoes.html" class="w-full min-h-[80px] md:min-h-[90px] bg-white border-2 border-gray-200 hover:border-purple-400 hover:shadow-md active:bg-purple-50 rounded-xl md:rounded-2xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all group">
+                        <div class="bg-purple-100 rounded-full text-purple-600 shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-transform group-hover:scale-105">
+                            <i class="fa-solid fa-certificate text-xl md:text-2xl"></i>
+                        </div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base lg:text-lg leading-tight flex-1">Emissão de Certidões</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-lg group-hover:translate-x-1 group-active:text-purple-500 shrink-0 transition-transform"></i>
+                    </a>
+
+                </div>
+            </div>
+            
+        </main>
+    </div>
+</body>
+</html>

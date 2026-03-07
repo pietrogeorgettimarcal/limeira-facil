@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Parcelamento - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }</style>
+</head>
+<body class="bg-slate-300 w-full h-full flex justify-center items-center font-sans antialiased no-select">
+    <div class="w-full h-full lg:max-w-[1500px] xl:max-w-[1600px] lg:h-[94%] bg-gray-100 flex flex-col overflow-hidden relative lg:shadow-2xl lg:rounded-2xl border border-gray-300">
+        
+        <header class="h-[38px] md:h-[45px] shrink-0 bg-blue-800 text-white px-4 py-1 flex items-center gap-3 shadow-md z-20">
+            <div class="bg-white p-1 rounded-full flex items-center justify-center"><img src="../imagens/brasao-menor.png" alt="brasao" class="w-5 md:w-6"></div>
+            <div><h1 class="text-sm md:text-base font-bold tracking-tight leading-none">Limeira Fácil</h1><p class="text-blue-200 text-[8px] md:text-[10px] font-medium leading-none">Autoatendimento</p></div>
+        </header>
+
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-red-100 p-1.5 md:p-2 rounded-xl border border-red-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-list-ul text-red-700 text-sm md:text-base shrink-0" id="header-icon"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-red-900 leading-tight truncate" id="header-title">Parcelamento de Dívida</h2>
+                </div>
+                <button id="btn-back" onclick="window.location.href='duvidas.html'" class="shrink-0 bg-white border border-red-300 hover:bg-red-50 text-red-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 active:scale-95 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                </button>
+            </div>
+
+            <div class="flex-1 w-full overflow-y-auto hide-scrollbar relative min-h-0 px-2">
+                
+                <div id="menu-principal" class="app-view grid grid-cols-1 md:grid-cols-2 gap-3 pb-6 w-full content-start">
+                    <button onclick="abrirView('menu-online', 'Como Parcelar Online', 'fa-computer')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-computer text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como parcelar online?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('info-cpf', 'Documentos Pessoas (CPF)', 'fa-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Documentos e Quem Pode (CPF)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('info-cnpj', 'Documentos Empresas (CNPJ)', 'fa-building')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Documentos e Quem Pode (CNPJ)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('info-vezes', 'Parcelas e Juros', 'fa-calendar-days')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-calendar-days text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Quantas parcelas e Juros?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('info-entrada', 'Regras de Entrada', 'fa-file-invoice-dollar')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-invoice-dollar text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como funciona a Entrada?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('info-minima', 'Valor da Parcela Mínima', 'fa-money-bill-wave')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 active:bg-red-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-money-bill-wave text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Qual o valor da Parcela Mínima?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="menu-online" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 pb-6 w-full content-start">
+                    <button onclick="abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 shadow-sm rounded-xl flex items-center px-3 md:px-4 gap-3 text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-address-card text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como fazer o cadastro?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('tut-parcelar', 'Como Parcelar', 'fa-laptop-code')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 shadow-sm rounded-xl flex items-center px-3 md:px-4 gap-3 text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-laptop-code text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como parcelar (Já tenho cadastro)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="menu-cadastro" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 pb-6 w-full content-start">
+                    <button onclick="abrirView('tut-cpf', 'Cadastro (CPF)', 'fa-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 shadow-sm rounded-xl flex items-center px-3 md:px-4 gap-3 text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Física (CPF)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('tut-cnpj', 'Cadastro (CNPJ)', 'fa-building')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-red-400 shadow-sm rounded-xl flex items-center px-3 md:px-4 gap-3 text-left">
+                        <div class="bg-red-100 rounded-full text-red-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Jurídica (CNPJ)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="info-cpf" class="app-view hidden flex-1 flex-col bg-white p-4 md:p-6 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto">
+                    <p class="font-bold text-gray-800 text-sm md:text-base mb-3">Quem pode parcelar e o que levar:</p>
+                    <ul class="list-disc pl-5 space-y-3 text-xs md:text-sm text-gray-800 font-medium">
+                        <li><strong>Proprietário(s):</strong> Documento com foto, RG e CPF.</li>
+                        <li><strong>Cônjuge:</strong> Certidão de casamento e doc. com foto. <br><span class="text-red-700 bg-red-100 px-1.5 py-0.5 rounded text-[10px] inline-block mt-1">(Obs: Se divorciados, não pode fazer).</span></li>
+                        <li><strong>Filho(a) maior:</strong> Documento com foto, RG e CPF.</li>
+                        <li><strong>Outra pessoa:</strong> Apenas com procuração (simples ou cartório) + documentos.</li>
+                    </ul>
+                </div>
+
+                <div id="info-cnpj" class="app-view hidden flex-1 flex-col bg-white p-4 md:p-6 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto">
+                    <p class="font-bold text-gray-800 text-sm md:text-base mb-3">Quem pode parcelar e o que levar:</p>
+                    <ul class="list-disc pl-5 space-y-3 text-xs md:text-sm text-gray-800 font-medium">
+                        <li><strong>Proprietário(s) ou Sócio(s):</strong> <br><span class="text-gray-600">Documento com foto, RG, CPF e o Contrato Social ou Requerimento do Empresário.</span></li>
+                        <li><strong>Qualquer outra pessoa:</strong> <br><span class="text-gray-600">Apenas com procuração simples ou cartório + documentos + Contrato Social.</span></li>
+                    </ul>
+                </div>
+
+                <div id="info-vezes" class="app-view hidden flex-1 flex-col bg-white p-4 md:p-6 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto">
+                    <p class="font-bold text-blue-800 bg-blue-100 p-2 md:p-3 rounded-lg mb-3 text-center text-xs md:text-sm shadow-sm">O parcelamento pode ser feito em até <strong>60 parcelas</strong>.</p>
+                    <p class="font-bold text-gray-800 mb-2 text-sm md:text-base">Você pode parcelar observando os juros ao mês:</p>
+                    <ul class="space-y-2 text-xs md:text-sm">
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border-l-4 border-green-500 shadow-sm flex justify-between"><span class="font-bold text-gray-800">Até 6x</span><span class="text-green-700 font-bold">Sem Juros</span></li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border-l-4 border-yellow-400 shadow-sm flex justify-between"><span class="font-bold text-gray-800">7x a 12x</span><span class="text-gray-700 font-bold">0.5% ao mês</span></li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border-l-4 border-orange-400 shadow-sm flex justify-between"><span class="font-bold text-gray-800">13x a 24x</span><span class="text-gray-700 font-bold">0.75% ao mês</span></li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border-l-4 border-red-500 shadow-sm flex justify-between"><span class="font-bold text-gray-800">Acima de 25x</span><span class="text-gray-700 font-bold">1% ao mês</span></li>
+                    </ul>
+                </div>
+
+                <div id="info-entrada" class="app-view hidden flex-1 flex-col bg-white p-4 md:p-6 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto">
+                    <p class="font-bold text-gray-800 mb-2 text-sm md:text-base">A entrada depende de quantas vezes foi parcelado cada ano:</p>
+                    <ul class="space-y-2 mb-3 text-xs md:text-sm">
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border border-gray-200 shadow-sm"><span class="font-bold">1º Parcelamento:</span> Não tem entrada mínima.</li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border border-gray-200 shadow-sm"><span class="font-bold">2º Parcelamento:</span> 10% de entrada.</li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border border-gray-200 shadow-sm"><span class="font-bold">3º Parcelamento:</span> 15% de entrada.</li>
+                        <li class="bg-gray-50 p-2 md:p-3 rounded-lg border border-gray-200 shadow-sm"><span class="font-bold">4 ou mais vezes:</span> 20% de entrada.</li>
+                    </ul>
+                    <p class="text-[10px] md:text-xs text-blue-800 bg-blue-100 p-2 rounded font-bold text-center">Obs: O contribuinte pode dar uma entrada maior se quiser.</p>
+                </div>
+
+                <div id="info-minima" class="app-view hidden flex-1 flex-col items-center justify-center bg-white rounded-xl border-2 border-red-100 p-4 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto">
+                    <p class="text-gray-800 font-bold text-base md:text-xl mb-4 text-center">A parcela mínima de parcelamento para 2026 é de:</p>
+                    <p class="text-5xl md:text-6xl lg:text-7xl font-black text-red-600 bg-red-50 py-6 px-10 rounded-2xl w-full max-w-lg text-center shadow-inner border border-red-100">R$ 77,24</p>
+                </div>
+
+                <div id="tut-cpf" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 bg-red-100 p-1 md:p-1.5 border-b border-red-200 flex justify-between items-center px-3"><h3 id="cpf-passo-titulo" class="font-bold text-red-900 text-[10px] md:text-[11px]">Passo a Passo (1/3)</h3></div>
+                    <div id="cpf-passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>1. Clique em "Sem e-mail? Entre com CPF/CNPJ".</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online1.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold text-[10px] md:text-[11px]">Anterior</button><button onclick="mudarPasso('cpf', 2, 3)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="cpf-passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>2. Digite o seu CPF e clique em "Prosseguir".</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online2.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('cpf', 1, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button onclick="mudarPasso('cpf', 3, 3)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="cpf-passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>3. Selecione "Pessoa Física", preencha os dados e crie a senha.</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online3.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('cpf', 2, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button disabled class="flex-1 py-1.5 bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button></div>
+                    </div>
+                </div>
+
+                <div id="tut-cnpj" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 bg-red-100 p-1 md:p-1.5 border-b border-red-200 flex justify-between items-center px-3"><h3 id="cnpj-passo-titulo" class="font-bold text-red-900 text-[10px] md:text-[11px]">Passo a Passo (1/3)</h3></div>
+                    <div id="cnpj-passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>1. Clique em "Sem e-mail? Entre com CPF/CNPJ".</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online1.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold text-[10px] md:text-[11px]">Anterior</button><button onclick="mudarPasso('cnpj', 2, 3)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="cnpj-passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>2. Digite o CNPJ da empresa e clique em "Prosseguir".</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online2.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('cnpj', 1, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button onclick="mudarPasso('cnpj', 3, 3)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="cnpj-passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>3. Selecione "Organização", preencha os dados e finalize.</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/online4.png" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('cnpj', 2, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button disabled class="flex-1 py-1.5 bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button></div>
+                    </div>
+                </div>
+
+                <div id="tut-parcelar" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                    <div class="shrink-0 bg-red-100 p-1 md:p-1.5 border-b border-red-200 flex justify-between items-center px-3"><h3 id="parcelar-passo-titulo" class="font-bold text-red-900 text-[10px] md:text-[11px]">Passo a Passo (1/4)</h3></div>
+                    <div id="parcelar-passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>1. Preencha os dados solicitados no formulário.</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/parcelamento1.PNG" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold text-[10px] md:text-[11px]">Anterior</button><button onclick="mudarPasso('parcelar', 2, 4)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="parcelar-passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>2. Coloque uma descrição detalhando a sua solicitação.</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/parcelamento2.PNG" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('parcelar', 1, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button onclick="mudarPasso('parcelar', 3, 4)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="parcelar-passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>3. Anexe os documentos necessários de acordo com as regras.</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/parcelamento3.PNG" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('parcelar', 2, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button onclick="mudarPasso('parcelar', 4, 4)" class="flex-1 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button></div>
+                    </div>
+                    <div id="parcelar-passo-4" class="hidden flex-1 flex-col overflow-hidden min-h-0">
+                        <div class="shrink-0 bg-slate-800 p-2 z-10 flex flex-col justify-center"><div class="bg-red-50 p-2 rounded-xl border border-red-200 shadow-sm"><p class="text-red-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-red-700"></i>4. Selecione uma opção de assinatura e clique em "Protocolar".</p></div></div>
+                        <div class="flex-1 bg-gray-900 p-2 overflow-hidden flex items-center justify-center relative"><img src="../imagens/parcelamento4.PNG" class="max-w-4xl w-full max-h-[440px] object-contain img-print shadow-2xl"></div>
+                        <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2"><button onclick="mudarPasso('parcelar', 3, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button><button disabled class="flex-1 py-1.5 bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function abrirView(viewId, title, iconClass) {
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+            const target = document.getElementById(viewId);
+            target.classList.remove('hidden');
+            if (viewId.startsWith('menu-')) { target.classList.add('grid'); } else { target.classList.add('flex'); }
+
+            document.getElementById('header-title').innerText = title;
+            document.getElementById('header-icon').className = 'fa-solid ' + iconClass + ' text-red-700 text-sm md:text-base shrink-0';
+
+            const btnBack = document.getElementById('btn-back');
+            if (viewId === 'menu-principal') {
+                btnBack.setAttribute('onclick', "window.location.href='duvidas.html'");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>';
+            } else if (viewId === 'menu-online' || viewId.startsWith('info-')) {
+                btnBack.setAttribute('onclick', "abrirView('menu-principal', 'Parcelamento de Dívida', 'fa-list-ul')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'menu-cadastro' || viewId === 'tut-parcelar') {
+                btnBack.setAttribute('onclick', "abrirView('menu-online', 'Como Parcelar Online', 'fa-computer')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'tut-cpf' || viewId === 'tut-cnpj') {
+                btnBack.setAttribute('onclick', "abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            }
+            if (viewId === 'tut-cpf') mudarPasso('cpf', 1, 3);
+            if (viewId === 'tut-cnpj') mudarPasso('cnpj', 1, 3);
+            if (viewId === 'tut-parcelar') mudarPasso('parcelar', 1, 4);
+        }
+
+        function mudarPasso(prefixo, passo, total) {
+            for (let i = 1; i <= total; i++) {
+                let el = document.getElementById(prefixo + '-passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById(prefixo + '-passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            document.getElementById(prefixo + '-passo-titulo').innerText = 'Passo a Passo (' + passo + '/' + total + ')';
+        }
+        window.onload = () => abrirView('menu-principal', 'Parcelamento de Dívida', 'fa-list-ul');
+    </script>
+</body>
+</html>
