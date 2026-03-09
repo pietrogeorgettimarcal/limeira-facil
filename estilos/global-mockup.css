@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body {
+    overscroll-behavior-y: none;
+    touch-action: none; 
+    overflow: hidden;
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.fade-in { animation: fadeIn 0.3s ease-in-out forwards; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Animações e Estilos dos Sistemas Simulados (Mockups) */
+@keyframes pointerClick {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-3px, -3px) scale(0.95); }
+}
+
+.animate-pointer { 
+    animation: pointerClick 1.5s infinite ease-in-out; 
+    filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.4));
+}
+
+.mockup-sys {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #373736;
+}

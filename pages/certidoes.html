@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Certidões - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>
+        html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes click-pointer { 0%, 100% { transform: scale(1) rotate(-15deg); } 50% { transform: scale(0.85) rotate(-15deg); } }
+        .animate-pointer { animation: click-pointer 1s infinite ease-in-out; pointer-events: auto; }
+    </style>
+</head>
+<body class="bg-slate-300 w-full h-full flex justify-center items-center font-sans antialiased no-select overflow-hidden">
+    <div class="w-full h-full lg:max-w-[1500px] xl:max-w-[1600px] lg:h-[94%] bg-gray-100 flex flex-col overflow-hidden relative lg:shadow-2xl lg:rounded-2xl border border-gray-300">
+        
+        <header class="h-[38px] md:h-[45px] shrink-0 bg-blue-800 text-white px-4 py-1 flex items-center gap-3 shadow-md z-20">
+            <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                <img src="../imagens/brasao-menor.png" alt="brasao" class="w-5 md:w-6" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <h1 class="text-sm md:text-base font-bold tracking-tight leading-none">Limeira Fácil</h1>
+                <p class="text-blue-200 text-[8px] md:text-[10px] font-medium leading-none">Autoatendimento</p>
+            </div>
+        </header>
+
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-purple-100 p-1.5 md:p-2 rounded-xl border border-purple-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-list-ul text-purple-700 text-sm md:text-base shrink-0" id="header-icon"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-purple-900 leading-tight truncate" id="header-title">Emissão de Certidões</h2>
+                </div>
+                <a href="duvidas.html" id="btn-back-main" class="shrink-0 bg-white border border-purple-300 hover:bg-purple-50 text-purple-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                </a>
+                <button onclick="voltarSubmenu()" id="btn-back-sub" class="hidden shrink-0 bg-white border border-purple-300 hover:bg-purple-50 text-purple-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>
+                </button>
+            </div>
+
+            <div id="submenu" class="flex-1 w-full overflow-y-auto hide-scrollbar fade-in min-h-0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-6 w-full content-start px-2 mt-2">
+                    <button onclick="abrirTutorial('negativa')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-purple-400 active:bg-purple-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-purple-100 rounded-full text-purple-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-circle-check text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Certidão Negativa (Nada Consta)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirTutorial('venal')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-purple-400 active:bg-purple-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-purple-100 rounded-full text-purple-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-invoice-dollar text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Certidão de Valor Venal</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirTutorial('mobiliaria')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-purple-400 active:bg-purple-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-purple-100 rounded-full text-purple-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-store text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Certidão Mobiliária (Empresas)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirTutorial('inscricao')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-purple-400 active:bg-purple-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left sm:col-span-2 lg:col-span-1">
+                        <div class="bg-purple-100 rounded-full text-purple-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-map-location-dot text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Como saber a Inscrição Cadastral?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="submenu-inscricao" class="hidden flex-1 w-full overflow-y-auto hide-scrollbar fade-in min-h-0 px-2 flex-col items-center justify-center mt-4">
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border-2 border-gray-200 w-full max-w-2xl text-center">
+                    <h3 class="text-purple-900 font-bold text-base md:text-lg mb-4 md:mb-6"><i class="fa-solid fa-circle-question text-purple-600 mr-2"></i>Qual tipo de inscrição você procura?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button onclick="iniciarTutorialInscricao('imob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-purple-500 hover:bg-purple-50 active:bg-purple-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                            <i class="fa-solid fa-house text-3xl md:text-4xl text-purple-600"></i>
+                            <span class="font-black text-gray-800 text-sm md:text-base">Imóvel (IPTU)</span>
+                        </button>
+                        <button onclick="iniciarTutorialInscricao('mob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-purple-500 hover:bg-purple-50 active:bg-purple-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                            <i class="fa-solid fa-store text-3xl md:text-4xl text-purple-600"></i>
+                            <span class="font-black text-gray-800 text-sm md:text-base">Empresa ou Autônomo<br><span class="text-xs font-normal text-gray-500">(Mobiliário)</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tutorial-inscricao" class="tut-container hidden flex-1 flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                <div class="shrink-0 bg-purple-100 p-1 md:p-1.5 border-b border-purple-200 flex justify-between items-center px-3">
+                    <h3 id="inscricao-passo-titulo" class="font-bold text-purple-900 text-[10px] md:text-[11px]">Passo a Passo (1/2)</h3>
+                </div>
+
+                <div id="inscricao-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm">
+                            <p id="texto-dica-inscricao" class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none shadow-inner">
+                        <img id="img-inscricao" src="../imagens/iptu_inscricao.png" alt="Exemplo da Inscrição" class="max-w-full max-h-full object-contain drop-shadow-2xl rounded-lg">
+                    </div>
+                    
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="voltarSubmenuInscricao()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span>
+                        </button>
+                        <button onclick="mudarPassoInscricao(2)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1">
+                            <span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="inscricao-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm">
+                            <p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>2. Vá até o <span id="nome-setor-passo2">setor de Cadastro (Urbanismo)</span> da prefeitura.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                        <div class="bg-white w-full max-w-2xl border border-gray-300 shadow-2xl rounded-2xl flex flex-col overflow-hidden">
+                            <div class="bg-[#2A3F54] p-4 text-center text-white shrink-0">
+                                <i class="fa-solid fa-building-user text-3xl md:text-4xl mb-2"></i>
+                                <h2 class="text-base md:text-lg font-bold">Atendimento Presencial</h2>
+                            </div>
+                            <div class="p-6 flex flex-col gap-4 text-center justify-center flex-1 bg-[#F7F7F7]">
+                                <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+                                    Caso você não tenha uma guia ou carnê em mãos, dirija-se ao <strong class="text-purple-800" id="nome-setor-destaque">Setor de Cadastro (Urbanismo)</strong> da Prefeitura.
+                                </p>
+                                <div class="bg-white border-l-4 border-purple-500 p-4 rounded text-left shadow-sm inline-block mx-auto max-w-md mt-2">
+                                    <p class="text-purple-800 text-xs md:text-sm font-bold mb-1.5"><i class="fa-solid fa-bullhorn mr-1"></i> O que fazer lá?</p>
+                                    <p id="texto-dica-presencial" class="text-gray-600 text-xs md:text-sm">Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua <strong>Inscrição Cadastral</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPassoInscricao(1)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span>
+                        </button>
+                        <button onclick="finalizarCertidao()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-check mr-1"></i> Finalizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tutorial-imovel" class="tut-container hidden flex-1 flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                <div class="shrink-0 bg-purple-100 p-1 md:p-1.5 border-b border-purple-200 flex justify-between items-center px-3">
+                    <h3 id="imovel-passo-titulo" class="font-bold text-purple-900 text-[10px] md:text-[11px]">Passo a Passo (1/3)</h3>
+                </div>
+                <div id="imovel-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>1. No menu lateral, clique em "Imobiliário" e selecione "Certidões".</p></div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário <i class="fa fa-chevron-up ml-auto text-[8px]"></i></div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner relative">
+                                        <div class="pl-6 md:pl-8 pr-2 py-1 text-white/70 text-[9px] md:text-[10px]">Segunda via IPTU</div>
+                                        <div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md relative">Certidões<i class="fa-solid fa-arrow-pointer absolute right-2 top-0.5 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i></div>
+                                    </div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-building w-4 md:w-5 text-center"></i> Mobiliário</div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-barcode w-4 md:w-5 text-center"></i> Guias</div>
+                                </div>
+                                <div class="flex-1 bg-transparent p-2 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="imovel-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-between overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>2. Preencha a Inscrição e verifique o Tipo de Certidão.</p></div>
+                        <button onclick="abrirTutorial('inscricao')" class="mt-4 w-full bg-purple-100 hover:bg-purple-200 border border-purple-300 text-purple-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                            <i class="fa-solid fa-circle-question text-lg md:text-xl text-purple-600"></i> Não sei minha Inscrição
+                        </button>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none text-[#73879C]">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário</div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Certidões</div></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                    <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 mb-4">
+                                        <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                            <i class="fa fa-certificate text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Emissão de Certidões</span>
+                                        </div>
+                                        <div class="mt-3 md:mt-4 flex flex-col">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                                                <div class="relative border-2 border-red-400 p-1 md:p-1.5 bg-red-50/50 rounded shadow-sm">
+                                                    <label class="lbl-inscricao text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Cadastral</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">0123.456.789.000</span><div class="w-[1px] h-3 bg-black ml-1 animate-pulse"></div></div>
+                                                    <span class="absolute -top-2 right-1 bg-red-500 text-white text-[7px] md:text-[8px] px-1 py-0.5 rounded shadow z-20">Preencha aqui</span>
+                                                </div>
+                                                <div class="relative border-2 border-red-400 p-1 md:p-1.5 bg-red-50/50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Tipo de Certidão</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner justify-between text-[9px] md:text-[10px] text-[#73879C]"><span class="txt-tipo-certidao">Certidão Negativa</span><i class="fa fa-chevron-down text-[8px]"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="imovel-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>3. Clique em "Emitir Certidão" para baixar o documento.</p></div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                         <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário</div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Certidões</div></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                    <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 mb-4">
+                                        <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                            <i class="fa fa-certificate text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Emissão de Certidões</span>
+                                        </div>
+                                        <div class="mt-3 md:mt-4 flex flex-col">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 opacity-60">
+                                                <div class="relative border border-[#ccc] p-1 md:p-1.5 bg-gray-50 rounded shadow-sm">
+                                                    <label class="lbl-inscricao text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Cadastral</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">0123.456.789.000</span></div>
+                                                </div>
+                                                <div class="relative border border-[#ccc] p-1 md:p-1.5 bg-gray-50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Tipo de Certidão</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner justify-between text-[9px] md:text-[10px] text-[#73879C]"><span class="txt-tipo-certidao">Certidão Negativa</span><i class="fa fa-chevron-down text-[8px]"></i></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex justify-end gap-1.5 mt-3 relative">
+                                                <button class="h-[24px] md:h-[28px] bg-[#bf0606] text-white px-2.5 md:px-3 rounded shadow-sm text-[8px] md:text-[10px] font-bold border border-[#bf0606]"><i class="fa fa-trash"></i></button>
+                                                <div class="relative inline-block">
+                                                    <button class="h-[24px] md:h-[28px] bg-[#19B99B] text-white px-3 md:px-4 rounded shadow-sm text-[9px] md:text-[10px] font-bold border border-[#169F85] flex items-center gap-1"><i class="fa fa-print text-[8px]"></i> Emitir Certidão</button>
+                                                    <i class="fa-solid fa-arrow-pointer absolute -right-1 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20" id="botoes-imovel-1">
+                    <button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold cursor-not-allowed text-[10px] md:text-[11px]">Anterior</button>
+                    <button onclick="mudarPassoImovel(2)" class="flex-1 py-1.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="hidden shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 gap-2 w-full z-20" id="botoes-imovel-2">
+                    <button onclick="mudarPassoImovel(1)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                    <button onclick="mudarPassoImovel(3)" class="flex-1 py-1.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="hidden shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 gap-2 w-full z-20" id="botoes-imovel-3">
+                    <button onclick="mudarPassoImovel(2)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                    <button onclick="finalizarCertidao()" class="flex-1 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                    <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_imobiliarias$$NWRkYjljN2FkZWQ3YTFlODZiYzNjMjllOWE1YTMzNTBOV1JrWWpsak4yRmtaV1EzWVRGbE9EWmlZek5qTWpsbE9XRTFZVE16TlRBek56RT0=$$li_371_3$$3" target="_blank" class="flex-1 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] text-center flex justify-center items-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> <span class="hidden sm:inline">Ir para o site</span><span class="sm:hidden">Site</span></a>
+                </div>
+            </div>
+
+            <div id="tutorial-mobiliaria" class="tut-container hidden flex-1 flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                <div class="shrink-0 bg-purple-100 p-1 md:p-1.5 border-b border-purple-200 flex justify-between items-center px-3">
+                    <h3 id="mob-passo-titulo" class="font-bold text-purple-900 text-[10px] md:text-[11px]">Passo a Passo (1/4)</h3>
+                </div>
+                <div id="mob-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>1. No menu lateral, clique em "Mobiliário" e selecione "Certidões".</p></div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-building w-4 md:w-5 text-center text-[#1abb9c]"></i> Mobiliário <i class="fa fa-chevron-up ml-auto text-[8px]"></i></div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner relative">
+                                        <div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md relative">Certidões<i class="fa-solid fa-arrow-pointer absolute right-2 top-0.5 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i></div>
+                                    </div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-barcode w-4 md:w-5 text-center"></i> Guias</div>
+                                </div>
+                                <div class="flex-1 bg-transparent p-2 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mob-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-between overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>2. Preencha a Inscrição Mobiliária e verifique o Tipo.</p></div>
+                        <button onclick="abrirTutorial('inscricao')" class="mt-4 w-full bg-purple-100 hover:bg-purple-200 border border-purple-300 text-purple-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                            <i class="fa-solid fa-circle-question text-lg md:text-xl text-purple-600"></i> Não sei minha Inscrição
+                        </button>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-building w-4 md:w-5 text-center text-[#1abb9c]"></i> Mobiliário</div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Certidões</div></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                    <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 mb-4">
+                                        <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                            <i class="fa fa-certificate text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Emissão de Certidões</span>
+                                        </div>
+                                        <div class="mt-3 md:mt-4 flex flex-col">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                                                <div class="relative border-2 border-red-400 p-1 md:p-1.5 bg-red-50/50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Mobiliária</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">987654</span><div class="w-[1px] h-3 bg-black ml-1 animate-pulse"></div></div>
+                                                    <span class="absolute -top-2 right-1 bg-red-500 text-white text-[7px] md:text-[8px] px-1 py-0.5 rounded shadow z-20">Preencha aqui</span>
+                                                </div>
+                                                <div class="relative border-2 border-red-400 p-1 md:p-1.5 bg-red-50/50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Tipo de Certidão</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner justify-between text-[9px] md:text-[10px] text-[#73879C]"><span>Certidão Mobiliária</span><i class="fa fa-chevron-down text-[8px]"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mob-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>3. Marque a caixa "Não sou um robô".</p></div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-building w-4 md:w-5 text-center text-[#1abb9c]"></i> Mobiliário</div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Certidões</div></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                    <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 mb-4">
+                                        <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                            <i class="fa fa-certificate text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Emissão de Certidões</span>
+                                        </div>
+                                        <div class="mt-3 md:mt-4 flex flex-col">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 opacity-50">
+                                                <div class="relative border border-[#ccc] p-1 md:p-1.5 bg-gray-50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Mobiliária</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">987654</span></div>
+                                                </div>
+                                                <div class="relative border border-[#ccc] p-1 md:p-1.5 bg-gray-50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Tipo de Certidão</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner justify-between text-[9px] md:text-[10px] text-[#73879C]"><span>Certidão Mobiliária</span><i class="fa fa-chevron-down text-[8px]"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2 mt-3 sm:mt-4">
+                                                <div class="w-full flex sm:justify-end">
+                                                    <div class="flex items-center justify-between border border-[#d3d3d3] bg-[#f9f9f9] rounded p-1 w-[200px] h-[50px] shadow-sm relative z-10">
+                                                        <div class="absolute -inset-[2px] border border-red-500 rounded bg-red-500/10 z-0"></div>
+                                                        <div class="flex items-center gap-2 ml-1 relative z-10">
+                                                            <div class="w-5 h-5 border border-[#c1c1c1] rounded-[2px] bg-white flex items-center justify-center">
+                                                                <i class="fa-solid fa-arrow-pointer absolute -right-3 -bottom-3 text-black text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                            </div>
+                                                            <span class="text-[10px] text-[#222]">Não sou um robô</span>
+                                                        </div>
+                                                        <div class="flex flex-col items-center mr-1 relative z-10">
+                                                            <div class="w-5 h-5 mb-0.5 opacity-80 flex items-center justify-center"><i class="fa-solid fa-recycle text-[#4285F4]"></i></div>
+                                                            <span class="text-[7px] text-[#555] leading-none">reCAPTCHA</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mob-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                        <div class="bg-purple-50 p-2 md:p-2.5 rounded-xl border border-purple-200 shadow-sm"><p class="text-purple-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>4. Clique em "Emitir Certidão" para baixar o documento.</p></div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none">
+                        <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                            <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2"><div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span></div>
+                            <div class="flex-1 flex overflow-hidden min-h-0">
+                                <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                    <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-building w-4 md:w-5 text-center text-[#1abb9c]"></i> Mobiliário</div>
+                                    <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Certidões</div></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                    <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 mb-4">
+                                        <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                            <i class="fa fa-certificate text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Emissão de Certidões</span>
+                                        </div>
+                                        <div class="mt-3 md:mt-4 flex flex-col">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 opacity-50">
+                                                <div class="relative border border-[#ccc] p-1 md:p-1.5 bg-gray-50 rounded shadow-sm">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Mobiliária</label>
+                                                    <div class="border border-[#ccc] rounded h-[22px] md:h-[24px] bg-white flex items-center px-1.5 shadow-inner"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">987654</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2 mt-3 sm:mt-4">
+                                                <div class="w-full flex sm:justify-end opacity-50">
+                                                    <div class="flex items-center justify-between border border-[#d3d3d3] bg-[#f9f9f9] rounded p-1 w-[200px] h-[50px] shadow-sm relative z-10">
+                                                        <div class="flex items-center gap-2 ml-1 relative z-10">
+                                                            <div class="w-5 h-5 border border-[#c1c1c1] rounded-[2px] bg-white flex items-center justify-center"><i class="fa-solid fa-check text-green-600 text-xs"></i></div>
+                                                            <span class="text-[10px] text-[#222]">Não sou um robô</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-end gap-1.5 mt-1 relative">
+                                                    <button class="h-[24px] md:h-[28px] bg-[#bf0606] text-white px-2.5 md:px-3 rounded shadow-sm text-[8px] md:text-[10px] font-bold border border-[#bf0606] opacity-50"><i class="fa fa-trash"></i></button>
+                                                    <div class="relative inline-block">
+                                                        <button class="h-[24px] md:h-[28px] bg-[#19B99B] text-white px-3 md:px-4 rounded shadow-sm text-[9px] md:text-[10px] font-bold border border-[#169F85] flex items-center gap-1"><i class="fa fa-print text-[8px]"></i> Emitir Certidão</button>
+                                                        <i class="fa-solid fa-arrow-pointer absolute -right-1 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20" id="botoes-mob-1">
+                    <button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold cursor-not-allowed text-[10px] md:text-[11px]">Anterior</button>
+                    <button onclick="mudarPassoMob(2)" class="flex-1 py-1.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="hidden shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 gap-2 w-full z-20" id="botoes-mob-2">
+                    <button onclick="mudarPassoMob(1)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                    <button onclick="mudarPassoMob(3)" class="flex-1 py-1.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="hidden shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 gap-2 w-full z-20" id="botoes-mob-3">
+                    <button onclick="mudarPassoMob(2)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                    <button onclick="mudarPassoMob(4)" class="flex-1 py-1.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="hidden shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 gap-2 w-full z-20" id="botoes-mob-4">
+                    <button onclick="mudarPassoMob(3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                    <button onclick="finalizarCertidao()" class="flex-1 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                    <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_mobiliarias$$M2EwYTA3OWY4OTZiZDVmMTZhZDg5ZjdiNzhmYjYxMTJNMkV3WVRBM09XWTRPVFppWkRWbU1UWmhaRGc1WmpkaU56aG1Zall4TVRJM09UZz0=$$li_798_3$$3" target="_blank" class="flex-1 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] text-center flex justify-center items-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> <span class="hidden sm:inline">Ir para o site</span><span class="sm:hidden">Site</span></a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function abrirTutorial(tipo) {
+            document.getElementById('submenu').classList.add('hidden');
+            document.getElementById('submenu-inscricao').classList.add('hidden');
+            document.getElementById('submenu-inscricao').classList.remove('flex');
+            document.querySelectorAll('.tut-container').forEach(el => el.classList.add('hidden'));
+            
+            document.getElementById('btn-back-main').classList.add('hidden');
+            document.getElementById('btn-back-sub').classList.remove('hidden');
+            document.getElementById('btn-back-sub').setAttribute('onclick', 'voltarSubmenu()');
+            document.getElementById('header-icon').className = 'fa-solid fa-circle-info text-purple-700 text-sm md:text-base shrink-0';
+            
+            if (tipo === 'inscricao') {
+                document.getElementById('header-title').innerText = 'Como saber a Inscrição Cadastral?';
+                let subInsc = document.getElementById('submenu-inscricao');
+                subInsc.classList.remove('hidden');
+                subInsc.classList.add('flex');
+            } else if (tipo === 'mobiliaria') {
+                document.getElementById('tutorial-mobiliaria').classList.remove('hidden');
+                document.getElementById('tutorial-mobiliaria').classList.add('flex');
+                document.getElementById('header-title').innerText = 'Certidão Mobiliária';
+                mudarPassoMob(1);
+            } else {
+                document.getElementById('tutorial-imovel').classList.remove('hidden');
+                document.getElementById('tutorial-imovel').classList.add('flex');
+                
+                if(tipo === 'negativa') {
+                    document.getElementById('header-title').innerText = 'Certidão Negativa (CND)';
+                    document.querySelectorAll('.lbl-inscricao').forEach(el => el.innerText = 'Inscrição do Imóvel ou CPF/CNPJ');
+                    document.querySelectorAll('.txt-tipo-certidao').forEach(el => el.innerText = 'Certidão Negativa de Débitos');
+                } else {
+                    document.getElementById('header-title').innerText = 'Certidão de Valor Venal';
+                    document.querySelectorAll('.lbl-inscricao').forEach(el => el.innerText = 'Inscrição Cadastral do Imóvel');
+                    document.querySelectorAll('.txt-tipo-certidao').forEach(el => el.innerText = 'Certidão de Valor Venal');
+                }
+                mudarPassoImovel(1);
+            }
+        }
+
+        function iniciarTutorialInscricao(tipo) {
+            document.getElementById('submenu-inscricao').classList.add('hidden');
+            document.getElementById('submenu-inscricao').classList.remove('flex');
+            
+            let tutInscricao = document.getElementById('tutorial-inscricao');
+            tutInscricao.classList.remove('hidden');
+            tutInscricao.classList.add('flex');
+
+            document.getElementById('btn-back-sub').setAttribute('onclick', 'voltarSubmenuInscricao()');
+
+            const img = document.getElementById('img-inscricao');
+            const txt1 = document.getElementById('texto-dica-inscricao');
+            const txtPresencial = document.getElementById('texto-dica-presencial');
+
+            if(tipo === 'imob') {
+                document.getElementById('header-title').innerText = 'Inscrição do Imóvel (IPTU)';
+                img.src = "../imagens/iptu_inscricao.png";
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.';
+                txtPresencial.innerHTML = 'Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(document.getElementById('nome-setor-passo2')) document.getElementById('nome-setor-passo2').innerText = 'setor de Cadastro (Urbanismo)';
+                if(document.getElementById('nome-setor-destaque')) document.getElementById('nome-setor-destaque').innerText = 'Setor de Cadastro (Urbanismo)';
+            } else {
+                document.getElementById('header-title').innerText = 'Inscrição de Empresa (Mobiliário)';
+                img.src = "../imagens/mob_inscricao.png";
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-purple-700"></i>1. A Inscrição Cadastral do Mobiliário contém 5 dígitos (padrão 00000) e está presente nas guias do Mobiliário / Alvará.';
+                txtPresencial.innerHTML = 'Informe os <strong>dados da sua empresa ou seu CPF</strong> (caso autônomo) para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(document.getElementById('nome-setor-passo2')) document.getElementById('nome-setor-passo2').innerText = 'setor de SRM';
+                if(document.getElementById('nome-setor-destaque')) document.getElementById('nome-setor-destaque').innerText = 'Setor de SRM';
+            }
+
+            mudarPassoInscricao(1);
+        }
+
+        function voltarSubmenuInscricao() {
+            let tutInscricao = document.getElementById('tutorial-inscricao');
+            tutInscricao.classList.add('hidden');
+            tutInscricao.classList.remove('flex');
+            
+            let subInsc = document.getElementById('submenu-inscricao');
+            subInsc.classList.remove('hidden');
+            subInsc.classList.add('flex');
+            
+            document.getElementById('header-title').innerText = 'Como saber a Inscrição Cadastral?';
+            document.getElementById('btn-back-sub').setAttribute('onclick', 'voltarSubmenu()');
+        }
+
+        function voltarSubmenu() {
+            document.querySelectorAll('.tut-container').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            });
+            
+            document.getElementById('submenu-inscricao').classList.add('hidden');
+            document.getElementById('submenu-inscricao').classList.remove('flex');
+
+            document.getElementById('submenu').classList.remove('hidden');
+            document.getElementById('btn-back-sub').classList.add('hidden');
+            document.getElementById('btn-back-main').classList.remove('hidden');
+            document.getElementById('header-icon').className = 'fa-solid fa-list-ul text-purple-700 text-sm md:text-base shrink-0';
+            document.getElementById('header-title').innerText = 'Emissão de Certidões';
+        }
+
+        function mudarPassoImovel(passo) {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('imovel-passo-' + i).classList.add('hidden');
+                document.getElementById('imovel-passo-' + i).classList.remove('flex');
+                document.getElementById('botoes-imovel-' + i).classList.add('hidden');
+                document.getElementById('botoes-imovel-' + i).classList.remove('flex');
+            }
+            document.getElementById('imovel-passo-' + passo).classList.remove('hidden');
+            document.getElementById('imovel-passo-' + passo).classList.add('flex');
+            document.getElementById('botoes-imovel-' + passo).classList.remove('hidden');
+            document.getElementById('botoes-imovel-' + passo).classList.add('flex');
+            document.getElementById('imovel-passo-titulo').innerText = 'Passo a Passo (' + passo + '/3)';
+        }
+
+        function mudarPassoMob(passo) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('mob-passo-' + i).classList.add('hidden');
+                document.getElementById('mob-passo-' + i).classList.remove('flex');
+                document.getElementById('botoes-mob-' + i).classList.add('hidden');
+                document.getElementById('botoes-mob-' + i).classList.remove('flex');
+            }
+            document.getElementById('mob-passo-' + passo).classList.remove('hidden');
+            document.getElementById('mob-passo-' + passo).classList.add('flex');
+            document.getElementById('botoes-mob-' + passo).classList.remove('hidden');
+            document.getElementById('botoes-mob-' + passo).classList.add('flex');
+            document.getElementById('mob-passo-titulo').innerText = 'Passo a Passo (' + passo + '/4)';
+        }
+        
+        function mudarPassoInscricao(passo) {
+            for (let i = 1; i <= 2; i++) {
+                let el = document.getElementById('inscricao-passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById('inscricao-passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            
+            let titulo = document.getElementById('inscricao-passo-titulo');
+            if(titulo) titulo.innerText = 'Passo a Passo (' + passo + '/2)';
+        }
+
+        function finalizarCertidao() {
+            voltarSubmenu();
+        }
+    </script>
+</body>
+</html>

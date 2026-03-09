@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limeira Fácil</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    
+    <style>
+        .btn-destaque {
+            background-color: #f97316; 
+            color: #ffffff !important;
+            padding: clamp(6px, 1vh, 8px) clamp(12px, 2vw, 18px);
+            border-radius: 50px; 
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: clamp(0.9rem, 2vh, 1rem);
+        }
+        
+        .btn-destaque:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-destaque:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://limeira.sp.gov.br" class="logo-container">
+            <img src="imagens/brasao.png" alt="brasao" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>Brasão</text></svg>'">
+        </a>    
+        <h1><strong>L</strong>imeira <strong>F</strong>ácil</h1>
+        <nav>
+            <a href="#">Serviços</a>
+            <a href="pages/duvidas.html" class="btn-destaque">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                </svg>
+                Dúvidas
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="container">
+            
+            <a href="#" class="card" id="card1" onclick="abrirModalIptu(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <circle cx="12" cy="14" r="3"/>
+                    <path d="M12 10v8"/>
+                </svg>
+                <span>IPTU 2026</span>
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_guia_quitacao$$YmQ3ZTMyMTg0MDRiMTQzOWUwM2FlMzMzNWNmZGM2YzFZbVEzWlRNeU1UZzBNRFJpTVRRek9XVXdNMkZsTXpNek5XTm1aR00yWXpFNU1EQT0=$$li_900_3$$3" class="card" id="card2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M9 15l2 2 4-4"/>
+                </svg>
+                <span>Guia de quitação</span>
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$OWU5OWUzMjQ1M2I4NmI1YjgxNjQ0Yzg0ZDIyYjYzMDBPV1U1T1dVek1qUTFNMkk0Tm1JMVlqZ3hOalEwWXpnMFpESXlZall6TURBek5qaz0=$$li_369_3$$3" class="card" id="card3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M13 13.5a3 3 0 1 0-3 3 3 3 0 0 0 2.5-1.5"/>
+                    <path d="M13 15v-2h-2"/>
+                </svg>
+                <span>Atualizar parcelas</span>
+            </a>
+            
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95595385&iser=01JDWJT14Y0HZYY9WN2503RZQ3" class="card" id="card4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <path d="M8 14h.01 M12 14h.01 M16 14h.01 M8 18h.01 M12 18h.01"/>
+                </svg>
+                <span>Fazer parcelamento</span>
+            </a>
+            
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7659738&iser=01HY1AXS8WCN21A2GY3J9212VD" class="card" id="card5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <circle cx="10" cy="14" r="2.5"/>
+                    <path d="M11.5 15.5L14 18"/>
+                </svg>
+                <span>Consultar débitos</span>
+            </a>
+            
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95597982&iser=01KH3ZX2M352R4S04D9RZ2JXEB" class="card" id="card6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10l6-5 6 5v9H3v-9z"/>
+                    <path d="M16 8h5l-2-2 M21 8l-2 2"/>
+                    <path d="M21 12h-5l2-2 M16 12l2 2"/>
+                </svg>
+                <span>Gerar ITBI</span>
+            </a>
+            
+            <a href="#" class="card" id="card7" onclick="abrirModal(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="6"/>
+                    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+                </svg>
+                <span>Emitir certidão</span>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=3820502&iser=01J60N2PR2V0FTD9NTZFWA3TCV" class="card" id="card8">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <path d="M9 15l2 2 4-4"/>
+                </svg>
+                <span>Fazer habite-se</span>
+            </a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Prefeitura Municipal de Limeira 2026. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="modalIptu" class="modal-overlay" onclick="fecharModalIptuClickFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModalIptu()">&times;</button>
+            <h2 class="modal-title">Selecione o serviço de IPTU</h2>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_carne_iptu$$YjM1M2VlMzA0OGY4ZDc5ZDQ1N2Q0MjFjZjZiMDE5MjlZak0xTTJWbE16QTBPR1k0WkRjNVpEUTFOMlEwTWpGalpqWmlNREU1TWpreU5EVT0=$$li_245_3$$3" class="modal-btn btn-imovel" target="_blank">
+                Emitir 2ª via do IPTU 2026
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$YjRkMjU2ODgxZjdjNTY1ZjJmMWU4NjJhZDY3Yzk3ODhZalJrTWpVMk9EZ3haamRqTlRZMVpqSm1NV1U0TmpKaFpEWTNZemszT0Rnek5qaz0=$$li_369_3$$3" class="modal-btn btn-imovel" target="_blank">
+                Atualizar parcelas vencidas (IPTU 2026)
+            </a>
+
+            <a href="https://www.limeira.sp.gov.br/secretarias/fazenda/imunidadeisencoes/imunidade-isencoes" class="modal-btn btn-empresa" target="_blank">
+                Remissão e Isenção
+            </a>
+
+            <a href="https://www.limeira.sp.gov.br/secretarias/fazenda/cartilha-de-calculo-do-iptu" class="modal-btn btn-empresa" target="_blank">
+                Como é feito o cálculo do IPTU?
+            </a>
+        </div>
+    </div>
+
+    <div id="modalCertidao" class="modal-overlay" onclick="fecharModalClickFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+            <h2 class="modal-title">Selecione o tipo de Certidão</h2>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_imobiliarias$$NDRhNmM5MzYyYWZjYzIyNzEzNTFmNTAxMDljYTFlNjZORFJoTm1NNU16WXlZV1pqWXpJeU56RXpOVEZtTlRBeE1EbGpZVEZsTmpZek56RT0=$$li_371_3$$3" class="modal-btn btn-imovel" target="_blank">
+                Certidão para Imóvel
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_mobiliarias$$MzNjNjMyMWNmNTk3YjM5Mjk3YzU0Mjc1YjQwZDFiNmRNek5qTmpNeU1XTm1OVGszWWpNNU1qazNZelUwTWpjMVlqUXdaREZpTm1RM09UZz0=$$li_798_3$$3" class="modal-btn btn-empresa" target="_blank">
+                Certidão para Empresas
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modalCertidao');
+        function abrirModal(event) {
+            event.preventDefault(); 
+            modal.classList.add('active');
+        }
+        function fecharModal() {
+            modal.classList.remove('active');
+        }
+        function fecharModalClickFora(event) {
+            if (event.target === modal) {
+                fecharModal();
+            }
+        }
+
+        const modalIptu = document.getElementById('modalIptu');
+        function abrirModalIptu(event) {
+            event.preventDefault();
+            modalIptu.classList.add('active');
+        }
+        function fecharModalIptu() {
+            modalIptu.classList.remove('active');
+        }
+        function fecharModalIptuClickFora(event) {
+            if (event.target === modalIptu) {
+                fecharModalIptu();
+            }
+        }
+    </script>
+</body>
+</html>

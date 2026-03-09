@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Mantendo a preferência clean sem scroll */
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: rgb(0, 0, 63);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: clamp(10px, 2vh, 20px);
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+header img {
+    width: clamp(70px, 8vh, 90px);
+}
+
+header h1 {
+    font-size: clamp(1.2rem, 3vh, 1.5rem);
+    font-weight: normal;
+}
+
+header h1 strong {
+    font-weight: bolder;
+    color: #00aeff;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+nav a {
+    font-size: clamp(0.9rem, 2vh, 1rem);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: rgb(0, 153, 255);
+}
+
+main {
+    flex-grow: 1; 
+    padding: clamp(10px, 2vh, 15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#container {
+    flex-grow: 1;
+    display: grid;
+    gap: clamp(10px, 2vh, 15px); 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, 1fr);  
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, filter 0.2s;
+    padding: clamp(5px, 1.5vh, 10px);
+    text-align: center;
+    cursor: pointer;
+}
+
+.card:hover, .card:active {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.1);
+}
+
+.card svg {
+    width: clamp(32px, 6vh, 48px); 
+    height: clamp(32px, 6vh, 48px);
+    margin-bottom: clamp(4px, 1vh, 8px);
+}
+
+.card span {
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.8vh, 1.1rem);
+    line-height: 1.1;
+}
+
+#card1 { background-color: rgba(0, 68, 204, 0.733); } /* IPTU */
+#card2 { background-color: rgba(204, 0, 0, 0.733); } /* Guia */
+#card3 { background-color: rgba(230, 138, 0, 0.733); } /* Atualizar */
+#card4 { background-color: rgba(0, 128, 0, 0.733); } /* Parcelamento */
+#card5 { background-color: rgba(128, 0, 128, 0.733); } /* Débitos */
+#card6 { background-color: rgba(78, 22, 22, 0.733); } /* ITBI */
+#card7 { background-color:  rgba(0, 136, 204, 0.733); }/* Certidão */
+#card8 { background-color: rgba(0, 0, 0, 0.733); } /* Habite-se */
+
+footer {
+    background-color: rgb(0, 0, 63);
+    color: #ccc;
+    text-align: center;
+    padding: clamp(6px, 1.5vh, 10px);
+    font-size: clamp(0.7rem, 1.5vh, 0.8rem);
+    flex-shrink: 0;
+}
+
+/* --- ESTILOS DO MODAL --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: clamp(20px, 4vh, 30px) 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.modal-content::-webkit-scrollbar { 
+    display: none; 
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-title {
+    color: rgb(0, 0, 63);
+    margin-bottom: clamp(15px, 3vh, 20px);
+    font-size: clamp(1.1rem, 2.5vh, 1.3rem);
+    font-weight: bold;
+}
+
+.modal-btn {
+    display: block;
+    width: 100%;
+    padding: clamp(12px, 2.5vh, 15px);
+    margin-bottom: clamp(10px, 2vh, 15px);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: clamp(0.9rem, 2vh, 1rem);
+    border-radius: 8px;
+    transition: filter 0.2s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.modal-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+.btn-imovel { background-color: rgba(0, 161, 0, 0.9); }
+.btn-empresa { background-color: rgba(0, 68, 204, 0.9); }
+
+/* --- MEDIA QUERIES --- */
+@media screen and (max-width: 600px) {
+    header {
+        display: flex;
+        flex-flow: column wrap;
+    }
+    header h1 { 
+        font-size: clamp(1.5rem, 4vh, 2rem); 
+    }
+    nav a { 
+        font-size: 1.1rem;
+        margin: 5px; 
+    }
+}
+
+@media screen and (min-width: 900px) {
+    #container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: clamp(15px, 3vh, 20px);
+        padding: clamp(10px, 2vh, 20px) clamp(20px, 5vw, 50px);
+    }
+
+    .card {
+        border-radius: 20px;
+        padding: clamp(10px, 2vh, 20px);
+    }
+    
+    .card svg {
+        /* Reduzido de 64px estáticos para fluidos para não quebrar a tela */
+        width: clamp(40px, 7vh, 55px);
+        height: clamp(40px, 7vh, 55px);
+        margin-bottom: clamp(10px, 2vh, 15px);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #container {
+        padding: clamp(15px, 3vh, 20px) 10vw;
+    }
+}

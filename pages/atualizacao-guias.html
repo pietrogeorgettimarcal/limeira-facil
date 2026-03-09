@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atualizar Guias - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>
+        /* Bloqueio absoluto do scroll na página principal */
+        html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-300 w-full h-full flex justify-center items-center font-sans antialiased no-select">
+    
+    <div class="w-full h-full lg:max-w-[1500px] xl:max-w-[1600px] lg:h-[94%] bg-gray-100 flex flex-col overflow-hidden relative lg:shadow-2xl lg:rounded-2xl border border-gray-300">
+        
+        <header class="h-[38px] md:h-[45px] shrink-0 bg-blue-800 text-white px-4 py-1 flex items-center gap-3 shadow-md z-20">
+            <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                <img src="../imagens/brasao-menor.png" alt="brasao" class="w-5 md:w-6" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <h1 class="text-sm md:text-base font-bold tracking-tight leading-none">Limeira Fácil</h1>
+                <p class="text-blue-200 text-[8px] md:text-[10px] font-medium leading-none">Autoatendimento</p>
+            </div>
+        </header>
+
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-yellow-100 p-1.5 md:p-2 rounded-xl border border-yellow-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-rotate text-yellow-700 text-sm md:text-base shrink-0"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-yellow-900 leading-tight truncate">Atualizar Parcela Vencida</h2>
+                </div>
+                <a href="duvidas.html" class="shrink-0 bg-white border border-yellow-300 hover:bg-yellow-50 text-yellow-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                </a>
+            </div>
+
+            <div class="flex-1 flex flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                
+                <div class="shrink-0 bg-yellow-100 p-1 md:p-1.5 border-b border-yellow-200 flex justify-between items-center px-3">
+                    <h3 id="passo-titulo" class="font-bold text-yellow-900 text-[10px] md:text-[11px]">Passo a Passo (1/4)</h3>
+                </div>
+
+                <div id="passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-yellow-50 p-2 md:p-2.5 rounded-xl border border-yellow-200 shadow-sm">
+                                <p class="text-yellow-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-yellow-700"></i>1. No menu lateral, clique em "Guias".</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#f4f4f9] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden pointer-events-none text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-building w-4 md:w-5 text-center"></i> Mobiliário</div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-white text-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner relative">
+                                            <i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias <i class="fa fa-chevron-down ml-auto text-[8px]"></i>
+                                            <i class="fa-solid fa-arrow-pointer absolute right-1 bottom-0 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                        </div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-shield w-4 md:w-5 text-center"></i> Validar Doc</div>
+                                    </div>
+                                    <div class="flex-1 bg-transparent p-2 md:p-4 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold cursor-not-allowed text-[10px] md:text-[11px]">Anterior</button>
+                        <button onclick="mudarPasso(2, 4)" class="flex-1 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-yellow-950 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-yellow-50 p-2 md:p-2.5 rounded-xl border border-yellow-200 shadow-sm"><p class="text-yellow-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-yellow-700"></i>2. Clique em "2º Via/atualização de Guia(s)".</p></div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#f4f4f9] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden pointer-events-none text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias <i class="fa fa-chevron-up ml-auto text-[8px]"></i></div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner">
+                                            <div class="pl-8 md:pl-10 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white relative shadow-md">
+                                                2º Via/atualização
+                                                <i class="fa-solid fa-arrow-pointer absolute right-2 md:right-4 top-0.5 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                            </div>
+                                            <div class="pl-8 md:pl-10 pr-2 py-1 text-white/70 text-[9px] md:text-[10px]">Guias de Quitação</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 bg-transparent p-2 md:p-4 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso(1, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="mudarPasso(3, 4)" class="flex-1 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-yellow-950 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-yellow-50 p-2 md:p-2.5 rounded-xl border border-yellow-200 shadow-sm"><p class="text-yellow-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-yellow-700"></i>3. Preencha o Nº de Parcelamento e clique em Buscar.</p></div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8">
+                            
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden pointer-events-none text-[#73879C]">
+                                
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    
+                                    <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">2º Via/atualização</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                        
+                                        <div class="bg-white border border-[#E6E9ED] p-2 md:p-4 shadow-sm rounded relative mt-3 md:mt-4 mb-3">
+                                            
+                                            <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                                <i class="fa fa-barcode text-sm md:text-base opacity-90"></i>
+                                                <span class="text-[10px] md:text-xs font-light">Atualização de Guia(s)</span>
+                                            </div>
+
+                                            <div class="mt-2 md:mt-4 flex flex-col">
+                                                <div class="text-[#373736] mb-1.5 md:mb-2 text-[9px] md:text-[10px] font-medium">
+                                                    <i class="fa fa-info-circle text-[#1abb9c] mr-0.5"></i> Informe pelo menos um dos filtros abaixo
+                                                </div>
+                                                <hr class="border-t border-[#eee] mb-2">
+                                                
+                                                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
+                                                    
+                                                    <div class="w-full opacity-50">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5">Nosso Número</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50"></div>
+                                                    </div>
+
+                                                    <div class="w-full opacity-50">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5 truncate">Lançamento / Consolidação</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50"></div>
+                                                    </div>
+
+                                                    <div class="w-full relative">
+                                                        <div class="absolute -inset-0.5 border border-red-500 rounded bg-red-50/50 z-0"></div>
+                                                        <div class="relative z-10 p-1">
+                                                            <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5 leading-none">Nº Parcelamento <span class="font-normal text-[7px]">(Nº Neg/Ano)</span></label>
+                                                            <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-white flex items-center px-2 shadow-inner">
+                                                                <span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">12345/2026</span>
+                                                                <div class="w-[1px] h-3 bg-black ml-1 animate-pulse"></div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="absolute -top-1.5 right-1 bg-red-500 text-white text-[7px] md:text-[8px] px-1 py-0.5 rounded shadow z-20">Preencha aqui</span>
+                                                    </div>
+
+                                                    <div class="w-full opacity-50">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5 truncate">Inscrição Cadastral</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50"></div>
+                                                    </div>
+                                                    
+                                                    <div class="w-full opacity-50">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5 truncate">Inscrição Mobiliária</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50"></div>
+                                                    </div>
+                                                    
+                                                    <div class="w-full flex items-end gap-2">
+                                                        <div class="flex-1 opacity-50">
+                                                            <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5">Ano Exercício</label>
+                                                            <div class="flex border border-[#ccc] rounded h-[24px] md:h-[26px] overflow-hidden">
+                                                                <div class="flex-1 px-1.5 bg-gray-50"></div>
+                                                                <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#bf0606]"><i class="fa fa-trash text-[8px]"></i></div>
+                                                                <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#2A3F54]"><i class="fa fa-calendar text-[8px]"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="relative shrink-0 mb-[1px]"> <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[9px] md:text-[10px] font-bold border border-[#364B5F] hover:bg-[#2A3F54]">Buscar</button>
+                                                            <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded hidden md:block">
+                                            <div class="flex items-center gap-1.5 text-[#373736] text-[10px] md:text-[11px] font-medium mb-1">
+                                                <i class="fa fa-question-circle"></i> Informações
+                                            </div>
+                                            <hr class="border-t border-[#eee] mb-1.5">
+                                            <div class="text-[8px] md:text-[9px] text-[#373736] space-y-1">
+                                                <p><strong>IPTU/TSU: </strong>preencher "INSCRIÇÃO CADASTRAL DO IMÓVEL" e "ANO EXERCÍCIO".</p>
+                                                <p><strong>PARCELAMENTO: </strong>preencher somente "N° parcelamento (N° negociação/ano)".</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso(2, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="mudarPasso(4, 4)" class="flex-1 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-yellow-950 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="passo-4" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-yellow-50 p-2 md:p-2.5 rounded-xl border border-yellow-200 shadow-sm"><p class="text-yellow-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-yellow-700"></i>4. Marque o quadradinho, escolha o vencimento e Imprima.</p></div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden pointer-events-none text-[#73879C]">
+                                
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">2º Via/atualização</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 overflow-y-auto p-2 md:p-4 bg-[#F7F7F7] hide-scrollbar relative z-10">
+                                        <div class="bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded relative mt-2 mb-3 overflow-hidden">
+                                            
+                                            <hr class="border-t border-[#eee] mb-2">
+                                            
+                                            <div class="flex items-center mb-2 justify-end w-full">
+                                                <input type="text" placeholder="Pesquisar" class="border border-[#ccc] rounded h-[22px] md:h-[24px] px-1.5 text-[8px] md:text-[9px] w-[90px] md:w-[120px]">
+                                            </div>
+
+                                            <div class="overflow-x-auto border border-[#ccc] rounded">
+                                                <table class="w-full text-left text-[7px] md:text-[8px] text-[#373736] border-collapse min-w-[450px]">
+                                                    <thead>
+                                                        <tr class="border-b border-[#ddd] bg-gray-50">
+                                                            <th class="p-1 text-center w-6 relative">
+                                                                <div class="absolute -inset-[1px] border border-red-500 rounded bg-red-500/10 z-0"></div>
+                                                                <input type="checkbox" checked class="relative z-10 accent-[#1abb9c] w-2.5 h-2.5">
+                                                            </th>
+                                                            <th class="p-1 font-medium uppercase">Origem</th>
+                                                            <th class="p-1 font-medium uppercase hidden lg:table-cell">I.C. Reduzido</th>
+                                                            <th class="p-1 font-medium uppercase">Negociação</th>
+                                                            <th class="p-1 font-medium uppercase text-center">Competência</th>
+                                                            <th class="p-1 font-medium uppercase text-center">Vencimento</th>
+                                                            <th class="p-1 font-medium uppercase text-right">Nosso Número</th>
+                                                            <th class="p-1 font-medium uppercase text-right">Valor</th>
+                                                            <th class="p-1 font-medium uppercase text-right text-[#bf0606]">Atualizado</th>
+                                                            <th class="p-1 font-medium uppercase text-center hidden sm:table-cell">Parcela</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="bg-[#dff0d8] border-b border-[#eee]">
+                                                            <td class="p-1 text-center"><input type="checkbox" checked class="accent-[#1abb9c] w-2.5 h-2.5"></td>
+                                                            <td class="p-1">Parcelamento</td>
+                                                            <td class="p-1 hidden lg:table-cell"></td>
+                                                            <td class="p-1">12345/2026</td>
+                                                            <td class="p-1 text-center">05/2026</td>
+                                                            <td class="p-1 text-center line-through">10/02/2026</td>
+                                                            <td class="p-1 text-right">9876543210</td>
+                                                            <td class="p-1 text-right">75,00</td>
+                                                            <td class="p-1 text-right font-bold text-[#bf0606]">77,24</td>
+                                                            <td class="p-1 text-center hidden sm:table-cell">05</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                            <div class="flex flex-col sm:flex-row justify-end items-end sm:items-center gap-1.5 md:gap-2 mt-3 md:mt-4">
+                                                
+                                                <div class="relative border-2 border-red-400 p-1 bg-red-50/50 rounded shadow-sm flex items-center gap-1">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase">Vencimento</label>
+                                                    <div class="border border-[#ccc] rounded h-[20px] md:h-[22px] bg-white flex items-center px-1.5 w-20 md:w-24 text-gray-800 font-mono text-[9px] md:text-[10px] shadow-inner">
+                                                        <span>15/03/26</span><i class="fa fa-calendar ml-auto text-[#2a3f54] text-[8px]"></i>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="relative">
+                                                    <button class="h-[24px] md:h-[28px] bg-[#19B99B] text-white px-2.5 md:px-3 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#169F85]">Imprimir/Atualizar</button>
+                                                    <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso(3, 4)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="finalizarGuia()" class="flex-1 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-yellow-950 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$OTVkODcyYjJiODNiMzE4NjdkNWM1MzE3OTQ5OWIxMGZPVFZrT0RjeVlqSmlPRE5pTXpFNE5qZGtOV00xTXpFM09UUTVPV0l4TUdZek5qaz0=$$li_369_3$$3" target="_blank" class="flex-1 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] text-center flex justify-center items-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> <span class="hidden sm:inline">Ir para o site</span><span class="sm:hidden">Site</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function mudarPasso(passo, total) {
+            for (let i = 1; i <= total; i++) {
+                let el = document.getElementById('passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById('passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            document.getElementById('passo-titulo').innerText = 'Passo a Passo (' + passo + '/' + total + ')';
+        }
+
+        function finalizarGuia() {
+            window.location.href = "duvidas.html";
+        }
+
+        window.onload = function() { mudarPasso(1, 4); };
+    </script>
+</body>
+</html>
