@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ITBI - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>
+        /* Bloqueio absoluto do scroll forçando tela cheia */
+        html, body { height: 100dvh; width: 100vw; overflow: hidden; margin: 0; padding: 0; }
+        body { touch-action: none !important; overscroll-behavior: none !important; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .captcha-box {
+            background: repeating-linear-gradient(45deg, #e5e7eb, #e5e7eb 2px, #f3f4f6 2px, #f3f4f6 4px);
+        }
+    </style>
+</head>
+<body class="text-slate-800 font-sans h-[100dvh] w-screen flex flex-col no-select fade-in bg-gray-100">
+
+    <nav class="bg-blue-900 text-white shadow-md shrink-0 z-50">
+        <div class="max-w-[1600px] w-full mx-auto px-3 sm:px-6">
+            <div class="flex items-center justify-between h-[45px] sm:h-[60px]">
+                <div class="flex items-center gap-2">
+                    <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                        <img src="../imagens/brasao-menor.png" alt="brasao" class="w-6 h-6 sm:w-8 sm:h-8 object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>L</text></svg>'">
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-sm sm:text-lg leading-none tracking-wide">Limeira Fácil</h1>
+                        <p class="text-[9px] sm:text-[11px] text-blue-200 font-medium uppercase tracking-wider hidden sm:block mt-0.5">Secretaria da Fazenda / Dívida Ativa</p>
+                    </div>
+                </div>
+                <a href="../index.html" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition text-xs sm:text-sm font-semibold">
+                    <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Início</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-1 w-full max-w-[1600px] mx-auto flex flex-col overflow-hidden bg-gray-100 relative">
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-blue-100 p-1.5 md:p-2 rounded-xl border border-blue-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-list-ul text-blue-700 text-sm md:text-base shrink-0" id="header-icon"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-blue-900 leading-tight truncate" id="header-title">Informações de ITBI</h2>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="btn-back" onclick="window.location.href='duvidas.html'" class="shrink-0 bg-white border border-blue-300 hover:bg-blue-50 text-blue-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 active:scale-95 text-[9px] md:text-[11px]">
+                        <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full overflow-hidden relative min-h-0 flex flex-col">
+                
+                <div id="menu-principal" class="app-view grid grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2">
+                    <button onclick="abrirView('tut-gerar', 'Como gerar a guia do ITBI', 'fa-file-invoice-dollar')" class="w-full min-h-[70px] md:min-h-[80px] bg-blue-600 border-2 border-blue-700 hover:bg-blue-700 active:bg-blue-800 rounded-xl flex items-center px-4 gap-3 shadow-md text-left sm:col-span-2 mt-2">
+                        <div class="bg-white rounded-full text-blue-700 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-invoice-dollar text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-white text-sm md:text-base flex-1">Como gerar a guia do ITBI (Passo a Passo)</span><i class="fa-solid fa-chevron-right text-blue-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-address-card text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como fazer o cadastro?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirView('info-documentos', 'Documentos Necessários', 'fa-folder-open')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-folder-open text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Quais os documentos necessários?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+
+                    <button onclick="abrirView('submenu-inscricao', 'Como saber a Inscrição Cadastral?', 'fa-map-location-dot')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left sm:col-span-2 lg:col-span-1">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-map-location-dot text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como saber a Inscrição Cadastral?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="menu-cadastro" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2">
+                    <button onclick="abrirView('tut-cpf', 'Cadastro Pessoa Física (CPF)', 'fa-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Física (CPF)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('tut-cnpj', 'Cadastro Pessoa Jurídica (CNPJ)', 'fa-building')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Jurídica (CNPJ)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="info-documentos" class="app-view hidden flex-1 flex-col bg-white p-4 md:p-6 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto w-full mt-2">
+                    <p class="font-bold text-blue-800 bg-blue-100 p-2 md:p-3 rounded-lg mb-4 text-center text-xs md:text-sm shadow-sm">
+                        Para solicitar a guia de ITBI, você precisará anexar cópias legíveis (foto ou PDF) dos seguintes documentos:
+                    </p>
+                    <div class="space-y-3 text-xs md:text-sm text-gray-800">
+                        <div class="bg-gray-50 p-3 md:p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <span class="font-bold text-blue-900 block mb-1 text-sm md:text-base"><i class="fa-solid fa-file-contract mr-1"></i> Documento do Imóvel</span>
+                            <p class="text-gray-600 leading-tight">Matrícula atualizada do imóvel (emitida pelo Cartório de Registro de Imóveis há menos de 30 dias) ou o Contrato/Instrumento Particular de Compra e Venda assinado.</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 md:p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <span class="font-bold text-blue-900 block mb-1 text-sm md:text-base"><i class="fa-solid fa-id-card mr-1"></i> Documentos Pessoais (Comprador)</span>
+                            <p class="text-gray-600 leading-tight">Cópia do RG e CPF (ou CNH). Caso o comprador seja uma empresa (Pessoa Jurídica), é necessário o CNPJ e o Contrato Social.</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 md:p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <span class="font-bold text-blue-900 block mb-1 text-sm md:text-base"><i class="fa-solid fa-id-card mr-1"></i> Documentos Pessoais (Vendedor)</span>
+                            <p class="text-gray-600 leading-tight">Cópia do RG e CPF (ou CNH). Da mesma forma, se for Pessoa Jurídica, o CNPJ e Contrato Social da empresa vendedora.</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 md:p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <span class="font-bold text-blue-900 block mb-1 text-sm md:text-base"><i class="fa-solid fa-file-invoice-dollar mr-1"></i> Outros Documentos (se houver)</span>
+                            <p class="text-gray-600 leading-tight">Guia de ITBI anterior (em casos de atualização de guia vencida) ou espelho/carnê de IPTU para facilitar a confirmação da Inscrição Cadastral.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="submenu-inscricao" class="app-view hidden flex-col items-center justify-center px-2 h-full fade-in">
+                    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border-2 border-gray-200 w-full max-w-2xl text-center">
+                        <h3 class="text-blue-900 font-bold text-base md:text-lg mb-4 md:mb-6"><i class="fa-solid fa-circle-question text-blue-600 mr-2"></i>Qual tipo de inscrição você procura?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="iniciarTutorialInscricao('imob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 active:bg-blue-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                                <i class="fa-solid fa-house text-3xl md:text-4xl text-blue-600"></i>
+                                <span class="font-black text-gray-800 text-sm md:text-base">Imóvel (IPTU)</span>
+                            </button>
+                            <button onclick="iniciarTutorialInscricao('mob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 active:bg-blue-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                                <i class="fa-solid fa-store text-3xl md:text-4xl text-blue-600"></i>
+                                <span class="font-black text-gray-800 text-sm md:text-base">Empresa ou Autônomo<br><span class="text-xs font-normal text-gray-500">(Mobiliário)</span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-inscricao" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-blue-100 p-1 md:p-1.5 border-b border-blue-200 flex justify-between items-center px-3"><h3 id="inscricao-passo-titulo" class="font-bold text-blue-900 text-[10px] md:text-[11px]">Passo a Passo (1/2)</h3></div>
+                    
+                    <div id="inscricao-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm">
+                                <p id="texto-dica-inscricao" class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center pointer-events-none select-none p-2 md:p-4 shadow-inner">
+                            <img id="img-inscricao" src="../imagens/iptu_inscricao.png" alt="Exemplo da Inscrição" class="w-full h-full object-contain drop-shadow-2xl rounded-lg">
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="abrirView('submenu-inscricao', 'Como saber a Inscrição Cadastral?', 'fa-map-location-dot')" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold text-[10px] md:text-xs shadow-sm transition-transform active:scale-95"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('inscricao', 2, 2)" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="inscricao-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm">
+                                <p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>2. Vá até o <span id="nome-setor-passo2">setor de Cadastro (Urbanismo)</span> da prefeitura.</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-white w-full max-w-2xl border border-gray-300 shadow-2xl rounded-2xl flex flex-col overflow-hidden">
+                                <div class="bg-[#2A3F54] p-4 text-center text-white shrink-0">
+                                    <i class="fa-solid fa-building-user text-3xl md:text-4xl mb-2"></i>
+                                    <h2 class="text-base md:text-lg font-bold">Atendimento Presencial</h2>
+                                </div>
+                                <div class="p-6 flex flex-col gap-4 text-center justify-center flex-1 bg-[#F7F7F7]">
+                                    <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+                                        Caso você não tenha uma guia ou carnê em mãos, dirija-se ao <strong class="text-[#0042A4]" id="nome-setor-destaque">Setor de Cadastro (Urbanismo)</strong> da Prefeitura.
+                                    </p>
+                                    <div class="bg-white border-l-4 border-[#0042A4] p-4 rounded text-left shadow-sm inline-block mx-auto max-w-md mt-2">
+                                        <p class="text-[#0042A4] text-xs md:text-sm font-bold mb-1.5"><i class="fa-solid fa-bullhorn mr-1"></i> O que fazer lá?</p>
+                                        <p id="texto-dica-presencial" class="text-gray-600 text-xs md:text-sm">Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua <strong>Inscrição Cadastral</strong>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('inscricao', 1, 2)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-gerar" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-blue-100 p-1 md:p-1.5 border-b border-blue-200 flex justify-between items-center px-3"><h3 id="gerar-passo-titulo" class="font-bold text-blue-900 text-[10px] md:text-[11px]">Passo a Passo (1/5)</h3></div>
+                    
+                    <div id="gerar-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. Na aba Identificação, preencha os seus dados do requerente.</p></div>
+                            <button onclick="abrirView('submenu-inscricao', 'Como saber a Inscrição Cadastral?', 'fa-map-location-dot')" class="mt-4 w-full bg-orange-100 hover:bg-orange-200 border border-orange-300 text-orange-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                                <i class="fa-solid fa-circle-question text-lg md:text-xl text-orange-600"></i> Não sei minha Inscrição
+                            </button>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i>
+                                    <div class="flex flex-col leading-tight">
+                                        <span class="text-[11px] md:text-xs font-bold">Protocolos</span>
+                                        <span class="text-[8px] font-light">Abertura e Consulta de Requerimentos Administrativos.</span>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 pt-2 px-4 bg-white border-b border-gray-200 shadow-sm flex gap-3">
+                                    <div class="border-b-2 border-[#0042A4] pb-1.5 flex items-center gap-1 text-[#0042A4] font-bold text-[9px] md:text-[11px] px-1">
+                                        <i class="fa-solid fa-user"></i> Identificação <small class="text-gray-400 font-normal">Passo 1</small>
+                                    </div>
+                                    <div class="border-b-2 border-transparent pb-1.5 flex items-center gap-1 text-gray-500 text-[9px] md:text-[11px] px-1">
+                                        <i class="fa-solid fa-qrcode"></i> Informações <small class="text-gray-400">Passo 2</small>
+                                    </div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="flex items-center gap-2 shrink-0 mb-2">
+                                        <label class="text-gray-500 font-bold text-[9px] md:text-[11px] shrink-0">Assunto<span class="text-red-500">*</span>:</label>
+                                        <div class="border border-gray-300 rounded px-2 py-1 bg-white shadow-inner text-gray-700 font-bold flex-1 truncate text-[9px] md:text-[11px]">—— Secretaria de Fazenda - ITBI - Emissão de guia de recolhimento</div>
+                                    </div>
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 md:p-4 shadow-sm">
+                                        <h4 class="text-[11px] md:text-xs font-bold text-[#0042A4] mb-2 border-b pb-1">Identificação do requerente da guia do ITBI</h4>
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 opacity-70">
+                                            <div class="md:col-span-8"><label class="text-[9px] md:text-[11px] text-gray-500 mb-1 block font-medium">Nome Completo*</label><div class="border border-[#ccc] rounded h-[28px] md:h-[32px] bg-gray-50 px-2 flex items-center text-[10px] md:text-[12px] text-gray-700">João da Silva</div></div>
+                                            <div class="md:col-span-4"><label class="text-[9px] md:text-[11px] text-gray-500 mb-1 block font-medium">CPF*</label><div class="border border-[#ccc] rounded h-[28px] md:h-[32px] bg-gray-50 px-2 flex items-center text-[10px] md:text-[12px] text-gray-700 font-mono">123.456.789-00</div></div>
+                                            <div class="md:col-span-4"><label class="text-[9px] md:text-[11px] text-gray-500 mb-1 block font-medium">Telefone Fixo</label><div class="border border-[#ccc] rounded h-[28px] md:h-[32px] bg-gray-50 px-2 flex items-center text-[10px] md:text-[12px] text-gray-700"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[9px] md:text-[11px] text-gray-500 mb-1 block font-medium">Celular*</label><div class="border border-[#ccc] rounded h-[28px] md:h-[32px] bg-gray-50 px-2 flex items-center text-[10px] md:text-[12px] text-gray-700">(19) 99999-9999</div></div>
+                                            <div class="md:col-span-4"><label class="text-[9px] md:text-[11px] text-gray-500 mb-1 block font-medium">E-mail</label><div class="border border-[#ccc] rounded h-[28px] md:h-[32px] bg-gray-50 px-2 flex items-center text-[10px] md:text-[12px] text-gray-700">joao@email.com</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-2 bg-gray-200 text-gray-400 rounded-lg font-bold text-[10px] md:text-xs shadow-sm cursor-not-allowed"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> Anterior</button>
+                            <button onclick="mudarPasso('gerar', 2, 5)" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="gerar-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>2. Na aba Informações, preencha a Inscrição e o Endereço de entrega do carnê.</p></div>
+                            <button onclick="abrirView('submenu-inscricao', 'Como saber a Inscrição Cadastral?', 'fa-map-location-dot')" class="mt-4 w-full bg-orange-100 hover:bg-orange-200 border border-orange-300 text-orange-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                                <i class="fa-solid fa-circle-question text-lg md:text-xl text-orange-600"></i> Não sei minha Inscrição
+                            </button>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i>
+                                    <div class="flex flex-col leading-tight">
+                                        <span class="text-[11px] md:text-xs font-bold">Protocolos</span>
+                                        <span class="text-[8px] font-light">Abertura e Consulta de Requerimentos Administrativos.</span>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 pt-2 px-4 bg-white border-b border-gray-200 shadow-sm flex gap-3">
+                                    <div class="border-b-2 border-transparent pb-1.5 flex items-center gap-1 text-gray-500 text-[9px] md:text-[11px] px-1">
+                                        <i class="fa-solid fa-user"></i> Identificação <small class="text-gray-400 font-normal">Passo 1</small>
+                                    </div>
+                                    <div class="border-b-2 border-[#0042A4] pb-1.5 flex items-center gap-1 text-[#0042A4] font-bold text-[9px] md:text-[11px] px-1">
+                                        <i class="fa-solid fa-qrcode"></i> Informações <small class="text-gray-400">Passo 2</small>
+                                    </div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="bg-white border border-[#E6E9ED] p-3 md:p-4 shadow-sm rounded-lg flex flex-col gap-3">
+                                        
+                                        <div class="relative w-full">
+                                            <div class="absolute -inset-[2px] border-2 border-red-500 rounded bg-red-50 z-0"></div>
+                                            <div class="relative z-10 p-2">
+                                                <label class="text-[10px] md:text-xs font-bold text-gray-800 leading-tight mb-1 block">Número da Inscrição Municipal do Imóvel - IPTU</label>
+                                                <div class="border border-[#ccc] rounded h-[32px] md:h-[36px] bg-white flex items-center px-3 shadow-inner">
+                                                    <span class="font-mono text-[11px] md:text-sm text-[#73879C]">0123.456.789.000</span>
+                                                    <div class="w-[1px] h-5 bg-black ml-1.5 animate-pulse"></div>
+                                                </div>
+                                            </div>
+                                            <span class="absolute -top-2 right-2 bg-red-500 text-white text-[8px] md:text-[10px] px-2 py-0.5 rounded shadow z-20 font-bold">PREENCHA</span>
+                                        </div>
+                                        
+                                        <div class="opacity-70 w-full mt-1">
+                                            <label class="text-[10px] md:text-xs text-gray-500 mb-1 block font-medium">Endereço de entrega do carnê do IPTU*</label>
+                                            <div class="border border-[#ccc] rounded h-[32px] md:h-[36px] bg-gray-50 px-3 flex items-center text-[10px] md:text-sm text-gray-700">Rua das Flores, 123, Centro</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('gerar', 1, 5)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('gerar', 3, 5)" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div id="gerar-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>3. Escreva a Descrição e motive o seu requerimento.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3"><i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span><span class="text-[8px] font-light">Abertura e Consulta de Requerimentos Administrativos.</span></div></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col justify-center">
+                                    <div class="bg-white border border-[#E6E9ED] p-3 md:p-4 shadow-sm rounded-lg flex flex-col h-full gap-2">
+                                        <label class="text-[10px] md:text-xs text-gray-500 mb-1 block font-medium shrink-0">Descrição do Caso<span class="text-red-500">*</span></label>
+                                        <div class="border border-[#ccc] rounded bg-white flex flex-col overflow-hidden shadow-inner h-full min-h-[110px]">
+                                            <div class="p-3 text-[10px] md:text-sm text-gray-700 flex-1 bg-white">Solicito a emissão da guia de ITBI conforme os documentos em anexo.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('gerar', 2, 5)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('gerar', 4, 5)" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="gerar-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>4. Faça o upload de todos os documentos exigidos e clique em Anexar.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3"><i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 md:p-4 shadow-sm flex flex-col gap-3">
+                                        <div class="flex flex-col gap-2 items-start">
+                                            <span class="bg-[#333] text-white px-3 py-1.5 rounded text-[9px] md:text-[11px] shadow-sm leading-tight text-left max-w-full">
+                                                Documento relativo à guia de ITBI<span class="text-red-500 font-bold ml-1">*</span>
+                                            </span>
+                                        </div>
+                                        <div class="flex mt-1 relative">
+                                            <div class="relative inline-block w-full md:w-auto">
+                                                <button class="bg-[#0042A4] text-white px-5 py-2.5 rounded shadow-md text-[10px] md:text-[12px] font-bold border border-[#003583] flex items-center justify-center gap-1.5 w-full"><i class="fa-solid fa-paperclip"></i> Anexar</button>
+                                                <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-3 -bottom-3 text-black text-xl md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('gerar', 3, 5)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('gerar', 5, 5)" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="gerar-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>5. Escolha a assinatura 1Doc e clique em Protocolar.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-2xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3"><i class="fa-solid fa-qrcode text-base"></i></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex items-start justify-center">
+                                    <div class="w-full max-w-xl bg-white border border-[#E6E9ED] p-3 md:p-4 shadow-sm rounded-lg mt-1">
+                                        <div class="border-2 border-red-400 rounded-lg p-3 md:p-4 bg-red-50 relative shadow-inner">
+                                            <span class="absolute -top-2 left-3 bg-red-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                            <div class="flex justify-end mt-4 relative">
+                                                <div class="relative w-full md:w-auto">
+                                                    <button class="bg-[#0042A4] text-white font-bold py-2 md:py-2.5 px-6 md:px-8 rounded shadow-md text-[11px] md:text-[13px] border border-[#003583] w-full text-center">Protocolar</button>
+                                                    <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-xl md:text-3xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('gerar', 4, 5)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95597982&iser=01KH3ZX2M352R4S04D9RZ2JXEB" target="_blank" class="flex-1 md:flex-none py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-cpf" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-blue-100 p-1.5 md:p-2 border-b border-blue-200 flex justify-between items-center px-3"><h3 id="cpf-passo-titulo" class="font-bold text-blue-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                    
+                    <div id="cpf-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                    <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-white shadow-inner flex items-center text-gray-400">E-mail ou CPF/CNPJ</div>
+                                    <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                    
+                                    <div class="border-2 border-blue-500 bg-blue-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                        Sem e-mail? Entre com CPF/CNPJ
+                                        <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                    
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                    
+                                    <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                    <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com icp certificado digital</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>2. Digite o seu CPF e clique em "Prosseguir".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                             <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                    <div class="border-2 border-blue-400 bg-blue-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <span class="absolute -top-1.5 left-1.5 bg-blue-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                        <div class="flex flex-col gap-1.5 mt-1">
+                                            <input type="text" value="123.456.789-00" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                            <div class="flex items-center gap-2 w-full">
+                                                <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                    Prosseguir
+                                                    <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                                </div>
+                                                <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>3. Selecione "Contato" e preencha seus Dados Pessoais Básicos.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                            <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Contato (Pessoa Física)</label>
+                                            <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Organização/Pessoa Jurídica</label>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CPF<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[28px] px-1.5 flex items-center font-mono text-[8px] md:text-[11px] text-gray-700">123.456.789-00</div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data nasc.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Sexo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>4. Preencha todos os seus Contatos e Telefones.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>5. Preencha seu Endereço e defina sua Senha.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                            <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                    <div class="border-2 border-blue-400 bg-blue-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                        <span class="absolute -top-2.5 left-3 bg-blue-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                        <div class="flex flex-col gap-3">
+                                            <div>
+                                                <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                                <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                    <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-end mt-4 relative">
+                                                <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                                <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95595385&iser=01JDWJT14Y0HZYY9WN2503RZQ3" target="_blank" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-cnpj" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-blue-100 p-1.5 md:p-2 border-b border-blue-200 flex justify-between items-center px-3"><h3 id="cnpj-passo-titulo" class="font-bold text-blue-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                    
+                    <div id="cnpj-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                    <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-[#f4f4f4] text-gray-400 shadow-inner flex items-center">empresa@email.com</div>
+                                    <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                    
+                                    <div class="border-2 border-red-500 bg-red-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                        Sem e-mail? Entre com CPF/CNPJ
+                                        <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                    
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                    
+                                    <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                    <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com certificado digital</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> Anterior</button>
+                            <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>2. Digite o CNPJ da empresa e clique em "Prosseguir".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                             <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                    <div class="border-2 border-blue-400 bg-blue-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <span class="absolute -top-1.5 left-1.5 bg-blue-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                        <div class="flex flex-col gap-1.5 mt-1">
+                                            <input type="text" value="12.345.678/0001-99" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                            <div class="flex items-center gap-2 w-full">
+                                                <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                    Prosseguir
+                                                    <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                                </div>
+                                                <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>3. Selecione "Organização" e preencha os dados da empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                            <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Contato</label>
+                                            <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Organização/Pessoa Jurídica</label>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Razão Social<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CNPJ<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[26px] px-1.5 flex items-center font-mono text-[8px] md:text-[10px] text-gray-700">12.345.678/0001-99</div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data const.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome fantasia</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Responsável legal / Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px] flex justify-between px-1.5 items-center text-gray-400"><span class="text-[8px]">- selecione -</span><i class="fa fa-chevron-down text-[8px]"></i></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>4. Preencha seus Contatos da Empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail corporativo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>5. Conclua o Endereço e defina a Senha da Empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-blue-400 bg-blue-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2 mt-1">
+                                            <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                            <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-xl border border-blue-200 shadow-sm"><p class="text-blue-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                    <div class="border-2 border-blue-400 bg-blue-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                        <span class="absolute -top-2.5 left-3 bg-blue-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                        <div class="flex flex-col gap-3">
+                                            <div>
+                                                <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                                <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                    <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-end mt-4 relative">
+                                                <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                                <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95595385&iser=01JDWJT14Y0HZYY9WN2503RZQ3" target="_blank" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function abrirView(viewId, title, iconClass) {
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+            const target = document.getElementById(viewId);
+            target.classList.remove('hidden');
+            if (viewId.startsWith('menu-') || viewId === 'submenu-inscricao') { target.classList.add('grid'); } else { target.classList.add('flex'); }
+
+            document.getElementById('header-title').innerText = title;
+            document.getElementById('header-icon').className = 'fa-solid ' + iconClass + ' text-blue-700 text-base md:text-lg shrink-0';
+
+            const btnBack = document.getElementById('btn-back');
+            if (viewId === 'menu-principal') {
+                btnBack.setAttribute('onclick', "window.location.href='duvidas.html'");
+            } else if (viewId === 'menu-cadastro' || viewId === 'tut-gerar' || viewId === 'submenu-inscricao' || viewId === 'info-documentos') {
+                btnBack.setAttribute('onclick', "abrirView('menu-principal', 'Informações de ITBI', 'fa-list-ul')");
+            } else if (viewId === 'tut-cpf' || viewId === 'tut-cnpj') {
+                btnBack.setAttribute('onclick', "abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')");
+            }
+            
+            if (viewId === 'tut-gerar') mudarPasso('gerar', 1, 5); 
+        }
+
+        function iniciarTutorialInscricao(tipo) {
+            const img = document.getElementById('img-inscricao');
+            const txt1 = document.getElementById('texto-dica-inscricao');
+            const txtPresencial = document.getElementById('texto-dica-presencial');
+
+            if(tipo === 'imob') {
+                img.src = "../imagens/iptu_inscricao.png";
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.';
+                txtPresencial.innerHTML = 'Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(document.getElementById('nome-setor-passo2')) document.getElementById('nome-setor-passo2').innerText = 'setor de Cadastro (Urbanismo)';
+                if(document.getElementById('nome-setor-destaque')) document.getElementById('nome-setor-destaque').innerText = 'Setor de Cadastro (Urbanismo)';
+                abrirView('tut-inscricao', 'Inscrição do Imóvel (IPTU)', 'fa-map-location-dot');
+            } else {
+                img.src = "../imagens/mob_inscricao.png";
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-blue-700"></i>1. A Inscrição Cadastral do Mobiliário contém 5 dígitos (padrão 00000) e está presente nas guias do Mobiliário / Alvará.';
+                txtPresencial.innerHTML = 'Informe os <strong>dados da sua empresa ou seu CPF</strong> (caso autônomo) para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(document.getElementById('nome-setor-passo2')) document.getElementById('nome-setor-passo2').innerText = 'setor de SRM';
+                if(document.getElementById('nome-setor-destaque')) document.getElementById('nome-setor-destaque').innerText = 'Setor de SRM';
+                abrirView('tut-inscricao', 'Inscrição de Empresa (Mobiliário)', 'fa-map-location-dot');
+            }
+            
+            document.getElementById('btn-back').setAttribute('onclick', "abrirView('submenu-inscricao', 'Como saber a Inscrição Cadastral?', 'fa-map-location-dot')");
+            mudarPasso('inscricao', 1, 2);
+        }
+
+        function mudarPasso(prefixo, passo, total) {
+            for (let i = 1; i <= total; i++) {
+                let el = document.getElementById(prefixo + '-passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById(prefixo + '-passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            
+            let titulo = document.getElementById(prefixo + '-passo-titulo');
+            if(titulo) titulo.innerText = 'Passo a Passo (' + passo + '/' + total + ')';
+        }
+
+        function finalizar() {
+            abrirView('menu-principal', 'Informações de ITBI', 'fa-list-ul');
+        }
+
+        window.onload = () => abrirView('menu-principal', 'Informações de ITBI', 'fa-list-ul');
+    </script>
+</body>
+</html>
