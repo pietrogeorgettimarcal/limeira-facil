@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Isenção de IPTU - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>
+        /* Bloqueio absoluto do scroll forçando tela cheia */
+        html, body { height: 100dvh; width: 100vw; overflow: hidden; margin: 0; padding: 0; }
+        body { touch-action: none !important; overscroll-behavior: none !important; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 font-sans h-[100dvh] w-screen flex flex-col no-select fade-in bg-gray-100">
+
+    <nav class="bg-blue-900 text-white shadow-md shrink-0 z-50">
+        <div class="max-w-[1600px] w-full mx-auto px-3 sm:px-6">
+            <div class="flex items-center justify-between h-[45px] sm:h-[60px]">
+                <div class="flex items-center gap-2">
+                    <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                        <img src="../imagens/brasao-menor.png" alt="brasao" class="w-6 h-6 sm:w-8 sm:h-8 object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>L</text></svg>'">
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-sm sm:text-lg leading-none tracking-wide">Limeira Fácil</h1>
+                        <p class="text-[9px] sm:text-[11px] text-blue-200 font-medium uppercase tracking-wider hidden sm:block mt-0.5">Secretaria da Fazenda / Dívida Ativa</p>
+                    </div>
+                </div>
+                <a href="../index.html" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition text-xs sm:text-sm font-semibold">
+                    <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Início</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-1 w-full max-w-[1600px] mx-auto flex flex-col overflow-hidden bg-gray-100 relative">
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-teal-100 p-1.5 md:p-2 rounded-xl border border-teal-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-list-ul text-teal-700 text-sm md:text-base shrink-0" id="header-icon"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-teal-900 leading-tight truncate" id="header-title">Isenção de IPTU</h2>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="btn-back" onclick="window.location.href='duvidas.html'" class="shrink-0 bg-white border border-teal-300 hover:bg-teal-50 text-teal-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 active:scale-95 text-[9px] md:text-[11px]">
+                        <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full overflow-hidden relative min-h-0 flex flex-col">
+                
+                <div id="menu-principal" class="app-view grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar pb-6">
+
+                    <button onclick="abrirView('menu-solicitar', 'Como Solicitar Online', 'fa-laptop-code')" class="w-full min-h-[70px] md:min-h-[80px] bg-teal-600 border-2 border-teal-700 hover:bg-teal-700 active:bg-teal-800 rounded-xl flex items-center px-4 gap-3 shadow-md text-left sm:col-span-2 mt-2">
+                        <div class="bg-white rounded-full text-teal-700 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-laptop-code text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-white text-sm md:text-base flex-1">Como fazer a Solicitação Online (Passo a Passo)</span><i class="fa-solid fa-chevron-right text-teal-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirView('info-metragem', 'Isenção por Metragem', 'fa-ruler-combined')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-ruler-combined text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Isenção por Metragem (até 85m²)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirView('info-aposentado-geral', 'Aposentados e Pensionistas', 'fa-user-tie')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user-tie text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados/Pensionistas (até 2 salários)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+
+                    <button onclick="abrirView('info-aposentado-medico', 'Aposentados c/ Tratamento Médico', 'fa-notes-medical')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-notes-medical text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados / BPC-LOAS (Tratamento Médico)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+
+                    <button onclick="abrirView('info-aposentado-acidente', 'Aposentados por Acidente', 'fa-crutch')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-crutch text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados por Acidente de Trabalho</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="menu-solicitar" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar pb-6">
+                    <button onclick="abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 shadow-sm rounded-xl flex items-center px-3 gap-3 text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-address-card text-lg"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como fazer o cadastro?</span><i class="fa-solid fa-chevron-right text-gray-300"></i>
+                    </button>
+                    <button onclick="iniciarTutorialSolicitacao('aposentado')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 shadow-sm rounded-xl flex items-center px-3 gap-3 text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-user-tie text-lg"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Isenção para Aposentados/Pensionistas</span><i class="fa-solid fa-chevron-right text-gray-300"></i>
+                    </button>
+                    <button onclick="iniciarTutorialSolicitacao('metragem')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 shadow-sm rounded-xl flex items-center px-3 gap-3 text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-ruler-combined text-lg"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Isenção por Metragem</span><i class="fa-solid fa-chevron-right text-gray-300"></i>
+                    </button>
+                    <button onclick="iniciarTutorialSolicitacao('medico')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 shadow-sm rounded-xl flex items-center px-3 gap-3 text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-notes-medical text-lg"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados em Tratamento Médico</span><i class="fa-solid fa-chevron-right text-gray-300"></i>
+                    </button>
+                    <button onclick="iniciarTutorialSolicitacao('trabalho')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 shadow-sm rounded-xl flex items-center px-3 gap-3 text-left sm:col-span-2 lg:col-span-1">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-crutch text-lg"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados por Acidente de Trabalho</span><i class="fa-solid fa-chevron-right text-gray-300"></i>
+                    </button>
+                </div>
+
+                <div id="menu-cadastro" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2">
+                    <button onclick="abrirView('tut-cpf', 'Cadastro Pessoa Física (CPF)', 'fa-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Física (CPF)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    <button onclick="abrirView('tut-cnpj', 'Cadastro Pessoa Jurídica (CNPJ)', 'fa-building')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-teal-400 active:bg-teal-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left">
+                        <div class="bg-teal-100 rounded-full text-teal-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Jurídica (CNPJ)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="menu-links-site" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar pb-6">
+                    <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660262&iser=01JDME63ATG2BE3KGF0MTG0ZVX" target="_blank" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left transition-colors">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user-tie text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Isenção para Aposentados/Pensionistas</span><i class="fa-solid fa-arrow-up-right-from-square text-blue-400 text-lg"></i>
+                    </a>
+                    <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660134&iser=01HY1B1XQB58675YNM96RR9CA7" target="_blank" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left transition-colors">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-ruler-combined text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Isenção por Metragem</span><i class="fa-solid fa-arrow-up-right-from-square text-blue-400 text-lg"></i>
+                    </a>
+                    <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660135&iser=01HY1B30346JQ2WKVFRS69XBZ5" target="_blank" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left transition-colors">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-notes-medical text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados em Tratamento Médico</span><i class="fa-solid fa-arrow-up-right-from-square text-blue-400 text-lg"></i>
+                    </a>
+                    <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660442&iser=01HZM7BZNKD9A99FV13V7CZ5ZQ" target="_blank" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-blue-400 active:bg-blue-50 rounded-xl flex items-center px-4 gap-3 shadow-sm text-left transition-colors">
+                        <div class="bg-blue-100 rounded-full text-blue-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-crutch text-lg md:text-xl"></i></div>
+                        <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Aposentados por Acidente de Trabalho</span><i class="fa-solid fa-arrow-up-right-from-square text-blue-400 text-lg"></i>
+                    </a>
+                </div>
+
+                <div id="info-metragem" class="app-view hidden flex-1 flex-col bg-white p-3 md:p-5 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto w-full mt-2 hide-scrollbar">
+                    <div class="bg-teal-50 border-l-4 border-teal-500 p-3 mb-4 rounded-r-lg shadow-sm">
+                        <h3 class="font-black text-teal-900 text-sm md:text-base">Isenção de 75% do IPTU</h3>
+                        <p class="text-[10px] md:text-xs text-gray-700 mt-1">Para proprietários de único imóvel com área construída de até 55m² ou 85m². <span class="italic text-gray-500">(Lei 1.890/83 e LCs 193/98, 842/19, 844/19)</span></p>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-list-check text-teal-600 mr-1"></i> Requisitos</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li>Ser proprietário e <strong>residir no imóvel</strong>.</li>
+                        <li><strong>Não possuir outro imóvel</strong> (nem parte/direito à herança, mesmo sem inventário).</li>
+                        <li>Estar com os IPTUs pagos em dia até o momento do protocolo.</li>
+                        <li><strong>Metragem:</strong> Imóvel com até 55m² (padrão precário, popular ou médio*) ou até 85m² (precário ou popular).
+                            <br><span class="text-gray-500 text-[9px] md:text-[10px] block mt-1">*Padrão médio: pode atingir até 57,99m² (sendo máx 55m² de área privativa e o restante de área comum). Terreno máximo de 300m² para residência não-condomínio.</span>
+                        </li>
+                    </ul>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-folder-open text-teal-600 mr-1"></i> Documentos (Cópias Digitais)</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li><strong>Matrícula do imóvel</strong> ou documento de posse (Contrato de Financiamento, Escritura, Contrato de Compra e Venda com firma reconhecida, Formal de Partilha, Reserva de Usufruto).</li>
+                        <li><strong>RG e CPF</strong> do proprietário e cônjuge (se casado/união estável).</li>
+                        <li><strong>Certidão de Casamento</strong> ou Termo de União Estável (frente e verso).</li>
+                    </ul>
+                    <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg text-[10px] md:text-xs text-yellow-800 font-medium">
+                        <i class="fa-solid fa-calendar-check mr-1"></i> <strong>Prazo:</strong> Protocolar até <strong>31 de outubro</strong>. A isenção será aplicada no ano seguinte. <br>
+                        <i class="fa-solid fa-eye mr-1 mt-2"></i> <strong>Atenção:</strong> Será feita visita no local para atestar a área construída e a residência.
+                    </div>
+                </div>
+
+                <div id="info-aposentado-geral" class="app-view hidden flex-1 flex-col bg-white p-3 md:p-5 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto w-full mt-2 hide-scrollbar">
+                    <div class="bg-teal-50 border-l-4 border-teal-500 p-3 mb-4 rounded-r-lg shadow-sm">
+                        <h3 class="font-black text-teal-900 text-sm md:text-base">Remissão de 75% do IPTU</h3>
+                        <p class="text-[10px] md:text-xs text-gray-700 mt-1">Para aposentados/pensionistas que recebem até 2 salários mínimos. Convertida em isenção para os próximos anos. <span class="italic text-gray-500">(LC 121/94 e Dec. 273/2024)</span></p>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-list-check text-teal-600 mr-1"></i> Requisitos</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li>Ser aposentado e/ou pensionista por morte.</li>
+                        <li>Receber <strong>até 2 salários mínimos brutos</strong> (somando os benefícios do casal, se houver).</li>
+                        <li>Possuir <strong>apenas um imóvel residencial</strong> em nome próprio ou cônjuge.</li>
+                        <li>Não possuir herança em outro imóvel (pais/avós).</li>
+                    </ul>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-folder-open text-teal-600 mr-1"></i> Documentos (Cópias Digitais)</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li><strong>Extrato de Pagamento de Benefício</strong> (meu.inss.gov.br) ou Holerite (inativos).</li>
+                        <li><strong>Declaração de Beneficiário do INSS</strong> do cônjuge que não for aposentado.</li>
+                        <li><strong>RG e CPF</strong> do casal.</li>
+                        <li><strong>Certidão de Casamento</strong> / União Estável ou Atestado de Óbito do cônjuge.</li>
+                        <li><strong>Matrícula do imóvel</strong> ou documento de posse (Escritura, Contrato, Formal de Partilha)*.<br><span class="text-gray-500 text-[9px] md:text-[10px] block mt-1">*O documento deve estar em nome do aposentado antes de 1º de janeiro do ano do pedido.</span></li>
+                    </ul>
+                    <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg text-[10px] md:text-xs text-yellow-800 font-medium">
+                        <i class="fa-solid fa-calendar-check mr-1"></i> <strong>Prazo:</strong> Do 1º dia útil de Janeiro até o <strong>último dia útil de Abril</strong>.
+                    </div>
+                </div>
+
+                <div id="info-aposentado-medico" class="app-view hidden flex-1 flex-col bg-white p-3 md:p-5 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto w-full mt-2 hide-scrollbar">
+                    <div class="bg-teal-50 border-l-4 border-teal-500 p-3 mb-4 rounded-r-lg shadow-sm">
+                        <h3 class="font-black text-teal-900 text-sm md:text-base">Isenção de 75% do IPTU (Doenças Graves)</h3>
+                        <p class="text-[10px] md:text-xs text-gray-700 mt-1">Para Aposentados, Pensionistas ou Beneficiários BPC-LOAS em tratamento de doenças graves. <span class="italic text-gray-500">(Leis 2684/93 e 5174/2013)</span></p>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-list-check text-teal-600 mr-1"></i> Requisitos</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li>Imóvel residencial. Requerente deve ser proprietário e não possuir outro imóvel (nem herança).</li>
+                        <li>Valor venal do imóvel não pode ultrapassar 100.000 Ufir.</li>
+                        <li><strong>Doenças Cobertas:</strong> Tuberculose ativa, Câncer, Cegueira, Hanseníase, Paralisia irreversível, Cardiopatia grave, Espondilite anquilosante, Nefropatia grave, Doença de Paget, AIDS, Deficiência mental moderada/grave, Doenças psiquiátricas graves, Esquizofrenia, Depressão grave, Sequelas de traumatismo craniano, Parkinson, Alzheimer, AVC incapacitante.</li>
+                    </ul>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-folder-open text-teal-600 mr-1"></i> Documentos (Cópias Digitais)</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li><strong>Laudo Médico Especialista</strong> atualizado (do ano), constando doença, CID, gravidade, estágio e tratamento.</li>
+                        <li><strong>Extrato de Pagamento de Benefício</strong> (meu.inss.gov.br) ou Holerite.</li>
+                        <li><strong>RG, CPF, Certidão de Casamento/Óbito</strong>.</li>
+                        <li><strong>Matrícula do imóvel</strong> ou documento equivalente.</li>
+                    </ul>
+                    <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg text-[10px] md:text-xs text-yellow-800 font-medium">
+                        <i class="fa-solid fa-calendar-check mr-1"></i> <strong>Prazo:</strong> Até <strong>1º de dezembro</strong> do ano anterior à isenção. Deve ser renovado anualmente.
+                    </div>
+                </div>
+
+                <div id="info-aposentado-acidente" class="app-view hidden flex-1 flex-col bg-white p-3 md:p-5 rounded-xl border-2 border-gray-200 shadow-sm min-h-0 overflow-y-auto max-w-4xl mx-auto w-full mt-2 hide-scrollbar">
+                    <div class="bg-teal-50 border-l-4 border-teal-500 p-3 mb-4 rounded-r-lg shadow-sm">
+                        <h3 class="font-black text-teal-900 text-sm md:text-base">Isenção de 75% do IPTU (Acidente de Trabalho)</h3>
+                        <p class="text-[10px] md:text-xs text-gray-700 mt-1">Para Aposentados por Acidente de Trabalho cujo salário ultrapasse 2 mínimos. <span class="italic text-gray-500">(Leis 2684/93 e 5174/2013)</span></p>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-list-check text-teal-600 mr-1"></i> Requisitos</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li>Imóvel residencial. Requerente deve ser proprietário e não possuir outro imóvel (nem herança).</li>
+                        <li>Aposentadoria por Acidente de Trabalho deve estar <strong>expressa no Extrato do INSS</strong>.</li>
+                        <li>Valor venal do imóvel não pode ultrapassar 100.000 Ufir.</li>
+                    </ul>
+                    <h4 class="font-bold text-gray-800 text-xs md:text-sm border-b pb-1 mb-2"><i class="fa-solid fa-folder-open text-teal-600 mr-1"></i> Documentos (Cópias Digitais)</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-[10px] md:text-xs text-gray-700 mb-4">
+                        <li><strong>Extrato de Pagamento de Benefício</strong> detalhando a aposentadoria por acidente (meu.inss.gov.br).</li>
+                        <li><strong>RG, CPF, Certidão de Casamento/Óbito</strong>.</li>
+                        <li><strong>Matrícula do imóvel</strong> ou documento equivalente.</li>
+                    </ul>
+                    <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg text-[10px] md:text-xs text-yellow-800 font-medium">
+                        <i class="fa-solid fa-calendar-check mr-1"></i> <strong>Prazo:</strong> Até <strong>1º de dezembro</strong> do ano anterior à isenção. Deve ser renovado anualmente.
+                    </div>
+                </div>
+
+                <div id="tut-solicitar" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-teal-100 p-1 md:p-1.5 border-b border-teal-200 flex justify-between items-center px-3"><h3 id="solicitar-passo-titulo" class="font-bold text-teal-900 text-[10px] md:text-[11px]">Passo a Passo (1/8)</h3></div>
+                    
+                    <div id="solicitar-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>1. Na aba Informações, inicie preenchendo seus dados pessoais básicos.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="shrink-0 pt-2 px-4 bg-white border-b border-gray-200 shadow-sm flex gap-3">
+                                    <div class="border-b-2 border-transparent pb-1.5 flex items-center gap-1 text-gray-500 text-[9px] md:text-[11px] px-1"><i class="fa-solid fa-user"></i> Identificação</div>
+                                    <div class="border-b-2 border-[#16A34A] pb-1.5 flex items-center gap-1 text-[#16A34A] font-bold text-[9px] md:text-[11px] px-1"><i class="fa-solid fa-qrcode"></i> Informações</div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 shadow-sm flex-1 flex flex-col mb-2">
+                                        <h4 class="text-[10px] md:text-xs font-bold text-gray-800 mb-3 border-b pb-1">Campos Adicionais</h4>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-aposentado hidden">
+                                            <div class="col-span-1 md:col-span-8"><label class="block font-bold mb-0.5">Nome Completo*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Maria Oliveira"></div>
+                                            <div class="col-span-1 md:col-span-4"><label class="block font-bold mb-0.5">CPF*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="123.456.789-00"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">CEP/Cod Postal*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="13480-000"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Tipo de logradouro*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>Rua</option></select></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Logradouro (endereço)*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Rua Exemplo"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">Número*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="123"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-metragem">
+                                            <div class="col-span-1 md:col-span-2"><label class="block font-bold mb-0.5">Nome Completo*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Maria Oliveira"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">CPF*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="123.456.789-00"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">Inscrição Cadastral (IPTU)*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="0123.456.789.000"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">Telefone/Celular*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="(19) 98888-8888"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">E-mail*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="maria@email.com"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-medico hidden">
+                                            <div class="col-span-1 md:col-span-8"><label class="block font-bold mb-0.5">Nome Completo*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Maria Oliveira"></div>
+                                            <div class="col-span-1 md:col-span-4"><label class="block font-bold mb-0.5">CPF*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="123.456.789-00"></div>
+                                            <div class="col-span-1 md:col-span-4"><label class="block font-bold mb-0.5">CEP/Cod Postal*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="13480-000"></div>
+                                            <div class="col-span-1 md:col-span-8"><label class="block font-bold mb-0.5">Tipo de logradouro*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>Rua</option></select></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Logradouro (endereço)*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Av. Exemplo"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">Número*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="123"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-trabalho hidden">
+                                            <div class="col-span-1 md:col-span-8"><label class="block font-bold mb-0.5">Nome Completo*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Maria Oliveira"></div>
+                                            <div class="col-span-1 md:col-span-4"><label class="block font-bold mb-0.5">CPF*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="123.456.789-00"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">CEP/Cod Postal*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="13480-000"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Tipo de logradouro*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>Rua</option></select></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Logradouro (endereço)*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Av. Exemplo"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">Número*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="123"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-generico hidden">
+                                            <div class="col-span-1 md:col-span-2"><label class="block font-bold mb-0.5">Nome Completo*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Maria Oliveira"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">CPF*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="123.456.789-00"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">Inscrição Cadastral*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="0123.456.789.000"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Anterior</span></button>
+                            <button onclick="mudarPasso('solicitar', 2, 8)" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>2. Deslize a tela e preencha os demais dados exigidos.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 shadow-sm flex-1 flex flex-col mb-2">
+                                        <h4 class="text-[10px] md:text-xs font-bold text-gray-800 mb-3 border-b pb-1">Campos Adicionais</h4>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-aposentado hidden">
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Complemento</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Bairro/loteamento*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Centro"></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Cidade*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Limeira"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">UF*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>SP</option></select></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Telefone/celular*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="(19) 98888-8888"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">E-mail*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="maria@email.com"></div>
+                                            <div class="col-span-1 md:col-span-12"><label class="block font-bold mb-0.5">Inscrição cadastral*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="0123.456.789.000"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-metragem">
+                                            <div class="col-span-1 md:col-span-2"><label class="block font-bold mb-0.5">Estado civil*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>Casado(a)</option></select></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">Nome completo do conjuje</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="João Silva"></div>
+                                            <div class="col-span-1"><label class="block font-bold mb-0.5">CPF do conjuje</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="987.654.321-11"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-medico hidden">
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Complemento</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Bairro/loteamento*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Centro"></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Cidade*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Limeira"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">UF*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>SP</option></select></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Telefone/celular*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="(19) 98888-8888"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">E-mail*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="maria@email.com"></div>
+                                            <div class="col-span-1 md:col-span-12"><label class="block font-bold mb-0.5">Inscrição cadastral*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="0123.456.789.000"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-trabalho hidden">
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Complemento</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Bairro/loteamento*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Centro"></div>
+                                            <div class="col-span-1 md:col-span-9"><label class="block font-bold mb-0.5">Cidade*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="Limeira"></div>
+                                            <div class="col-span-1 md:col-span-3"><label class="block font-bold mb-0.5">UF*</label><select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>SP</option></select></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">Telefone/celular*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="(19) 98888-8888"></div>
+                                            <div class="col-span-1 md:col-span-6"><label class="block font-bold mb-0.5">E-mail*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50" value="maria@email.com"></div>
+                                            <div class="col-span-1 md:col-span-12"><label class="block font-bold mb-0.5">Inscrição cadastral*</label><input type="text" class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-mono text-[9px]" value="0123.456.789.000"></div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-generico hidden">
+                                            <div class="bg-gray-50 p-4 border border-gray-200 rounded text-center text-gray-500 font-medium">Demais dados já preenchidos. Clique em "Avançar".</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('solicitar', 1, 8)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="irProximoPasso2()" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>3. Indique as informações específicas sobre o seu imóvel para o enquadramento.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 shadow-sm flex-1 flex flex-col mb-2">
+                                        <h4 class="text-[10px] md:text-xs font-bold text-gray-800 mb-3 border-b pb-1">Perguntas</h4>
+                                        <div class="flex flex-col gap-3 text-[10px] md:text-[11px]">
+                                            
+                                            <div class="form-block form-metragem">
+                                                <label class="block font-bold text-gray-700 mb-1">Afirmo que meu imóvel residencial enquadra-se em:*</label>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50"><option>Até 55m²</option><option>Até 85m²</option></select>
+                                            </div>
+                                            
+                                            <div class="grid grid-cols-1 gap-3 text-[10px] md:text-[11px] text-gray-700 form-block form-trabalho hidden">
+                                                <div class="bg-gray-50 p-4 border border-gray-200 rounded text-center text-gray-500 font-medium">Não há perguntas adicionais para esta etapa. Clique em "Avançar".</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('solicitar', 2, 8)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('solicitar', 4, 8)" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>4. Responda com atenção às declarações obrigatórias sobre a sua residência e isenção.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 shadow-sm flex-1 flex flex-col mb-2">
+                                        <h4 class="text-[10px] md:text-xs font-bold text-gray-800 mb-3 border-b pb-1">Perguntas</h4>
+                                        <div class="flex flex-col gap-3 text-[10px] md:text-[11px]">
+                                            
+                                            <div class="form-block form-aposentado hidden">
+                                                <label class="block font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Declaro:</label>
+                                                <div class="text-gray-700 mb-3 leading-snug space-y-3 font-medium pl-1 border-l-2 border-gray-300">
+                                                    <p>SOU proprietário de um único imóvel e NÃO POSSUO parte ou direito à herança em outro imóvel</p>
+                                                    <p>Recebo dos órgãos previdenciários até 02 (dois) salários mínimos brutos</p>
+                                                    <p class="uppercase">ESTOU CIENTE QUE DEVEREI comunicar à Prefeitura Municipal de Limeira caso o meu salário de aposentado e/ou pensionista aumente, ultrapassando 02 (dois) salários mínimos brutos, ou ainda, caso venha a adquirir imóvel a qualquer título.</p>
+                                                </div>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-metragem">
+                                                <label class="block font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Declaro que:</label>
+                                                <div class="text-gray-700 mb-3 leading-snug space-y-1.5 font-medium pl-1 border-l-2 border-gray-300">
+                                                    <p>Sou proprietário/compromissário de um único imóvel.</p>
+                                                    <p>Estou utilizando-o como minha atual residência.</p>
+                                                    <p>Não possuo débitos de IPTU até a presente data*:</p>
+                                                </div>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-medico hidden">
+                                                <label class="block font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Declaro que:</label>
+                                                <div class="text-gray-700 mb-3 leading-snug space-y-1.5 font-medium pl-1 border-l-2 border-gray-300">
+                                                    <p>Sou proprietário/compromissário de um único imóvel residencial</p>
+                                                    <p>O valor do imóvel não ultrapassa a 100.000 Ufir</p>
+                                                    <p>O requerente deste pedido possui aposentadoria, pensão ou do amparo pelo INSS (BPC)</p>
+                                                    <p>O requerente deste pedido é portador de CID</p>
+                                                </div>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-trabalho hidden">
+                                                <label class="block font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Declaro que:</label>
+                                                <div class="text-gray-700 mb-3 leading-snug space-y-3 font-medium pl-1 border-l-2 border-gray-300">
+                                                    <p>Sou proprietário/compromissário de um único imóvel residencial</p>
+                                                    <p>O valor do imóvel não ultrapassa a 100.000 Ufir</p>
+                                                    <p>O requerente deste pedido possui aposentadoria motivada por acidente de trabalho</p>
+                                                </div>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-generico hidden flex flex-col gap-2">
+                                                <div class="question-reside">
+                                                    <label class="block font-bold text-gray-700 mb-0.5">Você reside no imóvel que deseja a Isenção?*</label>
+                                                    <select class="border border-gray-300 rounded w-full px-1.5 py-1 bg-gray-50"><option>Sim</option><option>Não</option></select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="irVoltarPasso4()" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="irProximoPasso4()" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>5. Leia o Termo de Ciência e confirme para avançar.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex flex-col">
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 shadow-sm flex-1 flex flex-col mb-2">
+                                        <h4 class="text-[10px] md:text-xs font-bold text-gray-800 mb-3 border-b pb-1">Perguntas</h4>
+                                        <div class="flex flex-col gap-3 text-[10px] md:text-[11px]">
+                                            
+                                            <div class="form-block form-metragem">
+                                                <h5 class="font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Estou ciente:</h5>
+                                                <label class="block font-bold text-gray-700 mb-1 leading-snug space-y-2">
+                                                    <p>Que será realizada vistoria em meu imóvel por um agente fiscalizador da Secretaria de Obras e Urbanismo</p>
+                                                    <p>De que a concessão deste benefício somente será válida a partir do próximo ano, caso seja constatado que preencho os requisitos legais</p>
+                                                    <p>De que deverei comunicar à Prefeitura Municipal de Limeira nos seguintes casos:</p>
+                                                    <p class="pl-2 leading-relaxed">
+                                                        A) Adquira outro imóvel<br>
+                                                        B) Aumente a metragem de meu imóvel além das medidascitadas na Lei<br>
+                                                        C) Destine o uso dele para outros fins que não o de minha moradia<br>
+                                                        D) Alugue-o a terceiros<br>
+                                                        E) Venda-o
+                                                    </p>
+                                                </label>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 mt-3 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-medico hidden">
+                                                <h5 class="font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Estou ciente:</h5>
+                                                <label class="block font-bold text-gray-700 mb-1 leading-snug space-y-2">
+                                                    <p>De que a concessão deste benefício somente será válida a partir do próximo ano, caso seja constatado que o requerente preenche os requisitos legais*:</p>
+                                                </label>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 mt-3 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-block form-trabalho hidden">
+                                                <h5 class="font-bold text-[#16A34A] border-b border-gray-200 pb-1 mb-2">Estou ciente que:</h5>
+                                                <label class="block font-bold text-gray-700 mb-1 leading-snug space-y-2">
+                                                    <p>De que a concessão deste benefício somente será válida a partir do próximo ano, caso seja constatado que o requerente preenche os requisitos legais</p>
+                                                </label>
+                                                <select class="border border-gray-300 rounded w-full px-2 py-1.5 bg-gray-50 mt-3 font-bold text-gray-800">
+                                                    <option>Sim</option>
+                                                    <option>Não</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('solicitar', 4, 8)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('solicitar', 6, 8)" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>6. No campo Descrição do Pedido, escreva a justificativa da sua solicitação.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="bg-[#F7F7F7] w-full max-w-3xl h-full max-h-[410px] border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="h-[40px] shrink-0 bg-[#2A3F54] flex items-center px-4 shadow-sm z-20 text-white gap-3">
+                                    <i class="fa-solid fa-qrcode text-base"></i><div class="flex flex-col leading-tight"><span class="text-[11px] md:text-xs font-bold">Protocolos</span></div>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar flex items-start mt-2">
+                                    
+                                    <div class="bg-white border border-[#E6E9ED] rounded-lg p-3 md:p-5 shadow-sm w-full relative z-10">
+                                        <label class="text-[11px] md:text-xs font-bold text-gray-800 mb-2 block">Descrição do Pedido<span class="text-red-500">*</span></label>
+                                        
+                                        <div class="flex flex-col relative w-full">
+                                            <div class="absolute -inset-[2px] border-2 border-red-500 rounded z-0"></div>
+                                            
+                                            <div class="relative z-10 border border-[#ccc] rounded bg-white overflow-hidden shadow-sm">
+                                                <div class="bg-[#f0f0ee] border-b border-[#ccc] p-1 flex flex-wrap items-center">
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-bold text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-italic text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-underline text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-strikethrough text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-align-left text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-align-center text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-align-right text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-align-justify text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-list-ol text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-list-ul text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-outdent text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-indent text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-link text-[11px]"></i></div>
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-unlink text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-image text-[11px]"></i></div>
+                                                    </div>
+                                                    <div class="w-[1px] h-4 bg-[#ccc] mx-1"></div>
+                                                    <div class="flex items-center gap-[1px]">
+                                                        <div class="w-6 h-6 flex items-center justify-center hover:bg-[#e2e2e2] hover:border hover:border-[#ccc] border border-transparent rounded-[3px] text-[#333]"><i class="fa-solid fa-table text-[11px]"></i></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bg-white p-2 md:p-3 min-h-[100px] text-[11px] md:text-[12px] text-gray-600 font-sans shadow-inner flex items-start">
+                                                    digite aqui a justificativa do pedido.<div class="w-[1px] h-3.5 bg-black ml-0.5 animate-pulse"></div>
+                                                </div>
+                                                
+                                                <div class="bg-[#f0f0ee] h-3 border-t border-[#ccc] flex justify-end items-center px-1">
+                                                    <i class="fa-solid fa-caret-down text-gray-400 text-[8px] transform -rotate-45"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="irVoltarPasso6()" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('solicitar', 7, 8)" class="flex-1 md:flex-none py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-7" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>7. Na etapa final, faça o upload de todos os Documentos Necessários em formato PDF ou Foto.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-2xl bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-3 md:p-4 h-full">
+                                    <p class="text-[9px] md:text-[11px] text-gray-800 mb-2">Faça o upload dos documentos marcados com <span class="text-red-600 font-bold">*</span> a seguir:</p>
+                                    
+                                    <div class="flex flex-wrap gap-1.5 mb-4 form-block form-aposentado hidden">
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Certidão de Casamento</span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Certidão de Óbito</span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade (CIN/CPF/RG/CNH)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade dos Outros Proprietários</span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Escritura, Contrato de Compra e Venda ou Matrícula do Imóvel</span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Extrato do Último Recebimento do Benefício do INSS<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Inventário do Proprietário Falecido</span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Outros Documentos</span>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-1.5 mb-4 form-block form-metragem">
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade (CIN/CPF/RG/CNH)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Escritura, Contrato de Compra e Venda ou Matrícula do Imóvel<span class="text-red-400">*</span></span>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-1.5 mb-4 form-block form-medico hidden">
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade (CIN/CPF/RG/CNH)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Extrato de Pagamento de Benefício (INSS)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Laudo Médico Especialista Atualizado<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Matrícula do Imóvel<span class="text-red-400">*</span></span>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-1.5 mb-4 form-block form-trabalho hidden">
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade (CIN/CPF/RG/CNH)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Extrato de Pagamento de Benefício (INSS)<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Matrícula do Imóvel ou Equivalente<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Certidão de Casamento/Óbito</span>
+                                    </div>
+
+                                    <div class="flex flex-wrap gap-1.5 mb-4 form-block form-generico hidden">
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documento de Identidade<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Matrícula do Imóvel<span class="text-red-400">*</span></span>
+                                        <span class="bg-[#333] text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded shadow-sm">Documentos Específicos (Laudo, etc)<span class="text-red-400">*</span></span>
+                                    </div>
+
+                                    <div class="border border-gray-300 bg-gray-50 p-3 rounded flex justify-between items-center shadow-inner relative">
+                                        <div class="bg-[#002e73] text-white px-3 py-1.5 rounded text-[9px] md:text-[11px] font-bold flex items-center gap-2 relative w-fit shadow-sm">
+                                            <i class="fa-solid fa-paperclip"></i> Anexar
+                                            <i class="fa-solid fa-arrow-pointer absolute -right-3 -bottom-3 text-black text-sm md:text-lg animate-pointer z-50"></i>
+                                        </div>
+                                        <p class="text-[8px] md:text-[10px] text-gray-500 text-right"><i class="fa-solid fa-star text-yellow-500 mr-1"></i>Máximo: 100 arquivos. 64MB cada.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('solicitar', 6, 8)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('solicitar', 8, 8)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="solicitar-passo-8" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>8. Escolha a opção "Assinatura 1Doc" e clique no botão Protocolar para finalizar seu pedido.</p></div>
+                        </div>
+                        <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-2xl bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-3 md:p-4 h-full flex flex-col justify-between relative">
+                                    <div>
+                                        <fieldset class="border border-gray-300 p-3 rounded">
+                                            <legend class="text-[10px] md:text-[12px] font-bold text-gray-800 px-1">Minha assinatura</legend>
+                                            <div class="flex flex-col md:flex-row gap-4 mt-2">
+                                                <label class="flex items-center gap-2 text-[9px] md:text-[11px] font-bold text-gray-700">
+                                                    <input type="radio" checked class="w-3 h-3 md:w-4 md:h-4 accent-[#0042A4]"> Assinatura 1Doc
+                                                </label>
+                                                <label class="flex items-center gap-2 text-[9px] md:text-[11px] text-gray-500">
+                                                    <input type="radio" disabled class="w-3 h-3 md:w-4 md:h-4"> Assinatura ICP-Brasil
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="flex justify-end mt-6 relative">
+                                        <div class="bg-[#0042A4] hover:bg-[#003583] text-white px-6 py-2.5 rounded shadow-lg font-bold text-[11px] md:text-[13px] relative w-fit">
+                                            Protocolar
+                                            <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('solicitar', 7, 8)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizarTutorialSolicitacao()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1 md:hidden lg:inline"></i> <span class="hidden lg:inline">Finalizar</span><span class="lg:hidden">Fim</span></button>
+                            <button onclick="abrirView('menu-links-site', 'Escolha a Isenção', 'fa-arrow-up-right-from-square')" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square md:hidden lg:inline"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-cpf" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-teal-100 p-1.5 md:p-2 border-b border-teal-200 flex justify-between items-center px-3"><h3 id="cpf-passo-titulo" class="font-bold text-teal-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                    
+                    <div id="cpf-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                    <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-white shadow-inner flex items-center text-gray-400">E-mail ou CPF/CNPJ</div>
+                                    <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                    
+                                    <div class="border-2 border-teal-500 bg-teal-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                        Sem e-mail? Entre com CPF/CNPJ
+                                        <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                    
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                    
+                                    <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                    <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com icp certificado digital</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>2. Digite o seu CPF e clique em "Prosseguir".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                             <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                    <div class="border-2 border-teal-400 bg-teal-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <span class="absolute -top-1.5 left-1.5 bg-teal-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                        <div class="flex flex-col gap-1.5 mt-1">
+                                            <input type="text" value="123.456.789-00" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                            <div class="flex items-center gap-2 w-full">
+                                                <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                    Prosseguir
+                                                    <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                                </div>
+                                                <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>3. Selecione "Contato" e preencha seus Dados Pessoais Básicos.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                            <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Contato (Pessoa Física)</label>
+                                            <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Organização/Pessoa Jurídica</label>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CPF<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[28px] px-1.5 flex items-center font-mono text-[8px] md:text-[11px] text-gray-700">123.456.789-00</div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data nasc.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Sexo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>4. Preencha todos os seus Contatos e Telefones.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>5. Preencha seu Endereço e defina sua Senha.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-3 rounded-lg relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                            <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                            <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cpf', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cpf-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                    <div class="border-2 border-teal-400 bg-teal-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                        <span class="absolute -top-2.5 left-3 bg-teal-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                        <div class="flex flex-col gap-3">
+                                            <div>
+                                                <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                                <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                    <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-end mt-4 relative">
+                                                <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                                <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1 md:hidden lg:inline"></i> <span class="hidden lg:inline">Finalizar</span><span class="lg:hidden">Fim</span></button>
+                            <button onclick="abrirView('menu-links-site', 'Escolha a Isenção', 'fa-arrow-up-right-from-square')" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square md:hidden lg:inline"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tut-cnpj" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                    <div class="shrink-0 bg-teal-100 p-1.5 md:p-2 border-b border-teal-200 flex justify-between items-center px-3"><h3 id="cnpj-passo-titulo" class="font-bold text-teal-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                    
+                    <div id="cnpj-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                    <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-[#f4f4f4] text-gray-400 shadow-inner flex items-center">empresa@email.com</div>
+                                    <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                    
+                                    <div class="border-2 border-teal-500 bg-teal-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                        Sem e-mail? Entre com CPF/CNPJ
+                                        <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                    
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                    <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                    
+                                    <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                    <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com certificado digital</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> Anterior</button>
+                            <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>2. Digite o CNPJ da empresa e clique em "Prosseguir".</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                             <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                                <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                                <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                    <div class="border-2 border-teal-400 bg-teal-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <span class="absolute -top-1.5 left-1.5 bg-teal-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                        <div class="flex flex-col gap-1.5 mt-1">
+                                            <input type="text" value="12.345.678/0001-99" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                            <div class="flex items-center gap-2 w-full">
+                                                <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                    Prosseguir
+                                                    <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                                </div>
+                                                <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>3. Selecione "Organização" e preencha os dados da empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                            <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Contato</label>
+                                            <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Organização/Pessoa Jurídica</label>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Razão Social<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CNPJ<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[26px] px-1.5 flex items-center font-mono text-[8px] md:text-[10px] text-gray-700">12.345.678/0001-99</div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data const.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome fantasia</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Responsável legal / Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px] flex justify-between px-1.5 items-center text-gray-400"><span class="text-[8px]">- selecione -</span><i class="fa fa-chevron-down text-[8px]"></i></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>4. Preencha seus Contatos da Empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail corporativo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>5. Conclua o Endereço e defina a Senha da Empresa.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                    <div class="border border-teal-400 bg-teal-50 p-2 md:p-3 rounded relative shadow-inner">
+                                        <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2 mt-1">
+                                            <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                            <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                            <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="mudarPasso('cnpj', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="cnpj-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                            <div class="bg-teal-50 p-2 md:p-3 rounded-xl border border-teal-200 shadow-sm"><p class="text-teal-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-teal-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                        </div>
+                        <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                            <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                                <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                    <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                                </div>
+                                <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                    <div class="border-2 border-teal-400 bg-teal-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                        <span class="absolute -top-2.5 left-3 bg-teal-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                        <div class="flex flex-col gap-3">
+                                            <div>
+                                                <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                                <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                    <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                        <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-blue-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-end mt-4 relative">
+                                                <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                                <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                            <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                            <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1 md:hidden lg:inline"></i> <span class="hidden lg:inline">Finalizar</span><span class="lg:hidden">Fim</span></button>
+                            <button onclick="abrirView('menu-links-site', 'Escolha a Isenção', 'fa-arrow-up-right-from-square')" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square md:hidden lg:inline"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        window.currentTipo = 'metragem'; // default
+
+        function abrirView(viewId, title, iconClass) {
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+            const target = document.getElementById(viewId);
+            target.classList.remove('hidden');
+            if (viewId.startsWith('menu-') || viewId === 'submenu-inscricao') { target.classList.add('grid'); } else { target.classList.add('flex'); }
+
+            document.getElementById('header-title').innerText = title;
+            document.getElementById('header-icon').className = 'fa-solid ' + iconClass + ' text-teal-700 text-base md:text-lg shrink-0';
+
+            const btnBack = document.getElementById('btn-back');
+            if (viewId === 'menu-principal') {
+                btnBack.setAttribute('onclick', "window.location.href='duvidas.html'");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>';
+            } else if (viewId === 'menu-solicitar' || viewId.startsWith('info-')) {
+                btnBack.setAttribute('onclick', "abrirView('menu-principal', 'Isenção de IPTU', 'fa-list-ul')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'menu-cadastro' || viewId === 'tut-solicitar') {
+                btnBack.setAttribute('onclick', "abrirView('menu-solicitar', 'Como Solicitar Online', 'fa-laptop-code')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'tut-cpf' || viewId === 'tut-cnpj') {
+                btnBack.setAttribute('onclick', "abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'menu-links-site') {
+                btnBack.setAttribute('onclick', "abrirView('menu-solicitar', 'Como Solicitar Online', 'fa-laptop-code')");
+                btnBack.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>';
+            }
+            
+            // Inicia do Passo 1 se abrir os tutoriais
+            if (viewId === 'tut-cpf') mudarPasso('cpf', 1, 6);
+            if (viewId === 'tut-cnpj') mudarPasso('cnpj', 1, 6);
+        }
+
+        function iniciarTutorialSolicitacao(tipo) {
+            window.currentTipo = tipo;
+            let assunto = "";
+            let title = "";
+            
+            document.querySelectorAll('.form-block').forEach(el => el.classList.add('hidden'));
+            
+            if(tipo === 'aposentado') {
+                title = "Isenção para Aposentados";
+                assunto = "Secretaria de Fazenda - Isenção de IPTU - Aposentados/Pensionistas";
+                document.querySelectorAll('.form-aposentado').forEach(el => el.classList.remove('hidden'));
+            } else if (tipo === 'metragem') {
+                title = "Isenção por Metragem";
+                assunto = "Secretaria de Fazenda - Isenção de IPTU - Por Metragem";
+                document.querySelectorAll('.form-metragem').forEach(el => el.classList.remove('hidden'));
+            } else if (tipo === 'medico') {
+                title = "Isenção Tratamento Médico";
+                assunto = "Secretaria de Fazenda - Isenção de IPTU - Aposentados (Tratamento Médico)";
+                document.querySelectorAll('.form-medico').forEach(el => el.classList.remove('hidden'));
+            } else if (tipo === 'trabalho') {
+                title = "Isenção Acidente Trabalho";
+                assunto = "Secretaria de Fazenda - Isenção de IPTU - Aposentados (Acidente de Trabalho)";
+                document.querySelectorAll('.form-trabalho').forEach(el => el.classList.remove('hidden'));
+            }
+            
+            // Atualiza os labels puramente visuais, se existirem na tela
+            let remissaoLabel = document.getElementById('label-isencao-remissao');
+            if(remissaoLabel) remissaoLabel.innerText = (tipo === 'aposentado') ? "Remissão (isenção)" : "Isenção";
+
+            abrirView('tut-solicitar', title, 'fa-laptop-code');
+            mudarPasso('solicitar', 1, 8);
+        }
+
+        function irProximoPasso2() {
+            if (window.currentTipo === 'metragem') mudarPasso('solicitar', 3, 8);
+            else mudarPasso('solicitar', 4, 8); // Aposentado, medico e trabalho pulam o 3
+        }
+
+        function irVoltarPasso4() {
+            if (window.currentTipo === 'metragem') mudarPasso('solicitar', 3, 8);
+            else mudarPasso('solicitar', 2, 8); // Aposentado, medico e trabalho voltam pro 2
+        }
+
+        function irProximoPasso4() {
+            if (window.currentTipo === 'aposentado') mudarPasso('solicitar', 6, 8); // Aposentado pula 5
+            else mudarPasso('solicitar', 5, 8); // Metragem, Medico e Trabalho vão pro 5
+        }
+
+        function irVoltarPasso6() {
+            if (window.currentTipo === 'aposentado') mudarPasso('solicitar', 4, 8); // Aposentado volta pro 4
+            else mudarPasso('solicitar', 5, 8); // Metragem, Medico e Trabalho voltam pro 5
+        }
+
+        function mudarPasso(prefixo, passo, total) {
+            for (let i = 1; i <= total; i++) {
+                let el = document.getElementById(prefixo + '-passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById(prefixo + '-passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            
+            // Lógica dinâmica para que o texto do cabeçalho "Passo a Passo (X/Y)" acompanhe os pulos
+            let titulo = document.getElementById(prefixo + '-passo-titulo');
+            if (titulo && prefixo === 'solicitar') {
+                let passoVisivel = passo;
+                let totalVisivel = 8;
+                
+                if (window.currentTipo === 'aposentado') {
+                    totalVisivel = 6;
+                    if (passo === 1) passoVisivel = 1;
+                    else if (passo === 2) passoVisivel = 2;
+                    else if (passo === 4) passoVisivel = 3;
+                    else if (passo === 6) passoVisivel = 4;
+                    else if (passo === 7) passoVisivel = 5;
+                    else if (passo === 8) passoVisivel = 6;
+                } else if (window.currentTipo !== 'metragem') {
+                    // Se for Médico ou Acidente de Trabalho, pula apenas o passo 3 (total = 7)
+                    totalVisivel = 7;
+                    passoVisivel = passo > 3 ? passo - 1 : passo;
+                }
+                
+                titulo.innerText = 'Passo a Passo (' + passoVisivel + '/' + totalVisivel + ')';
+            } else if (titulo) {
+                titulo.innerText = 'Passo a Passo (' + passo + '/' + total + ')';
+            }
+        }
+
+        function finalizar() {
+            abrirView('menu-cadastro', 'Como fazer o Cadastro', 'fa-address-card');
+        }
+
+        function finalizarTutorialSolicitacao() {
+            abrirView('menu-solicitar', 'Como Solicitar Online', 'fa-laptop-code');
+        }
+
+        window.onload = () => abrirView('menu-principal', 'Isenção de IPTU', 'fa-list-ul');
+    </script>
+</body>
+</html>

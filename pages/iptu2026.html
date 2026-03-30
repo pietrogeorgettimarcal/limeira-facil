@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IPTU 2026 - Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/global-mockup.css">
+    <style>
+        /* Bloqueio absoluto do scroll forçando tela cheia */
+        html, body { height: 100dvh; width: 100vw; overflow: hidden; margin: 0; padding: 0; }
+        body { touch-action: none !important; overscroll-behavior: none !important; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 font-sans h-[100dvh] w-screen flex flex-col no-select fade-in bg-gray-100">
+    
+    <nav class="bg-blue-900 text-white shadow-md shrink-0 z-50">
+        <div class="max-w-[1600px] w-full mx-auto px-3 sm:px-6">
+            <div class="flex items-center justify-between h-[45px] sm:h-[60px]">
+                <div class="flex items-center gap-2">
+                    <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                        <img src="../imagens/brasao-menor.png" alt="brasao" class="w-6 h-6 sm:w-8 sm:h-8 object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>L</text></svg>'">
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-sm sm:text-lg leading-none tracking-wide">Limeira Fácil</h1>
+                        <p class="text-[9px] sm:text-[11px] text-blue-200 font-medium uppercase tracking-wider hidden sm:block mt-0.5">Secretaria da Fazenda / Dívida Ativa</p>
+                    </div>
+                </div>
+                <a href="../index.html" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition text-xs sm:text-sm font-semibold">
+                    <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Início</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-1 w-full max-w-[1600px] mx-auto flex flex-col overflow-hidden bg-gray-100 relative">
+        <main class="flex-1 flex flex-col p-1.5 md:p-2 overflow-hidden min-h-0 bg-gray-100 fade-in">
+            
+            <div class="shrink-0 flex justify-between items-center gap-2 mb-1.5 bg-orange-100 p-1.5 md:p-2 rounded-xl border border-orange-200 shadow-sm">
+                <div class="flex items-center gap-2 overflow-hidden px-1">
+                    <i class="fa-solid fa-house text-orange-700 text-sm md:text-base shrink-0" id="header-icon"></i>
+                    <h2 class="text-[11px] md:text-sm font-black text-orange-900 leading-tight truncate" id="header-title">Serviços de IPTU</h2>
+                </div>
+                <a href="duvidas.html" id="btn-back-main" class="shrink-0 bg-white border border-orange-300 hover:bg-orange-50 text-orange-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>
+                </a>
+                <button onclick="voltarSubmenu()" id="btn-back-sub" class="hidden shrink-0 bg-white border border-orange-300 hover:bg-orange-50 text-orange-900 font-bold h-6 md:h-7 px-3 rounded-lg flex items-center gap-2 shadow-sm transition-transform hover:scale-105 text-[9px] md:text-[11px]">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>
+                </button>
+            </div>
+
+            <div id="submenu" class="flex-1 w-full overflow-y-auto hide-scrollbar fade-in min-h-0 px-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-6 w-full content-start mt-2">
+                    
+                    <button onclick="abrirTutorial('carne')" class="w-full min-h-[70px] md:min-h-[80px] bg-orange-600 border-2 border-orange-700 hover:bg-orange-700 active:bg-orange-800 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-md transition-all text-left sm:col-span-2">
+                        <div class="bg-white rounded-full text-orange-700 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-invoice text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-white text-sm md:text-base flex-1">2ª Via do Carnê IPTU</span><i class="fa-solid fa-chevron-right text-orange-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirTutorial('atualizar')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-rotate-right text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Atualizar Parcela Vencida do Ano</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+
+                    <button onclick="abrirTutorial('espelho')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-file-lines text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Espelho do IPTU</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                    
+                    <button onclick="abrirTutorial('inscricao')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm transition-all text-left">
+                        <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-map-location-dot text-xl md:text-2xl"></i></div>
+                        <span class="font-bold text-gray-800 text-sm md:text-base flex-1">Como saber a Inscrição Cadastral?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="menu-solicitar" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar">
+                <button onclick="abrirView('menu-presencial-escolha', 'Atendimento Presencial', 'fa-building-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building-user text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Solicitar Presencial</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+                
+                <button onclick="abrirView('menu-online', 'Solicitação Online', 'fa-laptop-code')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-laptop-code text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Solicitar Online</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+            </div>
+
+            <div id="menu-presencial-escolha" class="app-view hidden flex-1 w-full overflow-y-auto hide-scrollbar fade-in min-h-0 px-2 flex-col items-center justify-center mt-4">
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border-2 border-gray-200 w-full max-w-2xl text-center">
+                    <h3 class="text-orange-900 font-bold text-base md:text-lg mb-4 md:mb-6"><i class="fa-solid fa-circle-question text-orange-600 mr-2"></i>Qual tipo de inscrição você procura?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button onclick="iniciarTutorialPresencial('imob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-orange-500 hover:bg-orange-50 active:bg-orange-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                            <i class="fa-solid fa-house text-3xl md:text-4xl text-orange-600"></i>
+                            <span class="font-black text-gray-800 text-sm md:text-base">Imóvel (IPTU)</span>
+                        </button>
+                        <button onclick="iniciarTutorialPresencial('mob')" class="w-full min-h-[100px] md:min-h-[120px] bg-gray-50 border-2 border-gray-300 hover:border-orange-500 hover:bg-orange-50 active:bg-orange-100 rounded-xl flex flex-col items-center justify-center p-4 gap-2 shadow-sm transition-all text-center">
+                            <i class="fa-solid fa-store text-3xl md:text-4xl text-orange-600"></i>
+                            <span class="font-black text-gray-800 text-sm md:text-base">Empresa ou Autônomo<br><span class="text-xs font-normal text-gray-500">(Mobiliário)</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tut-presencial" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                <div class="shrink-0 bg-orange-100 p-1 md:p-1.5 border-b border-orange-200 flex justify-between items-center px-3"><h3 id="presencial-passo-titulo" class="font-bold text-orange-900 text-[10px] md:text-[11px]">Passo a Passo (1/2)</h3></div>
+                
+                <div id="presencial-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm">
+                            <p id="texto-dica-presencial-1" class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex flex-col items-center justify-center p-2 md:p-4 shadow-inner">
+                        <img id="img-presencial" src="../imagens/iptu_inscricao.png" alt="Exemplo da Inscrição" class="w-full h-full object-contain drop-shadow-2xl rounded-lg pointer-events-none select-none">
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="abrirView('menu-presencial-escolha', 'Atendimento Presencial', 'fa-building-user')" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold text-[10px] md:text-xs shadow-sm transition-transform active:scale-95"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('presencial', 2, 2)" class="flex-1 md:flex-none py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><span class="md:hidden">Próximo </span><span class="hidden md:inline">Avançar </span><i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="presencial-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm">
+                            <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. Vá até o <span id="nome-setor-passo2">setor de Cadastro (Urbanismo)</span> da Prefeitura.</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center shadow-inner pointer-events-none select-none">
+                        <div class="bg-white w-full max-w-2xl border border-gray-300 shadow-2xl rounded-2xl flex flex-col overflow-hidden">
+                            <div class="bg-[#2A3F54] p-4 text-center text-white shrink-0">
+                                <i class="fa-solid fa-building-user text-3xl md:text-4xl mb-2"></i>
+                                <h2 class="text-base md:text-lg font-bold">Atendimento Presencial</h2>
+                            </div>
+                            <div class="p-6 flex flex-col gap-4 text-center justify-center flex-1 bg-[#F7F7F7]">
+                                <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+                                    Caso você não tenha uma guia ou carnê anterior em mãos, dirija-se ao <strong class="text-orange-800" id="nome-setor-destaque">Setor de Cadastro (Urbanismo)</strong> da Prefeitura.
+                                </p>
+                                <div class="bg-white border-l-4 border-orange-500 p-4 rounded text-left shadow-sm inline-block mx-auto max-w-md mt-2">
+                                    <p class="text-orange-800 text-xs md:text-sm font-bold mb-1.5"><i class="fa-solid fa-bullhorn mr-1"></i> O que fazer lá?</p>
+                                    <p id="texto-dica-presencial-2" class="text-gray-600 text-xs md:text-sm">Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua Inscrição Cadastral.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('presencial', 1, 2)" class="flex-1 md:flex-none py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="finalizar()" class="flex-1 md:flex-none py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-xs active:scale-95 transition-transform"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu-online" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar">
+                <button onclick="abrirView('menu-cadastro', 'Como Fazer o Cadastro', 'fa-address-card')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-address-card text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como Fazer o Cadastro ?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+                
+                <button onclick="abrirView('tut-inscricao', 'Solicitar Online', 'fa-laptop-code')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-laptop-code text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Como Solicitar Online ?</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+            </div>
+
+            <div id="menu-cadastro" class="app-view hidden grid-cols-1 sm:grid-cols-2 gap-3 h-full content-start px-2 pt-2 overflow-y-auto hide-scrollbar">
+                <button onclick="abrirView('tut-cpf', 'Cadastro (CPF)', 'fa-user')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-user text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Física (CPF)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+                <button onclick="abrirView('tut-cnpj', 'Cadastro (CNPJ)', 'fa-building')" class="w-full min-h-[70px] md:min-h-[80px] bg-white border-2 border-gray-200 hover:border-orange-400 active:bg-orange-50 rounded-xl flex items-center px-3 md:px-4 gap-3 shadow-sm text-left">
+                    <div class="bg-orange-100 rounded-full text-orange-600 shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center"><i class="fa-solid fa-building text-lg md:text-xl"></i></div>
+                    <span class="font-bold text-gray-800 text-xs md:text-sm flex-1">Cadastro Pessoa Jurídica (CNPJ)</span><i class="fa-solid fa-chevron-right text-gray-300 text-lg"></i>
+                </button>
+            </div>
+
+            <div id="tut-inscricao" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                <div class="shrink-0 bg-orange-100 p-1.5 md:p-2 border-b border-orange-200 flex justify-between items-center px-3">
+                    <h3 id="inscricao-passo-titulo" class="font-bold text-orange-900 text-[11px] md:text-xs">Passo a Passo (1/3)</h3>
+                </div>
+                
+                <div id="inscricao-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm">
+                            <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. Preencha os dados do endereço: Logradouro, Número e Bairro.</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-2xl bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 border-b border-gray-200 bg-[#f9f9f9]">
+                                <h3 class="text-[10px] md:text-xs font-bold text-gray-800"><i class="fa-solid fa-map-location-dot mr-1"></i> Endereço</h3>
+                            </div>
+                            <div class="p-3 md:p-4 flex flex-col gap-3 h-full max-h-[300px] overflow-y-auto">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3">
+                                    <div class="md:col-span-12">
+                                        <label class="text-[8px] md:text-[10px] font-bold text-gray-600 block mb-0.5 leading-none">Logradouro<span class="text-red-500">*</span></label>
+                                        <div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[26px] md:h-[30px] relative">
+                                            <i class="fa-solid fa-arrow-pointer absolute right-4 md:right-8 -bottom-3 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-4">
+                                        <label class="text-[8px] md:text-[10px] font-bold text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label>
+                                        <div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[26px] md:h-[30px]"></div>
+                                    </div>
+                                    <div class="md:col-span-8">
+                                        <label class="text-[8px] md:text-[10px] font-bold text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label>
+                                        <div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[26px] md:h-[30px]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span></button>
+                        <button onclick="mudarPasso('inscricao', 2, 3)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+                
+                <div id="inscricao-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm">
+                            <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. No campo Descrição, detalhe a sua solicitação.</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-2xl bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 border-b border-gray-200 bg-[#f9f9f9]">
+                                <h3 class="text-[10px] md:text-xs font-bold text-gray-800"><i class="fa-solid fa-align-left mr-1"></i> Detalhes da Solicitação</h3>
+                            </div>
+                            <div class="p-3 md:p-4 h-full max-h-[300px] overflow-y-auto">
+                                <label class="text-[9px] md:text-[11px] text-gray-600 font-bold mb-1 block">Descrição<span class="text-red-600">*</span>:</label>
+                                <div class="border border-gray-300 rounded flex flex-col">
+                                    <div class="bg-gray-100 border-b border-gray-300 p-1 flex gap-2 text-gray-600">
+                                        <div class="bg-white border border-gray-300 px-2 rounded hover:bg-gray-50"><i class="fa-solid fa-bold text-[9px] md:text-[11px]"></i></div>
+                                        <div class="bg-white border border-gray-300 px-2 rounded hover:bg-gray-50"><i class="fa-solid fa-italic text-[9px] md:text-[11px]"></i></div>
+                                        <div class="bg-white border border-gray-300 px-2 rounded hover:bg-gray-50"><i class="fa-solid fa-list-ul text-[9px] md:text-[11px]"></i></div>
+                                    </div>
+                                    <div class="h-[100px] md:h-[120px] bg-white p-2 text-gray-800 text-[10px] md:text-[12px] relative">
+                                        Solicito a inscrição cadastral conforme os dados preenchidos...
+                                        <i class="fa-solid fa-arrow-pointer absolute right-4 md:right-12 bottom-4 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('inscricao', 1, 3)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span></button>
+                        <button onclick="mudarPasso('inscricao', 3, 3)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+                
+                <div id="inscricao-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm">
+                            <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>3. Por fim, escolha a sua forma de assinatura e clique em Protocolar.</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-2xl bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 border-b border-gray-200 bg-[#f9f9f9]">
+                                <h3 class="text-[10px] md:text-xs font-bold text-gray-800"><i class="fa-solid fa-pen-nib mr-1"></i> Assinatura e Envio</h3>
+                            </div>
+                            <div class="p-3 md:p-4 h-full flex flex-col justify-center relative gap-6 max-h-[300px] overflow-y-auto">
+                                <fieldset class="border border-gray-300 p-4 rounded bg-gray-50 shadow-inner">
+                                    <legend class="text-[11px] md:text-[13px] font-bold text-gray-800 px-2 bg-gray-50 rounded">Minha assinatura</legend>
+                                    <div class="flex flex-col gap-3 mt-1">
+                                        <label class="flex items-center gap-2 text-[10px] md:text-[12px] font-bold text-gray-800">
+                                            <input type="radio" checked class="w-3 h-3 md:w-4 md:h-4 accent-[#0042A4]"> Assinatura 1Doc
+                                        </label>
+                                        <label class="flex items-center gap-2 text-[10px] md:text-[12px] text-gray-500">
+                                            <input type="radio" disabled class="w-3 h-3 md:w-4 md:h-4"> Assinatura ICP-Brasil
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <div class="flex justify-end mt-2 relative">
+                                    <div class="bg-[#0042A4] hover:bg-[#003583] text-white px-8 py-3 rounded shadow-lg font-bold text-[11px] md:text-[13px] relative w-fit">
+                                        Protocolar
+                                        <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('inscricao', 2, 3)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span></button>
+                        <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=95598137&iser=01KCS8S0F4R2GX1TEKWC03Z60F" target="_blank" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tut-cpf" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                <div class="shrink-0 bg-orange-100 p-1.5 md:p-2 border-b border-orange-200 flex justify-between items-center px-3"><h3 id="cpf-passo-titulo" class="font-bold text-orange-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                
+                <div id="cpf-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-white shadow-inner flex items-center text-gray-400">E-mail ou CPF/CNPJ</div>
+                                <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                
+                                <div class="border-2 border-red-500 bg-red-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                    Sem e-mail? Entre com CPF/CNPJ
+                                    <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                </div>
+                                
+                                <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                
+                                <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com icp certificado digital</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cpf-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. Digite o seu CPF e clique em "Prosseguir".</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                         <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                <div class="border-2 border-red-400 bg-red-50 p-2 md:p-3 rounded relative shadow-inner">
+                                    <span class="absolute -top-1.5 left-1.5 bg-red-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                    <div class="flex flex-col gap-1.5 mt-1">
+                                        <input type="text" value="123.456.789-00" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                        <div class="flex items-center gap-2 w-full">
+                                            <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                Prosseguir
+                                                <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                            <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cpf', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cpf-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>3. Selecione "Contato" e preencha seus Dados Pessoais Básicos.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-3 rounded-lg relative shadow-inner">
+                                    <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                        <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Contato (Pessoa Física)</label>
+                                        <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Organização/Pessoa Jurídica</label>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CPF<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[28px] px-1.5 flex items-center font-mono text-[8px] md:text-[11px] text-gray-700">123.456.789-00</div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data nasc.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Sexo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cpf', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cpf-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>4. Preencha todos os seus Contatos e Telefones.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-3 rounded-lg relative shadow-inner">
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cpf', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cpf-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>5. Preencha seu Endereço e defina sua Senha.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 px-4 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-xs md:text-sm font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-3 rounded-lg relative shadow-inner">
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-3">
+                                        <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                        <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                        <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                        <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[28px]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cpf', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cpf', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cpf-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                <div class="border-2 border-red-400 bg-red-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                    <span class="absolute -top-2.5 left-3 bg-red-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                    <div class="flex flex-col gap-3">
+                                        <div>
+                                            <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                            <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                    <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-orange-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                    <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-orange-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end mt-4 relative">
+                                            <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                            <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cpf', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=95598137&iser=01KCS8S0F4R2GX1TEKWC03Z60F" target="_blank" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tut-cnpj" class="app-view hidden h-full flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0">
+                <div class="shrink-0 bg-orange-100 p-1.5 md:p-2 border-b border-orange-200 flex justify-between items-center px-3"><h3 id="cnpj-passo-titulo" class="font-bold text-orange-900 text-[11px] md:text-xs">Passo a Passo (1/6)</h3></div>
+                
+                <div id="cnpj-passo-1" class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. Na tela de login, clique no link "Sem e-mail? Entre com CPF/CNPJ".</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded-lg flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
+                                <div class="border border-[#ccc] rounded px-2 h-[26px] md:h-[30px] text-[9px] md:text-[10px] w-full bg-[#f4f4f4] text-gray-400 shadow-inner flex items-center">empresa@email.com</div>
+                                <div class="w-full bg-[#0042A4] text-white h-[26px] md:h-[30px] flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-sm opacity-60">Prosseguir</div>
+                                
+                                <div class="border-2 border-red-500 bg-red-50 px-2 py-1 rounded relative shadow-sm font-bold text-center text-[#0042A4] text-[9px] md:text-[10px] mt-1">
+                                    Sem e-mail? Entre com CPF/CNPJ
+                                    <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                </div>
+                                
+                                <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mt-0.5">Esqueci a senha</span>
+                                <span class="text-center underline text-[#0042A4] text-[8px] md:text-[9px] font-medium mb-1">Não tenho senha</span>
+                                
+                                <div class="w-full bg-[#1351b4] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/gov.br_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com gov.br</div>
+                                <div class="w-full bg-[#16a34a] text-white px-2 h-[26px] md:h-[30px] rounded text-[8px] md:text-[10px] font-bold flex items-center justify-center gap-2 shadow-sm"><img src="../imagens/icpbrasil_logo2.png" class="h-3 md:h-4" onerror="this.style.display='none'"> Entrar com certificado digital</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button disabled class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 text-gray-400 rounded-lg font-bold shadow-sm cursor-not-allowed text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> Anterior</button>
+                        <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cnpj-passo-2" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. Digite o CNPJ da empresa e clique em "Prosseguir".</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                         <div class="w-full max-w-[300px] md:max-w-sm bg-white border border-gray-300 shadow-2xl rounded flex flex-col font-sans overflow-hidden">
+                            <div class="p-2 md:p-3 border-b border-gray-200 text-center bg-[#f9f9f9] shrink-0"><h3 class="text-[12px] md:text-[14px] font-bold text-gray-800">Login</h3></div>
+                            <div class="flex-1 overflow-y-auto p-3 md:p-4 flex flex-col gap-2">
+                                <div class="border-2 border-red-400 bg-red-50 p-2 md:p-3 rounded relative shadow-inner">
+                                    <span class="absolute -top-1.5 left-1.5 bg-red-500 text-white text-[6px] md:text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">PREENCHA E PROSSIGA</span>
+                                    <div class="flex flex-col gap-1.5 mt-1">
+                                        <input type="text" value="12.345.678/0001-99" class="border border-gray-400 shadow-inner rounded px-2 h-[26px] md:h-[30px] text-[10px] md:text-[11px] font-mono text-gray-800 w-full bg-white">
+                                        <div class="flex items-center gap-2 w-full">
+                                            <div class="bg-[#0042A4] text-white px-3 h-[26px] md:h-[30px] flex-1 flex items-center justify-center rounded text-[9px] md:text-[10px] font-bold shadow-md relative">
+                                                Prosseguir
+                                                <i class="fa-solid fa-arrow-pointer absolute right-2 -bottom-2 text-black text-sm md:text-lg animate-pointer z-50" style="pointer-events: auto;"></i>
+                                            </div>
+                                            <span class="text-[#0042A4] text-[8px] md:text-[9px] font-bold underline shrink-0 cursor-pointer">Entre com e-mail</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-1 text-[8px] md:text-[9px] text-[#0042A4] font-medium gap-0.5"><span class="underline">Esqueci a senha</span><span class="underline">Não tenho senha</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cnpj', 1, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cnpj-passo-3" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>3. Selecione "Organização" e preencha os dados da empresa.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 1/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-2 md:p-3 rounded relative shadow-inner">
+                                    <div class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mb-2 px-1">
+                                        <label class="flex items-center gap-1 text-gray-400 text-[8px] md:text-[10px]"><input type="radio" disabled class="w-2.5 h-2.5 md:w-3.5 md:h-3.5"> Contato</label>
+                                        <label class="flex items-center gap-1 font-bold text-gray-800 text-[8px] md:text-[10px]"><input type="radio" checked class="w-2.5 h-2.5 md:w-3.5 md:h-3.5 accent-[#0042A4]"> Organização/Pessoa Jurídica</label>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nacionalidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Razão Social<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-8"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CNPJ<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-gray-50 shadow-inner rounded h-[22px] md:h-[26px] px-1.5 flex items-center font-mono text-[8px] md:text-[10px] text-gray-700">12.345.678/0001-99</div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Data const.</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Nome fantasia</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Responsável legal / Procurador</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px] flex justify-between px-1.5 items-center text-gray-400"><span class="text-[8px]">- selecione -</span><i class="fa fa-chevron-down text-[8px]"></i></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cnpj', 2, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cnpj-passo-4" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>4. Preencha seus Contatos da Empresa.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 2/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-2 md:p-3 rounded relative shadow-inner">
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2">
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mail corporativo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Telefone Fixo</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-2 hidden md:block"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">DDD</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Celular<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-12"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">E-mails alternativos</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cnpj', 3, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cnpj-passo-5" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>5. Conclua o Endereço e defina a Senha da Empresa.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl h-full max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Cadastrar (Etapa 3/4)</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-2 md:p-3 hide-scrollbar">
+                                <div class="border border-red-400 bg-red-50 p-2 md:p-3 rounded relative shadow-inner">
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-2 mt-1">
+                                        <div class="md:col-span-12"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Endereço</span></div>
+                                        <div class="md:col-span-3"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">CEP<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-7"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Endereço completo<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-2"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Número<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Complemento</label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Bairro<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-4"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Cidade<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-12 mt-0.5"><span class="text-[9px] md:text-[10px] font-bold text-gray-700 block border-b border-[#ddd] pb-0.5">Acesso</span></div>
+                                        <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Senha de acesso<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                        <div class="md:col-span-6"><label class="text-[7px] md:text-[9px] font-medium text-gray-600 block mb-0.5 leading-none">Confirmação<span class="text-red-500">*</span></label><div class="w-full border border-gray-300 bg-white shadow-inner rounded h-[22px] md:h-[26px]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cnpj', 4, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="mudarPasso('cnpj', 6, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><span class="md:hidden">Próximo</span><span class="hidden md:inline">Avançar</span> <i class="fa-solid fa-chevron-right ml-1 md:hidden"></i></button>
+                    </div>
+                </div>
+
+                <div id="cnpj-passo-6" class="hidden flex-1 flex-col md:flex-row overflow-hidden min-h-0 relative">
+                    <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-4 z-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700 overflow-y-auto">
+                        <div class="bg-orange-50 p-2 md:p-3 rounded-xl border border-orange-200 shadow-sm"><p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug"><i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>6. Digite o que vê na imagem (captcha) e clique em Prosseguir.</p></div>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-[#d7dcde] p-2 md:p-4 overflow-hidden flex items-center justify-center relative shadow-inner pointer-events-none select-none">
+                        <div class="w-full max-w-3xl lg:max-w-4xl max-h-[440px] bg-white border border-gray-300 shadow-2xl rounded-xl flex flex-col font-sans overflow-hidden">
+                            <div class="p-1.5 md:p-2 px-3 border-b border-gray-200 bg-[#f9f9f9] flex justify-between items-center shrink-0">
+                                <h3 class="text-[10px] md:text-[12px] font-bold text-gray-800">Finalizar Cadastro</h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar flex flex-col justify-center items-center">
+                                <div class="border-2 border-red-400 bg-red-50 p-4 rounded-lg relative shadow-inner w-full max-w-lg">
+                                    <span class="absolute -top-2.5 left-3 bg-red-500 text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">PASSO FINAL</span>
+                                    <div class="flex flex-col gap-3">
+                                        <div>
+                                            <label class="text-[9px] md:text-[11px] font-bold text-gray-600 block mb-1.5">Mostre o que vê na imagem<span class="text-red-500">*</span></label>
+                                            <div class="flex flex-col md:flex-row gap-2.5 md:items-center">
+                                                <div class="w-full md:w-[150px] border border-gray-300 bg-white shadow-inner rounded h-[30px] md:h-[36px] flex items-center px-2"><div class="w-[1px] h-5 bg-black animate-pulse"></div></div>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="w-[100px] md:w-[120px] h-[30px] md:h-[36px] border border-gray-400 bg-white flex items-center justify-center relative overflow-hidden rounded shadow-sm"><img src="../imagens/oque-ve.png" onerror="this.style.display='none'" class="absolute inset-0 w-full h-full object-cover"></div>
+                                                    <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-orange-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-arrows-rotate text-[11px] md:text-[13px]"></i></div>
+                                                    <div class="h-[30px] md:h-[36px] w-[30px] md:h-[36px] bg-gray-100 border border-[#ccc] rounded flex items-center justify-center text-orange-600 drop-shadow-sm cursor-pointer shadow" style="pointer-events: auto;"><i class="fa-solid fa-volume-high text-[11px] md:text-[13px]"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end mt-4 relative">
+                                            <div class="bg-[#0042A4] border border-[#003583] text-white px-6 py-2 rounded shadow-md font-bold text-[10px] md:text-[12px] w-full md:w-auto text-center">Prosseguir</div>
+                                            <i class="fa-solid fa-arrow-pointer absolute right-4 md:-right-2 -bottom-3 text-black text-lg md:text-2xl animate-pointer z-50" style="pointer-events: auto;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full md:w-[100px] lg:w-[130px] bg-white p-2 md:p-3 border-t md:border-t-0 md:border-l border-gray-200 flex flex-row md:flex-col justify-center gap-2 z-20">
+                        <button onclick="mudarPasso('cnpj', 5, 6)" class="flex-1 md:flex-none py-1.5 md:py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-chevron-left mr-1 md:hidden"></i> <span class="hidden md:inline">Voltar</span><span class="md:hidden">Anterior</span></button>
+                        <button onclick="finalizar()" class="flex-1 md:flex-none py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=95598137&iser=01KCS8S0F4R2GX1TEKWC03Z60F" target="_blank" class="flex-1 md:flex-none py-1.5 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm text-[10px] md:text-[11px] active:scale-95 transition-transform text-center flex justify-center items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden lg:inline">Ir ao Site</span><span class="lg:hidden">Site</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tutorial-atualizar" class="hidden flex-1 flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                
+                <div class="shrink-0 bg-orange-100 p-1 md:p-1.5 border-b border-orange-200 flex justify-between items-center px-3">
+                    <h3 id="atualizar-passo-titulo" class="font-bold text-orange-900 text-[10px] md:text-[11px]">Passo a Passo (1/3)</h3>
+                </div>
+
+                <div id="atualizar-passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. No menu lateral, clique em "Guias" e selecione "2º Via/atualização".
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-home w-4 md:w-5 text-center"></i> Imobiliário</div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner relative">
+                                            <i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias <i class="fa fa-chevron-down ml-auto text-[8px]"></i>
+                                        </div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner relative">
+                                            <div class="pl-8 md:pl-10 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md relative">
+                                                2º Via/atualização
+                                                <i class="fa-solid fa-arrow-pointer absolute right-2 md:right-4 top-0.5 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                            </div>
+                                            <div class="pl-8 md:pl-10 pr-2 py-1 text-white/70 text-[9px] md:text-[10px]">Guias de Quitação</div>
+                                        </div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-shield w-4 md:w-5 text-center"></i> Validar Doc</div>
+                                    </div>
+                                    <div class="flex-1 bg-transparent p-2 md:p-4 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold cursor-not-allowed text-[10px] md:text-[11px]">Anterior</button>
+                        <button onclick="mudarPasso('atualizar', 2, 3)" class="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="atualizar-passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-between overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. Preencha a Inscrição Cadastral e o Ano Exercício, e clique em Buscar.
+                                </p>
+                            </div>
+                            <button onclick="abrirTutorial('inscricao')" class="mt-4 w-full bg-orange-100 hover:bg-orange-200 border border-orange-300 text-orange-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                                <i class="fa-solid fa-circle-question text-lg md:text-xl text-orange-600"></i> Não sei minha Inscrição
+                            </button>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner relative"><div class="pl-8 md:pl-10 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">2º Via/atualização</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 bg-[#F7F7F7] p-2 flex flex-col items-center justify-center overflow-y-auto hide-scrollbar relative z-10">
+                                        <div class="w-full max-w-2xl bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded relative mt-3">
+                                            <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                                <i class="fa fa-barcode text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Atualização de Guia(s)</span>
+                                            </div>
+                                            
+                                            <div class="mt-2 md:mt-3 flex flex-col gap-1.5 md:gap-2">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
+                                                    
+                                                    <div class="w-full relative">
+                                                        <div class="absolute -inset-0.5 border border-red-500 rounded bg-red-50/50 z-0"></div>
+                                                        <div class="relative z-10 p-1">
+                                                            <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5 truncate">Inscrição Cadastral</label>
+                                                            <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-white flex items-center px-2 shadow-inner">
+                                                                <span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">0123.456.789.000</span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="absolute -top-1.5 right-1 bg-red-500 text-white text-[7px] md:text-[8px] px-1 py-0.5 rounded shadow z-20">Preencha aqui</span>
+                                                    </div>
+                                                    
+                                                    <div class="w-full flex items-end gap-2 relative">
+                                                        <div class="absolute -inset-0.5 border border-red-500 rounded bg-red-50/50 z-0"></div>
+                                                        <div class="flex-1 relative z-10 p-1">
+                                                            <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] block mb-0.5">Ano Exercício</label>
+                                                            <div class="flex border border-[#ccc] rounded h-[24px] md:h-[26px] overflow-hidden bg-white shadow-inner">
+                                                                <div class="flex-1 px-1.5 flex items-center"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">2026</span><div class="w-[1px] h-3 bg-black ml-1 animate-pulse"></div></div>
+                                                                <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#bf0606]"><i class="fa fa-trash text-[8px]"></i></div>
+                                                                <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#2A3F54]"><i class="fa fa-calendar text-[8px]"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="relative shrink-0 mb-[5px] z-10"> 
+                                                            <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[9px] md:text-[10px] font-bold border border-[#364B5F] hover:bg-[#2A3F54]">Buscar</button>
+                                                            <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso('atualizar', 1, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="mudarPasso('atualizar', 3, 3)" class="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="atualizar-passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>3. Selecione a parcela vencida, escolha a nova data de vencimento e clique em Atualizar.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-barcode w-4 md:w-5 text-center text-[#1abb9c]"></i> Guias</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner relative"><div class="pl-8 md:pl-10 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">2º Via/atualização</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 bg-[#F7F7F7] p-2 flex flex-col items-center justify-center overflow-y-auto hide-scrollbar relative z-10">
+                                        <div class="w-full max-w-2xl bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded relative mt-3">
+                                            <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                                <i class="fa fa-barcode text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Atualização de Guia(s)</span>
+                                            </div>
+                                            
+                                            <div class="mt-2 md:mt-3 flex flex-col gap-1.5 md:gap-2">
+                                                <div class="overflow-x-auto border border-[#ccc] rounded">
+                                                    <table class="w-full text-left text-[7px] md:text-[8px] text-[#373736] border-collapse min-w-[450px]">
+                                                        <thead>
+                                                            <tr class="border-b border-[#ddd] bg-gray-50">
+                                                                <th class="p-1 text-center w-6 relative">
+                                                                    <div class="absolute -inset-[1px] border border-red-500 rounded bg-red-500/10 z-0"></div>
+                                                                    <input type="checkbox" checked class="relative z-10 accent-[#1abb9c] w-2.5 h-2.5">
+                                                                </th>
+                                                                <th class="p-1 font-medium uppercase">Origem</th>
+                                                                <th class="p-1 font-medium uppercase text-center">Competência</th>
+                                                                <th class="p-1 font-medium uppercase text-center">Vencimento</th>
+                                                                <th class="p-1 font-medium uppercase text-right">Nosso Número</th>
+                                                                <th class="p-1 font-medium uppercase text-right">Valor</th>
+                                                                <th class="p-1 font-medium uppercase text-right text-[#bf0606]">Atualizado</th>
+                                                                <th class="p-1 font-medium uppercase text-center hidden sm:table-cell">Parcela</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="bg-[#dff0d8] border-b border-[#eee]">
+                                                                <td class="p-1 text-center"><input type="checkbox" checked class="accent-[#1abb9c] w-2.5 h-2.5"></td>
+                                                                <td class="p-1">IPTU Imóvel</td>
+                                                                <td class="p-1 text-center">04/2026</td>
+                                                                <td class="p-1 text-center line-through">10/04/2026</td>
+                                                                <td class="p-1 text-right">9876543210</td>
+                                                                <td class="p-1 text-right">150,00</td>
+                                                                <td class="p-1 text-right font-bold text-[#bf0606]">154,30</td>
+                                                                <td class="p-1 text-center hidden sm:table-cell">04</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                
+                                                <div class="flex flex-col sm:flex-row justify-end items-end sm:items-center gap-1.5 md:gap-2 mt-3 md:mt-4">
+                                                    <div class="relative border-2 border-red-400 p-1 bg-red-50/50 rounded shadow-sm flex items-center gap-1">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase">Vencimento</label>
+                                                        <div class="border border-[#ccc] rounded h-[20px] md:h-[22px] bg-white flex items-center px-1.5 w-20 md:w-24 text-gray-800 font-mono text-[9px] md:text-[10px] shadow-inner">
+                                                            <span>20/04/26</span><i class="fa fa-calendar ml-auto text-[#2a3f54] text-[8px]"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="relative">
+                                                        <button class="h-[24px] md:h-[28px] bg-[#19B99B] text-white px-2.5 md:px-3 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#169F85]">Imprimir/Atualizar</button>
+                                                        <i class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso('atualizar', 2, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="finalizarIPTU()" class="flex-1 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$OTVkODcyYjJiODNiMzE4NjdkNWM1MzE3OTQ5OWIxMGZPVFZrT0RjeVlqSmlPRE5pTXpFNE5qZGtOV00xTXpFM09UUTVPV0l4TUdZek5qaz0=$$li_369_3$$3" target="_blank" class="flex-1 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] text-center flex justify-center items-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> <span class="hidden sm:inline">Ir para o site</span><span class="sm:hidden">Site</span></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tutorial-iptu" class="hidden flex-1 flex-col bg-white border-2 border-gray-200 rounded-xl shadow-sm overflow-hidden min-h-0 fade-in relative">
+                
+                <div class="shrink-0 bg-orange-100 p-1 md:p-1.5 border-b border-orange-200 flex justify-between items-center px-3">
+                    <h3 id="iptu-passo-titulo" class="font-bold text-orange-900 text-[10px] md:text-[11px]">Passo a Passo (1/3)</h3>
+                </div>
+
+                <div id="iptu-passo-1" class="flex-1 flex flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. No menu lateral, clique em "Imobiliário" e selecione "Segunda via IPTU".
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner">
+                                            <i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário <i class="fa fa-chevron-up ml-auto text-[8px]"></i>
+                                        </div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner relative">
+                                            <div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md relative">
+                                                Segunda via IPTU
+                                                <i class="fa-solid fa-arrow-pointer absolute right-2 md:right-4 top-0.5 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                            </div>
+                                            <div class="pl-6 md:pl-8 pr-2 py-1 text-white/70 text-[9px] md:text-[10px]">Certidões</div>
+                                            <div class="pl-6 md:pl-8 pr-2 py-1 text-white/70 text-[9px] md:text-[10px]">Requerimentos</div>
+                                        </div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-building w-4 md:w-5 text-center"></i> Mobiliário</div>
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 font-medium text-[9px] md:text-[10px] hover:bg-white/10"><i class="fa fa-barcode w-4 md:w-5 text-center"></i> Guias</div>
+                                    </div>
+                                    <div class="flex-1 bg-transparent p-2 md:p-4 relative"><div class="absolute inset-0 bg-black/5 z-0"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button disabled class="flex-1 py-1.5 bg-gray-200 text-gray-400 rounded-lg font-bold cursor-not-allowed text-[10px] md:text-[11px]">Anterior</button>
+                        <button onclick="mudarPasso('iptu', 2, 3)" class="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="iptu-passo-2" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-between overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>2. Preencha a Inscrição Cadastral e verifique o Ano Exercício.
+                                </p>
+                            </div>
+                            <button onclick="abrirTutorial('inscricao')" class="mt-4 w-full bg-orange-100 hover:bg-orange-200 border border-orange-300 text-orange-900 p-2 rounded-lg shadow-sm text-[10px] md:text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                                <i class="fa-solid fa-circle-question text-lg md:text-xl text-orange-600"></i> Não sei minha Inscrição
+                            </button>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Segunda via IPTU</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 bg-[#F7F7F7] p-2 flex flex-col items-center justify-center overflow-y-auto hide-scrollbar relative z-10">
+                                        <div class="w-full max-w-2xl bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded relative mt-3">
+                                            <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                                <i class="fa fa-home text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Carnê de IPTU</span>
+                                            </div>
+                                            
+                                            <div class="mt-2 md:mt-3 flex flex-col gap-1.5 md:gap-2">
+                                                
+                                                <div class="w-full md:w-1/3">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Ano Exercício</label>
+                                                    <div class="flex border border-[#ccc] rounded h-[24px] md:h-[26px] overflow-hidden shadow-inner">
+                                                        <div class="flex-1 px-1.5 bg-white flex items-center"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">2026</span></div>
+                                                        <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#bf0606]"><i class="fa fa-trash text-[8px] md:text-[9px]"></i></div>
+                                                        <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#2A3F54]"><i class="fa fa-calendar text-[8px] md:text-[9px]"></i></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <hr class="border-t border-[#eee] my-0.5 hidden md:block">
+                                                
+                                                <div class="flex flex-col md:flex-row gap-1.5 md:gap-2 items-center md:items-start w-full">
+                                                    <div class="w-full md:w-1/2 relative">
+                                                        <div class="absolute -inset-0.5 border border-red-500 rounded bg-red-50/50 z-0"></div>
+                                                        <div class="relative z-10 p-1">
+                                                            <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Cadastral</label>
+                                                            <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-white flex items-center px-1.5 shadow-inner">
+                                                                <span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">0123.456.789.000</span>
+                                                                <div class="w-[1px] h-3 bg-black ml-1 animate-pulse"></div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="absolute -top-1.5 right-1 bg-red-500 text-white text-[7px] md:text-[8px] px-1 py-0.5 rounded shadow z-20">Preencha aqui</span>
+                                                    </div>
+                                                    <span class="text-[#73879C] font-bold text-[8px] md:text-[9px] text-center my-0.5 md:my-0 md:mt-5 block w-full md:w-auto">OU</span>
+                                                    <div class="w-full md:w-1/2 opacity-50">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5 truncate">Inscrição Cadastral Reduzida <i class="fa fa-info-circle text-[#1abb9c] ml-0.5"></i></label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5 shadow-inner"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <hr class="border-t border-[#eee] my-0.5 hidden md:block">
+                                                
+                                                <div class="flex flex-col md:flex-row gap-1.5 md:gap-2 opacity-50 w-full">
+                                                    <div class="w-full md:w-5/12">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Nome Requerente</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5"></div>
+                                                    </div>
+                                                    <div class="w-full md:w-7/12">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">CPF/CNPJ Requerente</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="flex flex-col md:flex-row justify-end gap-1.5 md:gap-2 mt-1 md:mt-2 w-full relative">
+                                                    <button class="order-3 md:order-1 h-[24px] md:h-[26px] bg-[#bf0606] text-white px-3 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#bf0606] w-full md:w-auto flex items-center justify-center opacity-80"><i class="fa fa-trash"></i></button>
+                                                    <div class="relative w-full md:w-auto order-2 md:order-2">
+                                                        <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#364B5F] w-full md:w-auto hover:bg-[#2A3F54]">Espelho IPTU</button>
+                                                        <i id="pointer-espelho" class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md hidden"></i>
+                                                    </div>
+                                                    <div class="relative w-full md:w-auto order-1 md:order-3">
+                                                        <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#364B5F] w-full md:w-auto hover:bg-[#2A3F54]">Emitir Carnê</button>
+                                                        <i id="pointer-carne" class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso('iptu', 1, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="mudarPasso('iptu', 3, 3)" class="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]">Próximo <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div id="iptu-passo-3" class="hidden flex-1 flex-col overflow-hidden min-h-0 relative">
+                    <div class="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+                        <div class="shrink-0 w-full md:w-[180px] lg:w-[220px] bg-slate-800 p-2 md:p-3 z-10 flex flex-col justify-center overflow-y-auto border-b md:border-b-0 md:border-r border-slate-700">
+                            <div class="bg-orange-50 p-2 md:p-2.5 rounded-xl border border-orange-200 shadow-sm">
+                                <p class="text-orange-900 font-bold text-[10px] md:text-[12px] leading-snug">
+                                    <i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>3. <span id="texto-passo3">Clique em "Emitir Carnê" para gerar o documento.</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-[#d7dcde] relative overflow-hidden flex items-center justify-center p-2 md:p-4 lg:p-8 pointer-events-none select-none">
+                            <div class="w-full h-full max-w-4xl max-h-[440px] bg-[#F7F7F7] border border-gray-300 shadow-2xl rounded-lg flex flex-col overflow-hidden text-[#73879C]">
+                                <div class="h-[30px] md:h-[35px] shrink-0 bg-[#2A3F54] flex items-center px-3 shadow-sm z-20 text-white gap-2">
+                                    <div class="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center"><i class="fa fa-bars text-[8px]"></i></div><span class="text-[11px] md:text-xs font-light tracking-wide">Área do Cidadão</span>
+                                </div>
+                                <div class="flex-1 flex overflow-hidden min-h-0">
+                                    <div class="hidden md:flex w-[120px] sm:w-[140px] md:w-[160px] shrink-0 bg-[#2A3F54] text-white flex-col shadow-inner overflow-y-auto hide-scrollbar">
+                                        <div class="p-2 md:p-2.5 flex items-center gap-2 bg-[#2A3F54] border-r-4 border-[#1abb9c] font-medium text-[9px] md:text-[10px] shadow-inner"><i class="fa fa-home w-4 md:w-5 text-center text-[#1abb9c]"></i> Imobiliário</div>
+                                        <div class="bg-[#1f2f3f] py-1 shadow-inner"><div class="pl-6 md:pl-8 pr-2 py-1.5 bg-[#1abb9c] font-medium text-[9px] md:text-[10px] text-white shadow-md">Segunda via IPTU</div></div>
+                                    </div>
+                                    
+                                    <div class="flex-1 bg-[#F7F7F7] p-2 flex flex-col items-center justify-center overflow-y-auto hide-scrollbar relative z-10">
+                                        <div class="w-full max-w-2xl bg-white border border-[#E6E9ED] p-2 md:p-3 shadow-sm rounded relative mt-3">
+                                            <div class="absolute -top-3 md:-top-4 left-[-10px] right-[-10px] md:left-[-12px] md:right-[-12px] bg-[#bf0606] text-white px-3 md:px-4 pt-1 pb-0.5 shadow-md flex items-center gap-1.5">
+                                                <i class="fa fa-home text-xs md:text-sm opacity-90"></i><span class="text-[10px] md:text-xs font-light">Carnê de IPTU</span>
+                                            </div>
+                                            
+                                            <div class="mt-2 md:mt-3 flex flex-col gap-1.5 md:gap-2">
+                                                <div class="w-full md:w-1/3 opacity-50">
+                                                    <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Ano Exercício</label>
+                                                    <div class="flex border border-[#ccc] rounded h-[24px] md:h-[26px] overflow-hidden shadow-inner">
+                                                        <div class="flex-1 px-1.5 bg-white flex items-center"><span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">2026</span></div>
+                                                        <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#bf0606]"><i class="fa fa-trash text-[8px] md:text-[9px]"></i></div>
+                                                        <div class="w-6 md:w-7 bg-gray-100 border-l border-[#ccc] flex items-center justify-center text-[#2A3F54]"><i class="fa fa-calendar text-[8px] md:text-[9px]"></i></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <hr class="border-t border-[#eee] my-0.5 hidden md:block">
+                                                
+                                                <div class="flex flex-col md:flex-row gap-1.5 md:gap-2 items-center md:items-start w-full opacity-50">
+                                                    <div class="w-full md:w-1/2">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Inscrição Cadastral</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-white flex items-center px-1.5 shadow-inner">
+                                                            <span class="font-mono text-[9px] md:text-[10px] text-[#73879C]">0123.456.789.000</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-[#73879C] font-bold text-[8px] md:text-[9px] text-center my-0.5 md:my-0 md:mt-5 block w-full md:w-auto">OU</span>
+                                                    <div class="w-full md:w-1/2">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5 truncate">Inscrição Cadastral Reduzida <i class="fa fa-info-circle text-[#1abb9c] ml-0.5"></i></label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5 shadow-inner"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <hr class="border-t border-[#eee] my-0.5 hidden md:block">
+                                                
+                                                <div class="flex flex-col md:flex-row gap-1.5 md:gap-2 opacity-50 w-full">
+                                                    <div class="w-full md:w-5/12">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">Nome Requerente</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5"></div>
+                                                    </div>
+                                                    <div class="w-full md:w-7/12">
+                                                        <label class="text-[8px] md:text-[9px] font-bold text-[#73879C] uppercase block mb-0.5">CPF/CNPJ Requerente</label>
+                                                        <div class="border border-[#ccc] rounded h-[24px] md:h-[26px] bg-gray-50 flex items-center px-1.5"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="flex flex-col md:flex-row justify-end gap-1.5 md:gap-2 mt-1 md:mt-2 w-full relative">
+                                                    <button class="order-3 md:order-1 h-[24px] md:h-[26px] bg-[#bf0606] text-white px-3 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#bf0606] w-full md:w-auto flex items-center justify-center opacity-80"><i class="fa fa-trash"></i></button>
+                                                    <div class="relative w-full md:w-auto order-2 md:order-2">
+                                                        <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#364B5F] w-full md:w-auto hover:bg-[#2A3F54]">Espelho IPTU</button>
+                                                        <i id="pointer-espelho" class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md hidden"></i>
+                                                    </div>
+                                                    <div class="relative w-full md:w-auto order-1 md:order-3">
+                                                        <button class="h-[24px] md:h-[26px] bg-[#364B5F] text-white px-3 md:px-4 rounded shadow-sm text-[8px] md:text-[9px] font-bold border border-[#364B5F] w-full md:w-auto hover:bg-[#2A3F54]">Emitir Carnê</button>
+                                                        <i id="pointer-carne" class="fa-solid fa-arrow-pointer absolute -right-2 -bottom-3 text-black text-base md:text-lg animate-pointer z-50 drop-shadow-md"></i>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shrink-0 bg-white p-1.5 md:p-2 border-t border-gray-200 flex gap-2 w-full z-20">
+                        <button onclick="mudarPasso('iptu', 2, 3)" class="flex-1 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-bold active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
+                        <button onclick="finalizarIPTU()" class="flex-1 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px]"><i class="fa-solid fa-check mr-1"></i> Finalizar</button>
+                        <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_carne_iptu$$M2ZiNDJiMTAyNzJiNjBkNmUyZGI1OGI2Zjk4OWI1NzJNMlppTkRKaU1UQXlOekppTmpCa05tVXlaR0kxT0dJMlpqazRPV0kxTnpJeU5EVT0=$$li_245_3$$3" target="_blank" class="flex-1 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform text-[10px] md:text-[11px] text-center flex justify-center items-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> <span class="hidden sm:inline">Ir para o site</span><span class="sm:hidden">Site</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function abrirView(viewId, title, iconClass) {
+            document.getElementById('submenu').classList.add('hidden');
+            
+            // Oculta todas as visualizações ativas do tutorial original
+            let tutAtualizar = document.getElementById('tutorial-atualizar');
+            if(tutAtualizar) { tutAtualizar.classList.add('hidden'); tutAtualizar.classList.remove('flex'); }
+            
+            let tutIptu = document.getElementById('tutorial-iptu');
+            if(tutIptu) { tutIptu.classList.add('hidden'); tutIptu.classList.remove('flex'); }
+            
+            // Oculta os novos fluxos dinâmicos
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+            
+            const target = document.getElementById(viewId);
+            target.classList.remove('hidden');
+            
+            // Controle de Grid vs Flex
+            if (viewId === 'menu-solicitar' || viewId === 'menu-online' || viewId === 'menu-cadastro') { 
+                target.classList.add('grid'); 
+            } else { 
+                target.classList.add('flex'); 
+            }
+
+            document.getElementById('header-title').innerText = title;
+            document.getElementById('header-icon').className = 'fa-solid ' + iconClass + ' text-orange-700 text-sm md:text-base shrink-0';
+
+            const btnBackMain = document.getElementById('btn-back-main');
+            const btnBackSub = document.getElementById('btn-back-sub');
+            btnBackMain.classList.add('hidden');
+            btnBackSub.classList.remove('hidden');
+            
+            // Lógica de navegação do botão Voltar
+            if (viewId === 'menu-solicitar') {
+                btnBackSub.setAttribute('onclick', "voltarSubmenu()");
+                btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Voltar</span>';
+            } else if (viewId === 'menu-presencial-escolha' || viewId === 'menu-online') {
+                btnBackSub.setAttribute('onclick', "abrirView('menu-solicitar', 'Como saber a Inscrição Cadastral', 'fa-map-location-dot')");
+                btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'tut-presencial') {
+                btnBackSub.setAttribute('onclick', "abrirView('menu-presencial-escolha', 'Atendimento Presencial', 'fa-building-user')");
+                btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'menu-cadastro' || viewId === 'tut-inscricao') {
+                btnBackSub.setAttribute('onclick', "abrirView('menu-online', 'Solicitação Online', 'fa-laptop-code')");
+                btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            } else if (viewId === 'tut-cpf' || viewId === 'tut-cnpj') {
+                btnBackSub.setAttribute('onclick', "abrirView('menu-cadastro', 'Como Fazer o Cadastro', 'fa-address-card')");
+                btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            }
+            
+            if (viewId === 'tut-cpf') mudarPasso('cpf', 1, 6);
+            if (viewId === 'tut-cnpj') mudarPasso('cnpj', 1, 6);
+            if (viewId === 'tut-inscricao') mudarPasso('inscricao', 1, 3);
+        }
+
+        function abrirTutorial(tipo) {
+            // Se for Inscrição, aciona o novo fluxo gerenciado pelo app-view pulando a tela inicial redundante
+            if (tipo === 'inscricao') {
+                abrirView('menu-solicitar', 'Como saber a Inscrição Cadastral', 'fa-map-location-dot');
+                return;
+            }
+
+            document.getElementById('submenu').classList.add('hidden');
+            
+            // Oculta os novos fluxos (caso algum estivesse ativo)
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+
+            let tutIptu = document.getElementById('tutorial-iptu');
+            tutIptu.classList.add('hidden');
+            tutIptu.classList.remove('flex');
+            
+            let tutAtualizar = document.getElementById('tutorial-atualizar');
+            if(tutAtualizar) {
+                tutAtualizar.classList.add('hidden');
+                tutAtualizar.classList.remove('flex');
+            }
+
+            document.getElementById('btn-back-main').classList.add('hidden');
+            document.getElementById('btn-back-sub').classList.remove('hidden');
+            document.getElementById('btn-back-sub').setAttribute('onclick', 'voltarSubmenu()');
+            document.getElementById('header-icon').className = 'fa-solid fa-circle-info text-orange-700 text-sm md:text-base shrink-0';
+            
+            if (tipo === 'atualizar') {
+                tutAtualizar.classList.remove('hidden');
+                tutAtualizar.classList.add('flex');
+                document.getElementById('header-title').innerText = 'Atualizar Parcela Vencida do Ano';
+                mudarPasso('atualizar', 1, 3);
+            } else {
+                tutIptu.classList.remove('hidden');
+                tutIptu.classList.add('flex');
+                
+                if(tipo === 'carne') {
+                    document.getElementById('header-title').innerText = '2ª Via do Carnê IPTU';
+                    document.getElementById('texto-passo3').innerText = 'Clique em "Emitir Carnê" para gerar o documento.';
+                    document.getElementById('pointer-carne').classList.remove('hidden');
+                    document.getElementById('pointer-espelho').classList.add('hidden');
+                } else {
+                    document.getElementById('header-title').innerText = 'Espelho do IPTU';
+                    document.getElementById('texto-passo3').innerText = 'Clique em "Espelho IPTU" para gerar o documento detalhado.';
+                    document.getElementById('pointer-carne').classList.add('hidden');
+                    document.getElementById('pointer-espelho').classList.remove('hidden');
+                }
+                mudarPasso('iptu', 1, 3);
+            }
+        }
+
+        function iniciarTutorialPresencial(tipo) {
+            abrirView('tut-presencial', tipo === 'imob' ? 'Atendimento Presencial (Imóvel)' : 'Atendimento Presencial (Empresa)', tipo === 'imob' ? 'fa-house' : 'fa-store');
+
+            const img = document.getElementById('img-presencial');
+            const txt1 = document.getElementById('texto-dica-presencial-1');
+            const txt2 = document.getElementById('texto-dica-presencial-2');
+            const setor1 = document.getElementById('nome-setor-passo2');
+            const setor2 = document.getElementById('nome-setor-destaque');
+
+            if(tipo === 'imob') {
+                img.src = "../imagens/iptu_inscricao.png";
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. A Inscrição Cadastral Imobiliária contém 10 dígitos (padrão 0000-000-000) e está presente no carnê do IPTU.';
+                txt2.innerHTML = 'Informe o <strong>endereço completo</strong> do imóvel para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(setor1) setor1.innerText = 'setor de Cadastro (Urbanismo)';
+                if(setor2) setor2.innerText = 'Setor de Cadastro (Urbanismo)';
+            } else {
+                img.src = "../imagens/mob_inscricao.png"; 
+                txt1.innerHTML = '<i class="fa-solid fa-circle-info mr-1 text-orange-700"></i>1. A Inscrição Cadastral do Mobiliário contém 5 dígitos (padrão 00000) e está presente nas guias do Mobiliário / Alvará.';
+                txt2.innerHTML = 'Informe os <strong>dados da sua empresa ou seu CPF</strong> (caso autônomo) para o atendente e solicite a numeração da sua Inscrição Cadastral.';
+                if(setor1) setor1.innerText = 'setor de SRM';
+                if(setor2) setor2.innerText = 'Setor de SRM';
+            }
+
+            mudarPasso('presencial', 1, 2);
+        }
+
+        function voltarSubmenu() {
+            document.getElementById('tutorial-iptu').classList.add('hidden');
+            document.getElementById('tutorial-iptu').classList.remove('flex');
+            
+            let tutAtualizar = document.getElementById('tutorial-atualizar');
+            if(tutAtualizar) {
+                tutAtualizar.classList.add('hidden');
+                tutAtualizar.classList.remove('flex');
+            }
+            
+            document.querySelectorAll('.app-view').forEach(el => {
+                el.classList.add('hidden');
+                if (el.classList.contains('grid')) el.classList.remove('grid');
+                if (el.classList.contains('flex')) el.classList.remove('flex');
+            });
+            
+            document.getElementById('submenu').classList.remove('hidden');
+            document.getElementById('btn-back-sub').classList.add('hidden');
+            document.getElementById('btn-back-main').classList.remove('hidden');
+            
+            let btnBackSub = document.getElementById('btn-back-sub');
+            btnBackSub.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Opções</span>';
+            
+            document.getElementById('header-icon').className = 'fa-solid fa-house text-orange-700 text-sm md:text-base shrink-0';
+            document.getElementById('header-title').innerText = 'Serviços de IPTU';
+        }
+
+        function mudarPasso(prefixo, passo, total) {
+            for (let i = 1; i <= total; i++) {
+                let el = document.getElementById(prefixo + '-passo-' + i);
+                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            }
+            let target = document.getElementById(prefixo + '-passo-' + passo);
+            if(target) { target.classList.remove('hidden'); target.classList.add('flex'); }
+            
+            let titulo = document.getElementById(prefixo + '-passo-titulo');
+            if(titulo) titulo.innerText = 'Passo a Passo (' + passo + '/' + total + ')';
+        }
+
+        function finalizarIPTU() {
+            voltarSubmenu();
+        }
+
+        function finalizar() {
+            voltarSubmenu();
+        }
+    </script>
+</body>
+</html>

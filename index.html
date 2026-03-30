@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Limeira Fácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Bloqueio total de rolagem - Herdado do duvidas.html */
+        body { 
+            background-color: #f8fafc; 
+            overflow-x: hidden !important; 
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Classes Fluidas */
+        .fluid-header { 
+            padding-top: clamp(0.5rem, 3vh, 2.5rem); 
+            padding-bottom: clamp(1rem, 5vh, 4rem); 
+        }
+        .fluid-title { 
+            font-size: clamp(1.25rem, 4vh, 2.25rem); 
+            margin-bottom: clamp(0.25rem, 1.5vh, 1rem); 
+        }
+        .fluid-subtitle { 
+            font-size: clamp(0.875rem, 2vh, 1.125rem); 
+            margin-bottom: clamp(0.5rem, 2.5vh, 2rem); 
+        }
+        
+        .fluid-icon-box { 
+            width: clamp(2.5rem, 8vh, 4rem); 
+            height: clamp(2.5rem, 8vh, 4rem); 
+            margin-bottom: clamp(0.25rem, 1.5vh, 1rem); 
+        }
+        .fluid-icon { font-size: clamp(1.1rem, 4vh, 1.5rem); }
+        .fluid-card-title { font-size: clamp(0.8rem, 2.5vh, 1.125rem); }
+        
+        .fluid-card-desc { display: none; }
+        @media (min-width: 640px) {
+            .fluid-card-desc { 
+                display: -webkit-box;
+                font-size: clamp(0.65rem, 1.8vh, 0.875rem); 
+                margin-top: clamp(0.25rem, 1vh, 0.5rem);
+                -webkit-line-clamp: 2; 
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+
+        /* ESTILOS DOS MODAIS */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7); display: none;
+            align-items: center; justify-content: center; z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: white; padding: 24px; border-radius: 16px;
+            max-width: 450px; width: 90%; position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .modal-close {
+            position: absolute; top: 12px; right: 16px; font-size: 28px;
+            cursor: pointer; border: none; background: transparent; color: #64748b;
+        }
+        .modal-title {
+            font-size: 1.25rem; font-weight: bold; color: #1e293b;
+            margin-bottom: 16px !important; text-align: center;
+        }
+        .modal-content .modal-btn {
+            display: flex !important; align-items: center !important; justify-content: center !important;
+            height: 60px !important; width: 100% !important;
+            background-color: #2563eb !important; color: #ffffff !important;
+            border-radius: 12px !important; font-size: clamp(13px, 2vw, 15px) !important;
+            font-weight: 700 !important; text-align: center !important;
+            padding: 10px 15px !important; margin-top: 10px !important; 
+            box-sizing: border-box !important; transition: all 0.3s ease !important;
+            line-height: 1.2 !important; box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            text-decoration: none !important; border: none !important;
+        }
+        .modal-content .modal-btn:hover {
+            background-color: #1d4ed8 !important; transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+        }
+
+        /* ESTILOS DO WIDGET DE IA */
+        #ia-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif; }
+        #ia-btn { background: #f97316; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        #ia-btn:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        #ia-window { display: none; width: clamp(280px, 90vw, 350px); height: 450px; background: white; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #e5e7eb; }
+        #ia-header { background: #f97316; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        #ia-close { background: none; border: none; color: white; font-size: 24px; cursor: pointer; line-height: 1; }
+        #ia-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; }
+        .msg { padding: 10px 14px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
+        .msg.bot { background: #e2e8f0; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background: #f97316; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        #ia-input-area { display: flex; padding: 10px; background: white; border-top: 1px solid #e5e7eb; gap: 8px; }
+        #ia-input { flex: 1; padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 20px; outline: none; font-size: 0.9rem; }
+        #ia-input:focus { border-color: #f97316; }
+        #ia-send { background: #f97316; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        #ia-send:hover { background: #ea580c; }
+    </style>
+</head>
+<body class="text-slate-800 font-sans min-h-[100dvh] w-screen flex flex-col no-select fade-in">
+
+    <nav class="bg-blue-900 text-white shadow-md shrink-0 z-50 h-[clamp(40px,6vh,60px)] flex items-center">
+        <div class="max-w-[1600px] w-full mx-auto px-3 sm:px-6">
+            <div class="flex items-center justify-between">
+                <a href="https://limeira.sp.gov.br" class="flex items-center gap-2">
+                    <div class="bg-white p-1 rounded-full flex items-center justify-center">
+                        <img src="imagens/brasao.png" alt="brasao" class="w-[clamp(5.2rem,3vh,2rem)] h-[clamp(1.2rem,3vh,2rem)] object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ccc\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23000\' text-anchor=\'middle\' dy=\'.3em\'>L</text></svg>'">
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-[clamp(0.875rem,2vh,1.125rem)] leading-none tracking-wide">Limeira Fácil</h1>
+                    </div>
+                </a>
+                <a href="pages/duvidas.html" class="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition text-xs sm:text-sm font-semibold shadow-md">
+                    <i class="fa-solid fa-circle-question"></i> <span class="hidden sm:inline">Dúvidas</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-blue-800 shrink-0 fluid-header relative overflow-hidden flex flex-col justify-center">
+        <div class="absolute -top-12 -left-12 w-48 h-48 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        <div class="absolute top-6 -right-6 w-32 h-32 bg-blue-700 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        
+        <div class="max-w-[1600px] w-full mx-auto px-3 sm:px-6 relative z-10 text-center">
+            <h2 class="fluid-title font-extrabold text-white tracking-tight">Serviços Online</h2>
+            <p class="fluid-subtitle text-blue-100 hidden sm:block max-w-2xl mx-auto">Acesso rápido aos principais serviços da Prefeitura Municipal de Limeira.</p>
+        </div>
+    </div>
+
+    <main class="flex-1 min-h-0 max-w-[1600px] w-full mx-auto px-2 sm:px-6 z-20 flex flex-col justify-center py-4 sm:-mt-8 mb-20 sm:mb-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 w-full h-full min-h-0">
+            
+            <a href="#" onclick="abrirModalIptu(event)" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-orange-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-orange-100 text-orange-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-file-invoice fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">IPTU 2026</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Emissão e regularização do seu IPTU.</p>
+            </a>
+
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_guia_quitacao$$YmQ3ZTMyMTg0MDRiMTQzOWUwM2FlMzMzNWNmZGM2YzFZbVEzWlRNeU1UZzBNRFJpTVRRek9XVXdNMkZsTXpNek5XTm1aR00yWXpFNU1EQT0=$$li_900_3$$3" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-green-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-green-100 text-green-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-file-invoice-dollar fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Guia de Quitação</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Gere guias para pagamento à vista.</p>
+            </a>
+
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$OWU5OWUzMjQ1M2I4NmI1YjgxNjQ0Yzg0ZDIyYjYzMDBPV1U1T1dVek1qUTFNMkk0Tm1JMVlqZ3hOalEwWXpnMFpESXlZall6TURBek5qaz0=$$li_369_3$$3" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-yellow-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-yellow-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-rotate fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Atualizar parcelas</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Recalcule parcelas vencidas.</p>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95595385&iser=01JDWJT14Y0HZYY9WN2503RZQ3" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-red-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-red-100 text-red-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-handshake-angle fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Fazer parcelamento</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Regularize seus débitos ativos.</p>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7659738&iser=01HY1AXS8WCN21A2GY3J9212VD" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-indigo-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-magnifying-glass-dollar fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Consultar débitos</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Verifique suas pendências por CPF/CNPJ.</p>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=95597982&iser=01KH3ZX2M352R4S04D9RZ2JXEB" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-blue-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-blue-100 text-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-house-chimney fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Gerar ITBI</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Serviços para transmissão de imóveis.</p>
+            </a>
+
+            <a href="#" onclick="abrirModal(event)" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-purple-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-purple-100 text-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-certificate fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Emitir certidão</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Documentos para imóveis e empresas.</p>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=3820502&iser=01J60N2PR2V0FTD9NTZFWA3TCV" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-emerald-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-building fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Fazer habite-se</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Emissão do certificado de conclusão.</p>
+            </a>
+
+            <a href="#" onclick="abrirModalIsencao(event)" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-teal-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-teal-100 text-teal-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-percent fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Isenção de IPTU</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Critérios e requerimentos de isenção.</p>
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=13&is=95598137&iser=01KCS8S0F4R2GX1TEKWC03Z60F" class="glass-card w-full h-full rounded-lg sm:rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300 group border-b-2 sm:border-b-4 border-pink-500 flex flex-col items-center justify-center text-center cursor-pointer min-h-0 overflow-hidden">
+                <div class="shrink-0 fluid-icon-box bg-pink-100 text-pink-600 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-pink-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-id-card fluid-icon"></i>
+                </div>
+                <h3 class="font-bold text-gray-800 fluid-card-title leading-tight">Inscrição Cadastral</h3>
+                <p class="fluid-card-desc text-gray-500 leading-snug">Solicite ou consulte inscrições.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <div id="modalIptu" class="modal-overlay" onclick="fecharModalIptuClickFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModalIptu()">&times;</button>
+            <h2 class="modal-title">Selecione o serviço de IPTU</h2>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_carne_iptu$$YjM1M2VlMzA0OGY4ZDc5ZDQ1N2Q0MjFjZjZiMDE5MjlZak0xTTJWbE16QTBPR1k0WkRjNVpEUTFOMlEwTWpGalpqWmlNREU1TWpreU5EVT0=$$li_245_3$$3" class="modal-btn" target="_blank">
+                Emitir 2ª via do IPTU 2026
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_atualiza_guia$$YjRkMjU2ODgxZjdjNTY1ZjJmMWU4NjJhZDY3Yzk3ODhZalJrTWpVMk9EZ3haamRqTlRZMVpqSm1NV1U0TmpKaFpEWTNZemszT0Rnek5qaz0=$$li_369_3$$3" class="modal-btn" target="_blank">
+                Atualizar parcelas vencidas (IPTU 2026)
+            </a>
+
+            <a href="https://www.limeira.sp.gov.br/secretarias/fazenda/imunidadeisencoes/imunidade-isencoes" class="modal-btn" target="_blank">
+                Remissão e Isenção
+            </a>
+
+            <a href="https://www.limeira.sp.gov.br/secretarias/fazenda/cartilha-de-calculo-do-iptu" class="modal-btn" target="_blank">
+                Como é feito o cálculo do IPTU?
+            </a>
+        </div>
+    </div>
+
+    <div id="modalCertidao" class="modal-overlay" onclick="fecharModalClickFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+            <h2 class="modal-title">Selecione o tipo de Certidão</h2>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_imobiliarias$$NDRhNmM5MzYyYWZjYzIyNzEzNTFmNTAxMDljYTFlNjZORFJoTm1NNU16WXlZV1pqWXpJeU56RXpOVEZtTlRBeE1EbGpZVEZsTmpZek56RT0=$$li_371_3$$3" class="modal-btn" target="_blank">
+                Certidão para Imóvel
+            </a>
+            
+            <a href="https://limeira.iibrasil.com.br/pub/pub_dashboard.php#pub_certidoes_mobiliarias$$MzNjNjMyMWNmNTk3YjM5Mjk3YzU0Mjc1YjQwZDFiNmRNek5qTmpNeU1XTm1OVGszWWpNNU1qazNZelUwTWpjMVlqUXdaREZpTm1RM09UZz0=$$li_798_3$$3" class="modal-btn" target="_blank">
+                Certidão para Empresas
+            </a>
+        </div>
+    </div>
+
+    <div id="modalIsencao" class="modal-overlay" onclick="fecharModalIsencaoClickFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModalIsencao()">&times;</button>
+            <h2 class="modal-title">Selecione o tipo de Isenção</h2>
+            
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660262&iser=01JDME63ATG2BE3KGF0MTG0ZVX" class="modal-btn" target="_blank">
+                Isenção para Aposentados/Pensionistas
+            </a>
+            
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660134&iser=01HY1B1XQB58675YNM96RR9CA7" class="modal-btn" target="_blank">
+                Isenção por Metragem
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660135&iser=01HY1B30346JQ2WKVFRS69XBZ5" class="modal-btn" target="_blank">
+                Isenção p/ Aposentados (Tratamento Médico)
+            </a>
+
+            <a href="https://digital.limeira.sp.gov.br/b.php?pg=wp/wp&itd=5&is=7660442&iser=01HZM7BZNKD9A99FV13V7CZ5ZQ" class="modal-btn" target="_blank">
+                Isenção p/ Aposentados (Acidente de Trabalho)
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modalCertidao');
+        function abrirModal(event) { event.preventDefault(); modal.classList.add('active'); }
+        function fecharModal() { modal.classList.remove('active'); }
+        function fecharModalClickFora(event) { if (event.target === modal) fecharModal(); }
+
+        const modalIptu = document.getElementById('modalIptu');
+        function abrirModalIptu(event) { event.preventDefault(); modalIptu.classList.add('active'); }
+        function fecharModalIptu() { modalIptu.classList.remove('active'); }
+        function fecharModalIptuClickFora(event) { if (event.target === modalIptu) fecharModalIptu(); }
+
+        const modalIsencao = document.getElementById('modalIsencao');
+        function abrirModalIsencao(event) { event.preventDefault(); modalIsencao.classList.add('active'); }
+        function fecharModalIsencao() { modalIsencao.classList.remove('active'); }
+        function fecharModalIsencaoClickFora(event) { if (event.target === modalIsencao) fecharModalIsencao(); }
+    </script>
+
+    <div id="ia-widget">
+        <div id="ia-window">
+            <div id="ia-header">
+                <span>Assistente Virtual</span>
+                <button id="ia-close" onclick="toggleChatIA()">&times;</button>
+            </div>
+            <div id="ia-messages">
+                <div class="msg bot">Olá! Sou o assistente do Limeira Fácil. Como posso te ajudar com IPTU, ITBI ou outros serviços hoje?</div>
+            </div>
+            <div id="ia-input-area">
+                <input type="text" id="ia-input" placeholder="Digite sua dúvida..." onkeypress="handleEnterIA(event)">
+                <button id="ia-send" onclick="enviarMensagemIA()">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button id="ia-btn" onclick="toggleChatIA()">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        function toggleChatIA() {
+            const window = document.getElementById('ia-window');
+            window.style.display = window.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function handleEnterIA(e) {
+            if (e.key === 'Enter') enviarMensagemIA();
+        }
+
+        function enviarMensagemIA() {
+            const input = document.getElementById('ia-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatMessages = document.getElementById('ia-messages');
+            
+            chatMessages.innerHTML += `<div class="msg user">${message}</div>`;
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                chatMessages.innerHTML += `<div class="msg bot">Ainda estou aprendendo! Para que eu possa te dar respostas reais sobre a Dívida Ativa ou outros setores, meu cérebro precisa ser conectado a uma API através do JavaScript ou Python.</div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
